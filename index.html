@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karen & Raymond - Wedding</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Karen & Raymond</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#our-story">Our Story</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#venue">Venue & Schedule</a></li>
+                <li><a href="#rsvp">RSVP</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>Karen & Raymond</h1>
+                <h2>Are Getting Married!</h2>
+                <p>October 26, 2024 | Grand Ballroom, The Peninsula Manila</p>
+                <a href="#rsvp" class="btn">RSVP Now</a>
+            </div>
+        </section>
+
+        <section id="our-story" class="section">
+            <h2>Our Story</h2>
+            <div class="story-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>From our first meeting to this beautiful moment, every step has been a joy. We can't wait to celebrate our special day with you!</p>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <img src="https://via.placeholder.com/300x200/FFC0CB/000000?text=Photo+1" alt="Couple Photo 1">
+                <img src="https://via.placeholder.com/300x200/ADD8E6/000000?text=Photo+2" alt="Couple Photo 2">
+                <img src="https://via.placeholder.com/300x200/90EE90/000000?text=Photo+3" alt="Couple Photo 3">
+                <img src="https://via.placeholder.com/300x200/FFDAB9/000000?text=Photo+4" alt="Couple Photo 4">
+                <img src="https://via.placeholder.com/300x200/E6E6FA/000000?text=Photo+5" alt="Couple Photo 5">
+                <img src="https://via.placeholder.com/300x200/C0C0C0/000000?text=Photo+6" alt="Couple Photo 6">
+            </div>
+        </section>
+
+        <section id="venue" class="section">
+            <h2>Venue & Schedule</h2>
+            <div class="venue-details">
+                <h3>Ceremony & Reception</h3>
+                <p><strong>Location:</strong> Grand Ballroom, The Peninsula Manila</p>
+                <p>Ayala Ave, Makati, 1226 Metro Manila, Philippines</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.761745422614!2d121.02008431484087!3d14.555239989831968!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90855214d0d%3A0xc3f1a07e9975b31e!2sThe%20Peninsula%20Manila!5e0!3m2!1sen!2sph!4v1678886400000!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <h3>Wedding Day Schedule</h3>
+                <ul>
+                    <li><strong>3:00 PM:</strong> Ceremony</li>
+                    <li><strong>4:00 PM:</strong> Cocktails</li>
+                    <li><strong>6:00 PM:</strong> Dinner Reception</li>
+                    <li><strong>9:00 PM:</strong> Dancing & Celebration</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="rsvp" class="section rsvp-section">
+            <h2>RSVP / Registration</h2>
+            <p>Please let us know if you can make it by September 15, 2024.</p>
+            <form class="rsvp-form">
+                <div class="form-group">
+                    <label for="name">Your Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests (including yourself):</label>
+                    <input type="number" id="guests" name="guests" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="dietary">Dietary Restrictions/Allergies:</label>
+                    <textarea id="dietary" name="dietary" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message to Us (optional):</label>
+                    <textarea id="message" name="message" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit RSVP</button>
+            </form>
+            <div id="rsvp-confirmation" class="confirmation-message" style="display: none;">
+                <p>Thank you for your RSVP! We can't wait to celebrate with you.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact & FAQ</h2>
+            <div class="contact-info">
+                <p>For any inquiries, please email us at: <a href="mailto:karenandraymond@example.com">karenandraymond@example.com</a></p>
+            </div>
+            <div class="faq">
+                <h3>Frequently Asked Questions</h3>
+                <div class="faq-item">
+                    <h4>What is the dress code?</h4>
+                    <p>The dress code is semi-formal/cocktail attire. We recommend elegant dresses for women and suits or blazers for men.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I bring a plus-one?</h4>
+                    <p>If your invitation specifies a plus-one, then yes! Otherwise, we kindly ask that only invited guests attend due to venue capacity.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Is there parking available?</h4>
+                    <p>Yes, valet parking is available at The Peninsula Manila.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Karen & Raymond. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
