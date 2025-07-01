@@ -66,8 +66,8 @@ h3 {
 
 /* Header & Navigation */
 header {
-    /* New: Background image for header */
-    background: url('https://www.gardenia.net/wp-content/uploads/2024/10/shutterstock_2231714049.jpg') no-repeat center center/cover; /* Soft yellow/cream background with green text placeholder */
+    /* Updated: Background image for header from the provided URL */
+    background: url('https://www.gardenia.net/wp-content/uploads/2024/10/shutterstock_2231714049.jpg') no-repeat center center/cover;
     background-color: #fff; /* Fallback color if image doesn't load */
     padding: 15px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.08); /* Lighter shadow */
