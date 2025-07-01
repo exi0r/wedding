@@ -1,8 +1,10 @@
 /* General Styling */
 :root {
-    --primary-color: #A0522D; /* Sienna */
-    --secondary-color: #F8F8F8; /* Light Gray */
-    --text-color: #333;
+    --primary-color: #F7B731; /* Soft Orange/Tangerine - Main Accent */
+    --secondary-color: #E0E0D4; /* Creamy Off-White - Background Base */
+    --accent-green: #8BC34A; /* Muted Green - Secondary Accent */
+    --text-color: #4A4A4A; /* Dark Gray/Soft Brown for readability */
+    --light-text-color: #6C6C6C; /* Lighter text for secondary info */
     --heading-font: 'Playfair Display', serif;
     --body-font: 'Roboto', sans-serif;
 }
@@ -17,7 +19,7 @@ body {
     font-family: var(--body-font);
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color); /* Light, creamy background */
 }
 
 .section {
@@ -29,7 +31,7 @@ body {
 
 h1, h2, h3, h4 {
     font-family: var(--heading-font);
-    color: var(--primary-color);
+    color: var(--primary-color); /* Headings in soft orange */
     margin-bottom: 20px;
 }
 
@@ -47,24 +49,26 @@ h3 {
 
 .btn {
     display: inline-block;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Buttons in soft orange */
     color: #fff;
     padding: 12px 25px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 30px; /* More rounded for a softer feel */
     transition: background-color 0.3s ease;
     margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
 }
 
 .btn:hover {
-    background-color: #8B4513; /* Darker Sienna */
+    background-color: #FFA000; /* Slightly deeper orange on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
 }
 
 /* Header & Navigation */
 header {
     background-color: #fff;
     padding: 15px 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08); /* Lighter shadow */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -101,7 +105,7 @@ nav {
 }
 
 .nav-links a:hover {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Orange on hover */
 }
 
 .burger {
@@ -119,7 +123,8 @@ nav {
 
 /* Hero Section */
 .hero-section {
-    background: url('https://via.placeholder.com/1500x800/D2B48C/000000?text=Wedding+Hero+Image') no-repeat center center/cover;
+    /* Using a placeholder image that fits citrus garden feel. Replace with actual photo. */
+    background: url('https://via.placeholder.com/1500x800/FFDAB9/4A4A4A?text=Karen+%26+Raymond+Wedding+Photo') no-repeat center center/cover;
     color: #fff;
     height: 70vh;
     display: flex;
@@ -127,6 +132,7 @@ nav {
     align-items: center;
     text-align: center;
     position: relative;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.2); /* Soft inner shadow for depth */
 }
 
 .hero-section::before {
@@ -136,30 +142,35 @@ nav {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Overlay for readability */
+    background-color: rgba(0, 0, 0, 0.2); /* Lighter overlay for a brighter feel */
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly transparent background for text */
+    border-radius: 10px;
 }
 
 .hero-content h1 {
     font-size: 4em;
     margin-bottom: 10px;
-    color: #fff;
+    color: #fff; /* White for contrast */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 .hero-content h2 {
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: #fff;
+    color: #fff; /* White for contrast */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .hero-content p {
     font-size: 1.2em;
     margin-bottom: 30px;
-    color: #fff;
+    color: #fff; /* White for contrast */
 }
 
 /* Our Story */
@@ -167,6 +178,7 @@ nav {
     max-width: 800px;
     margin: 0 auto;
     text-align: left;
+    color: var(--light-text-color); /* Slightly lighter text for narrative */
 }
 
 .story-content p {
@@ -187,6 +199,12 @@ nav {
     object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 3px solid var(--accent-green); /* Green border for citrus touch */
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03); /* Subtle hover effect */
 }
 
 /* Venue */
@@ -194,6 +212,7 @@ nav {
     max-width: 800px;
     margin: 0 auto;
     text-align: left;
+    color: var(--light-text-color);
 }
 
 .venue-details h3 {
@@ -203,10 +222,11 @@ nav {
 
 .map-container {
     margin-top: 20px;
-    height: 450px; /* Adjust as needed */
+    height: 450px;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 3px solid var(--accent-green); /* Green border for map */
 }
 
 .map-container iframe {
@@ -238,9 +258,10 @@ nav {
     margin: 30px auto;
     text-align: left;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    background-color: #fefefe;
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1); /* Deeper shadow */
+    background-color: #fefefc; /* Slightly off-white for warmth */
+    border: 1px solid #ffeccb; /* Very light orange border */
 }
 
 .form-group {
@@ -251,7 +272,7 @@ nav {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--primary-color); /* Labels in soft orange */
 }
 
 .form-group input[type="text"],
@@ -264,6 +285,14 @@ nav {
     border-radius: 5px;
     font-size: 1em;
     font-family: var(--body-font);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color); /* Orange border on focus */
+    box-shadow: 0 0 8px rgba(247, 183, 49, 0.2); /* Soft orange glow on focus */
+    outline: none;
 }
 
 .form-group textarea {
@@ -280,9 +309,9 @@ nav {
 .confirmation-message {
     margin-top: 30px;
     padding: 20px;
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: #e6ffe6; /* Light green for success */
+    color: #38761D; /* Darker green for text */
+    border: 1px solid #b3ffb3;
     border-radius: 5px;
     text-align: center;
     font-weight: bold;
@@ -291,6 +320,7 @@ nav {
 /* Contact & FAQ */
 .contact-info {
     margin-bottom: 30px;
+    color: var(--light-text-color);
 }
 
 .contact-info a {
@@ -309,6 +339,7 @@ nav {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     text-align: left;
+    color: var(--light-text-color);
 }
 
 .faq-item h4 {
@@ -318,7 +349,7 @@ nav {
 
 /* Footer */
 footer {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color); /* Footer in soft orange */
     color: #fff;
     text-align: center;
     padding: 25px 20px;
