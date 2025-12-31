@@ -52,12 +52,44 @@
             justify-content: center;
         }
 
+        /* State containers */
+        .state {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+        }
+
+        .state.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Header names */
+        .header-names {
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #8B4513;
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+            z-index: 20;
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
         /* Dried leaves on the left */
         .fern-left {
             position: absolute;
-            left: 7%;
+            left: 5%;
             bottom: 3%;
-            width: 400px;
+            width: 350px;
             height: auto;
             opacity: 0.9;
             filter: drop-shadow(0 10px 30px rgba(0, 100, 0, 0.2));
@@ -105,14 +137,16 @@
             position: relative;
             width: 600px;
             height: 450px;
-            cursor: pointer;
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 10;
-            transform: rotate(-5deg);
         }
 
-        .envelope-wrapper:hover {
-            transform: rotate(-5deg) scale(1.05);
+        .state-1 .envelope-wrapper {
+            cursor: pointer;
+        }
+
+        .state-1 .envelope-wrapper:hover {
+            transform: scale(1.05);
         }
 
         .envelope-img {
@@ -191,13 +225,69 @@
             }
         }
 
+        /* Photograph on envelope */
+        .photograph-img {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+            pointer-events: none;
+            z-index: 6;
+        }
+
+        /* Click button */
+        .click-button {
+            position: absolute;
+            bottom: 3%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #D4A574 0%, #C19A6B 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 20;
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        .click-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(135deg, #C19A6B 0%, #D4A574 100%);
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+            50% {
+                box-shadow: 0 12px 30px rgba(212, 165, 116, 0.4);
+            }
+        }
 
         /* Responsive design */
         @media (max-width: 1024px) {
+            .header-names {
+                font-size: 2rem;
+                top: 15%;
+            }
+
             .fern-left {
-                width: 280px;
-                left: 10%;
-                bottom: 15%;
+                width: 250px;
+                left: 5%;
+                bottom: 28%;
             }
 
             .flowers-right {
@@ -219,9 +309,19 @@
                 font-size: 1.3rem;
             }
 
+            .photograph-img {
+                width: 300px;
+            }
+
             .seal-img {
                 width: 100px;
                 height: 100px;
+            }
+
+            .click-button {
+                font-size: 1rem;
+                padding: 12px 30px;
+                bottom: 20%;
             }
         }
 
@@ -230,14 +330,19 @@
                 height: 500px;
             }
 
+            .header-names {
+                font-size: 1.8rem;
+                top: 18%;
+            }
+
             .fern-left {
-                width: 200px;
-                left: 10%;
-                bottom: 15%;
+                width: 170px;
+                left: 12%;
+                bottom: 28%;
             }
 
             .flowers-right {
-                width: 180px;
+                width: 160px;
                 right: 15%;
                 top: 40%;
             }
@@ -255,9 +360,19 @@
                 font-size: 1.1rem;
             }
 
+            .photograph-img {
+                width: 260px;
+            }
+
             .seal-img {
                 width: 80px;
                 height: 80px;
+            }
+
+            .click-button {
+                font-size: 0.9rem;
+                padding: 10px 25px;
+                bottom: 20%;
             }
         }
 
@@ -266,18 +381,23 @@
                 height: 450px;
             }
 
+            .header-names {
+                font-size: 1.5rem;
+                top: 20%;
+            }
+
             .fern-left {
                 width: 150px;
-                left: 0;
-                bottom: 15%;
-                opacity: 0.8;
+                left: -3%;
+                bottom: 28%;
+                opacity: 0.85;
             }
 
             .flowers-right {
                 width: 120px;
-                right: 20px;
+                right: 5%;
                 top: 45%;
-                opacity: 0.8;
+                opacity: 0.85;
             }
 
             .envelope-wrapper {
@@ -293,47 +413,93 @@
                 font-size: 1rem;
             }
 
+            .photograph-img {
+                width: 210px;
+            }
+
             .seal-img {
                 width: 65px;
                 height: 65px;
+            }
+
+            .click-button {
+                font-size: 0.7rem;
+                padding: 8px 20px;
+                bottom: 20%;
             }
         }
     </style>
 </head>
 <body>
     <div class="invitation-container">
-        <!-- Dried leaves on the left -->
-        <img src="https://exi0r.github.io/wedding/image/driedleaves.png" alt="Dried Leaves" class="fern-left">
-        
-        <!-- Dried flowers on the right -->
-        <img src="https://exi0r.github.io/wedding/image/driedflower.png" alt="Dried Flowers" class="flowers-right">
-        
-        <!-- Envelope in center -->
-        <div class="envelope-wrapper" onclick="window.location.href='invitation.html'">
-            <img src="https://exi0r.github.io/wedding/image/envelop.png" alt="Wedding Invitation Envelope" class="envelope-img">
-            
-            <h1 class="invitation-text">You are Invited</h1>
-            
-            <p class="click-text">Click Here</p>
-            
-            <img src="https://exi0r.github.io/wedding/image/seal.png" alt="Wax Seal" class="seal-img">
+        <!-- State 1: Initial invitation -->
+        <div class="state state-1">
+            <!-- Dried leaves on the left -->
+            <img src="https://exi0r.github.io/wedding/image/driedleaves.png" alt="Dried Leaves" class="fern-left">
+
+            <!-- Dried flowers on the right -->
+            <img src="https://exi0r.github.io/wedding/image/driedflower.png" alt="Dried Flowers" class="flowers-right">
+
+            <!-- Envelope in center -->
+            <div class="envelope-wrapper" id="envelope-trigger">
+                <img src="https://exi0r.github.io/wedding/image/envelop.png" alt="Wedding Invitation Envelope" class="envelope-img">
+
+                <h1 class="invitation-text">You are Invited</h1>
+
+                <p class="click-text">Click Here</p>
+
+                <img src="https://exi0r.github.io/wedding/image/seal.png" alt="Wax Seal" class="seal-img">
+            </div>
+        </div>
+
+        <!-- State 2: Opened invitation -->
+        <div class="state state-2 hidden">
+            <!-- Header names -->
+            <h1 class="header-names">Raymond & Karen</h1>
+
+            <!-- Dried leaves on the left -->
+            <img src="https://exi0r.github.io/wedding/image/driedleaves.png" alt="Dried Leaves" class="fern-left">
+
+            <!-- Dried flowers on the right -->
+            <img src="https://exi0r.github.io/wedding/image/driedflower.png" alt="Dried Flowers" class="flowers-right">
+
+            <!-- Envelope in center -->
+            <div class="envelope-wrapper">
+                <img src="https://exi0r.github.io/wedding/image/envelop.png" alt="Wedding Invitation Envelope" class="envelope-img">
+
+                <!-- Photograph on envelope -->
+                <img src="https://exi0r.github.io/wedding/image/photograph.png" alt="Raymond & Karen" class="photograph-img">
+
+                <img src="https://exi0r.github.io/wedding/image/seal.png" alt="Wax Seal" class="seal-img">
+            </div>
+
+            <!-- Click button -->
+            <a href="rkwedding4.html" class="click-button">Click Here to Know More</a>
         </div>
     </div>
 
     <script>
-        const envelope = document.querySelector('.envelope-wrapper');
-        
-        envelope.addEventListener('mouseenter', function() {
-            this.style.transform = 'rotate(-5deg) scale(1.05)';
+        const envelopeTrigger = document.getElementById('envelope-trigger');
+        const state1 = document.querySelector('.state-1');
+        const state2 = document.querySelector('.state-2');
+
+        // Hover effect for state 1 envelope
+        envelopeTrigger.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
         });
-        
-        envelope.addEventListener('mouseleave', function() {
-            this.style.transform = 'rotate(-5deg) scale(1)';
+
+        envelopeTrigger.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+
+        // Click to transition states
+        envelopeTrigger.addEventListener('click', function() {
+            state1.classList.add('hidden');
+            state2.classList.remove('hidden');
         });
     </script>
 </body>
 </html>
-
 
 
 
