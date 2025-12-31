@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raymond & Karen | We're Getting Married!</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+    <style>
+
+
+        /* General Styles */
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #FEFBF6;
+            color: #5D4037;
+            overflow-x: hidden;
+        }
+        .font-heading { font-family: 'Great Vibes', cursive; }
+        .font-serif-display { font-family: 'Playfair Display', serif; }
+        .bg-citrus-light { background-color: #FFF7E1; }
+        .text-citrus-green { color: #81A26B; }
+
+        /* === ADVANCED ANIMATIONS === */
+        
+        /* Elegant fade-in-up animation */
+        @keyframes elegantFadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Sophisticated bounce animation */
+        @keyframes sophisticatedBounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0, 0, 0);
+            }
+            40%, 43% {
+                transform: translate3d(0, -15px, 0);
+            }
+            70% {
+                transform: translate3d(0, -8px, 0);
+            }
+            90% {
+                transform: translate3d(0, -3px, 0);
+            }
+        }
+
+        /* Gentle floating animation */
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(1deg);
+            }
+        }
+
+        /* Shimmer effect */
+        @keyframes shimmer {
+            0% {
+                background-position: -468px 0;
+            }
+            100% {
+                background-position: 468px 0;
+            }
+        }
+
+        /* Elegant scale animation */
+        @keyframes elegantScale {
+            0% {
+                transform: scale(0.8) rotate(-2deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.05) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Text typewriter effect */
+        @keyframes typewriter {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Gradient animation */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Heart beat animation */
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        /* Elegant slide-in animations */
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Morphing border animation */
+        @keyframes morphBorder {
+            0%, 100% {
+                border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+            }
+            25% {
+                border-radius: 60% 40% 60% 40% / 60% 30% 70% 40%;
+            }
+            50% {
+                border-radius: 50% 60% 30% 60% / 50% 60% 40% 50%;
+            }
+            75% {
+                border-radius: 30% 60% 50% 40% / 50% 40% 60% 50%;
+            }
+        }
+
+        /* Enhanced Button Styles */
+        .btn-primary {
+            @apply inline-block px-8 py-3 text-lg font-semibold text-white bg-citrus-green rounded-full shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2;
+            background: linear-gradient(45deg, #81A26B 0%, #A2C18D 50%, #81A26B 100%);
+            background-size: 200% 200%;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(129, 162, 107, 0.4);
+        }
+
+        .btn-secondary {
+            @apply inline-block px-8 py-3 text-lg font-semibold text-citrus-green bg-transparent border-2 border-citrus-green rounded-full shadow-md transition-all duration-500 transform hover:-translate-y-2;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(45deg, #81A26B, #A2C18D);
+            transition: width 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(129, 162, 107, 0.4);
+            border-color: #A2C18D;
+        }
+
+        /* Interactive Elements */
+        .interactive-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .interactive-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .interactive-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Floating Animation Classes */
+        .float-gentle {
+            animation: gentleFloat 6s ease-in-out infinite;
+        }
+
+        .float-gentle:nth-child(even) {
+            animation-delay: -3s;
+        }
+
+        /* Shimmer Text Effect */
+        .shimmer-text {
+            background: linear-gradient(to right, #81A26B 0%, #A2C18D 50%, #81A26B 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 2s linear infinite;
+        }
+
+        /* Elegant Image Hover Effects */
+        .image-hover-effect {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(129, 162, 107, 0.3) 0%, rgba(162, 193, 141, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .image-hover-effect:hover::after {
+            opacity: 1;
+        }
+
+        .image-hover-effect:hover {
+            transform: scale(1.05);
+        }
+
+        /* Morphing Borders for Profile Images */
+        .morphing-border {
+            animation: morphBorder 8s ease-in-out infinite;
+            border: 4px solid;
+            border-image: linear-gradient(45deg, #FFDAB9, #81A26B, #A2C18D, #FFDAB9) 1;
+        }
+
+        /* Enhanced Music Icon */
+        #music-toggle-btn {
+            background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+            color: #81A26B;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(129, 162, 107, 0.2);
+        }
+
+        #music-toggle-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 20px 40px -10px rgba(129, 162, 107, 0.3);
+            background: linear-gradient(135deg, #81A26B 0%, #A2C18D 100%);
+            color: white;
+            border-color: #A2C18D;
+        }
+
+        @keyframes enhancedPulse {
+            0%, 100% { 
+                transform: scale(1); 
+                box-shadow: 0 0 0 0 rgba(129, 162, 107, 0.7), 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+            50% { 
+                transform: scale(1.08); 
+                box-shadow: 0 0 0 15px rgba(129, 162, 107, 0), 0 15px 35px -5px rgba(129, 162, 107, 0.2);
+            }
+        }
+        .animate-pulse-widget {
+            animation: enhancedPulse 3s infinite;
+        }
+
+        /* Enhanced Countdown Cards */
+        .countdown-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, white 0%, #fefefe 100%);
+            border: 1px solid rgba(129, 162, 107, 0.1);
+        }
+
+        .countdown-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #81A26B, #A2C18D, #FFDAB9);
+            transform: scaleX(0);
+            transition: transform 0.6s ease;
+        }
+
+        .countdown-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .countdown-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(129, 162, 107, 0.15);
+            background: linear-gradient(135deg, #fefefe 0%, white 100%);
+        }
+
+        /* Flip Animation Enhancement */
+        .flipper {
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .flipper.flipped {
+            animation: sophisticatedBounce 0.8s ease;
+        }
+
+        .flipper.flipped .font-bold {
+            background: linear-gradient(45deg, #81A26B, #A2C18D);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 1s ease;
+        }
+
+        /* --- NEW: Floating Petal Canvas --- */
+        #petal-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind all content */
+            pointer-events: none; /* Allow clicks to go through */
+        }
+        
+        /* Make sections transparent to see background */
+        .bg-transparent-for-petals {
+            background-color: transparent !important;
+        }
+
+        .content-wrapper {
+             position: relative; 
+             z-index: 1;
+        }
+
+/* --- UPDATED MOBILE-FIRST TIMELINE CSS --- */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* The vertical line - Now visible on ALL screen sizes */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: #FFDAB9; /* Peach Puff */
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Perfectly center the line */
+    z-index: -1; /* Behind content and dots */
+}
+
+/* Container for each timeline event */
+.timeline-container {
+    position: relative;
+    width: 100%;
+    /* Add some padding to prevent text from touching screen edges */
+    padding: 0 1rem; 
+}
+
+/* The circle marker on the line - Mobile styles first */
+.timeline-container::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border: 4px solid #FF9F80; /* Light Salmon */
+    border-radius: 50%;
+    z-index: -1;
+    top: 3.5rem; /* Aligns with the center of the image */
+
+    /* --- Position for Mobile: Centered on the line --- */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/* --- Desktop Styles (md screens and up) --- */
+@media (min-width: 768px) {
+    /* On desktop, containers take up half the space */
+    .timeline-container {
+        width: 50%;
+        padding: 0 2.5rem; /* 40px padding */
+    }
+
+  .carousel button {
+    transform: scale(0.9);
+    padding: 0.4rem;
+  }
+
+    /* Position the containers on the left and right */
+    .timeline-container.left {
+        left: 0;
+    }
+    .timeline-container.right {
+        left: 50%;
+    }
+
+    /* Reposition the circle markers for the zig-zag layout */
+    .timeline-container.left::after {
+        left: auto; /* Reset mobile 'left' */
+        right: -13px; /* Position on the right side of the container */
+        transform: none; /* Reset mobile transform */
+    }
+    .timeline-container.right::after {
+        left: -13px; /* Position on the left side of the container */
+        transform: none; /* Reset mobile transform */
+    }
+}
+
+
+
+
+    </style>
+</head>
+<body class="antialiased">
+    
+    <!-- NEW: Petal Canvas -->
+    <canvas id="petal-canvas"></canvas>
+
+    <div id="music-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-lg shadow-2xl p-8 text-center max-w-sm mx-auto" data-aos="zoom-in">
+            <h3 class="font-heading text-4xl text-citrus-green mb-4">Welcome!</h3>
+            <p class="text-gray-600 mb-8">This site contains background music. Would you like to play it for the best experience?</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button id="play-music-btn" class="w-full sm:w-auto inline-block px-8 py-3 text-lg font-semibold text-white bg-citrus-green rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" style="background-image: linear-gradient(45deg, #81A26B 0%, #A2C18D 100%);">Play Music</button>
+                <button id="no-music-btn" class="w-full sm:w-auto inline-block px-8 py-3 text-lg font-semibold text-citrus-green bg-transparent border-2 border-citrus-green rounded-full shadow-md hover:bg-citrus-green hover:text-white transition-colors duration-300 transform hover:-translate-y-1">Continue in Silence</button>
+            </div>
+        </div>
+    </div>
+
+    <button id="music-toggle-btn" class="hidden fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full flex items-center justify-center animate-pulse-widget">
+        <svg id="music-on-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" /></svg>
+        <svg id="music-off-icon" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6.375a9 9 0 0 1 12.728 0M15 15.75a5.25 5.25 0 0 1-7.424 0M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" /></svg>
+    </button>
+
+    <audio id="bg-music" loop src="https://exi0r.github.io/wedding/music/DilawInstrumental.mp3"></audio>
+
+    <header id="home" class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md shadow-lg transition-all duration-500 border-b border-citrus-green/10">
+        <!-- Progress bar -->
+        <div id="scroll-progress" class="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-citrus-green via-yellow-300 to-citrus-green transition-all duration-300" style="width: 0%"></div>
+        
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-heading text-citrus-green shimmer-text transition-all duration-300 hover:scale-110">R & K</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#story" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
+                    Our Story
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#event" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
+                    Event Details
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#gallery" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
+                    Gallery
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#rsvp" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
+                    RSVP
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-2xl text-gray-600 hover:text-citrus-green transition-colors duration-300 p-2 rounded-lg hover:bg-citrus-green/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-citrus-green/10 transform transition-all duration-500 translate-y-0">
+            <div class="px-6 py-4 space-y-1">
+                <a href="#story" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Our Story</a>
+                <a href="#event" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Event Details</a>
+                <a href="#gallery" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Gallery</a>
+                <a href="#rsvp" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">RSVP</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden" style="background: url('https://exi0r.github.io/wedding/image/background_ring.png') no-repeat center center/cover;">
+        
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-10 left-10 w-4 h-4 bg-white rounded-full float-gentle"></div>
+            <div class="absolute top-20 right-20 w-6 h-6 bg-white/70 rounded-full float-gentle" style="animation-delay: -1s;"></div>
+            <div class="absolute bottom-32 left-20 w-3 h-3 bg-white/50 rounded-full float-gentle" style="animation-delay: -2s;"></div>
+            <div class="absolute bottom-20 right-32 w-5 h-5 bg-white/60 rounded-full float-gentle" style="animation-delay: -4s;"></div>
+        </div>
+
+        <div class="relative z-10 p-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="hero-content">
+                <h1 class="font-heading text-5xl sm:text-6xl md:text-8xl lg:text-9xl mb-4 hero-names leading-tight" style="animation-delay: 0.5s; line-height: 0.9; padding: 0.2em 0; text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5);">Raymond & Karen</h1>
+                <div class="typewriter-container overflow-hidden">
+                    <p class="text-xl md:text-2xl font-light tracking-wider mb-2 font-serif-display typewriter-text" style="animation: typewriter 2s steps(18) 1s forwards, elegantFadeInUp 1s ease 1s forwards; width: 0; opacity: 0; text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);">WE'RE GETTING MARRIED</p>
+                </div>
+                <div class="wedding-date-container" data-aos="zoom-in" data-aos-delay="2500" data-aos-duration="800">
+                    <p class="text-2xl md:text-3xl font-semibold bg-white/20 backdrop-blur-sm py-3 px-6 rounded-2xl inline-block interactive-card border border-white/30" style="box-shadow: 0 8px 32px rgba(0,0,0,0.1); text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);">
+                        <span class="inline-block mr-2">💍</span>
+                        April 19, 2026
+                        <span class="inline-block ml-2 animate-bounce" style="animation-delay: 3s;">💕</span>
+                    </p>
+                </div>
+                
+                <!-- Elegant scroll indicator -->
+                <div class="mt-12" data-aos="fade-up" data-aos-delay="3000">
+                    <div class="flex flex-col items-center space-y-2">
+                        <span class="text-sm tracking-wider font-light">Scroll to explore</span>
+                        <div class="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+                            <div class="w-1 h-3 bg-white/70 rounded-full mt-2 animate-bounce"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-citrus-light bg-transparent-for-petals relative overflow-hidden">
+        <!-- Animated Background Shapes -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 left-20 w-32 h-32 bg-citrus-green rounded-full float-gentle"></div>
+            <div class="absolute bottom-32 right-20 w-24 h-24 bg-yellow-300 rounded-full float-gentle" style="animation-delay: -2s;"></div>
+            <div class="absolute top-1/2 left-10 w-16 h-16 bg-peach-200 rounded-full float-gentle" style="animation-delay: -4s;"></div>
+        </div>
+
+        <div class="container mx-auto text-center px-6 content-wrapper relative z-10">
+            <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up" data-aos-duration="1000">Counting Down</h2>
+            <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(90deg, #F59E0B, #FCD34D, #F59E0B); background-size: 200% auto; animation: shimmer 2s linear infinite;"></div>
+            <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 float-gentle" data-aos="fade-up" data-aos-delay="200">UNTIL OUR BIG DAY</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto text-citrus-green" data-aos="fade-up" data-aos-delay="400">
+                <div class="countdown-card group" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="flipper" id="days-flipper">
+                        <div class="text-4xl md:text-6xl font-bold transition-all duration-300 group-hover:scale-110">0</div>
+                    </div>
+                    <div class="text-sm uppercase tracking-widest mt-2 transition-colors duration-300 group-hover:text-citrus-green">Days</div>
+                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">📅</div>
+                </div>
+                
+                <div class="countdown-card group" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="flipper" id="hours-flipper">
+                        <div class="text-4xl md:text-6xl font-bold transition-all duration-300 group-hover:scale-110">0</div>
+                    </div>
+                    <div class="text-sm uppercase tracking-widest mt-2 transition-colors duration-300 group-hover:text-citrus-green">Hours</div>
+                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">🕐</div>
+                </div>
+                
+                <div class="countdown-card group" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="flipper" id="minutes-flipper">
+                        <div class="text-4xl md:text-6xl font-bold transition-all duration-300 group-hover:scale-110">0</div>
+                    </div>
+                    <div class="text-sm uppercase tracking-widest mt-2 transition-colors duration-300 group-hover:text-citrus-green">Minutes</div>
+                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">⏰</div>
+                </div>
+                
+                <div class="countdown-card group" data-aos="zoom-in" data-aos-delay="800">
+                    <div class="flipper" id="seconds-flipper">
+                        <div class="text-4xl md:text-6xl font-bold transition-all duration-300 group-hover:scale-110">0</div>
+                    </div>
+                    <div class="text-sm uppercase tracking-widest mt-2 transition-colors duration-300 group-hover:text-citrus-green">Seconds</div>
+                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">⚡</div>
+                </div>
+            </div>
+
+            <!-- Elegant divider -->
+            <div class="mt-16 flex items-center justify-center" data-aos="fade-up" data-aos-delay="900">
+                <div class="flex-1 h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent"></div>
+                <div class="mx-4 text-2xl animate-bounce" style="animation-delay: 1s;">💐</div>
+                <div class="flex-1 h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+<section id="story" class="py-20 bg-transparent-for-petals">
+  <div class="container mx-auto px-6 content-wrapper">
+    <div class="text-center mb-16">
+      <h2 class="font-serif-display text-4xl md:text-5xl font-bold text-gray-800" data-aos="fade-up">Our Story</h2>
+      <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+      <p class="text-xl uppercase tracking-wide text-gray-500" data-aos="fade-up" data-aos-delay="200">A JOURNEY OF LOVE</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-container left mb-12" data-aos="fade-right" data-aos-duration="1000">
+        <div class="flex flex-col items-center md:flex-row gap-6">
+          <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 overflow-hidden morphing-border shadow-lg image-hover-effect">
+            <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" alt="How we met" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+          </div>
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-yellow-100/50">
+            <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text">How We Met</h3>
+            <p class="text-gray-700 leading-relaxed">We met as officemates — not exactly working together, but somehow, life found a quiet way to connect us.</p>
+            <div class="mt-4 flex justify-center md:justify-start">
+              <span class="text-2xl animate-bounce" style="animation-delay: 0.5s;">💼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-container right mb-12" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+        <div class="flex flex-col items-center md:flex-row-reverse gap-6">
+          <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 overflow-hidden morphing-border shadow-lg image-hover-effect" style="animation-delay: -2s;">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="A Spark" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+          </div>
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-peach-200/50">
+            <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.2s;">A Spark</h3>
+            <p class="text-gray-700 leading-relaxed">Over the years, we shared a friendship that came with a few question marks and maybe a little spark we never really defined. Until one day, everything just felt right.</p>
+            <div class="mt-4 flex justify-center md:justify-end">
+              <span class="text-2xl animate-bounce" style="animation-delay: 1s;">✨</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-container left mb-12" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
+        <div class="flex flex-col items-center md:flex-row gap-6">
+          <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 overflow-hidden morphing-border shadow-lg image-hover-effect" style="animation-delay: -4s;">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Making It Official" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+          </div>
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-lime-200/50">
+            <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.4s;">Making It Official</h3>
+            <p class="text-gray-700 leading-relaxed">In June 2024, we finally made it official. Exactly a year later, Raymond proposed.</p>
+            <div class="mt-4 flex justify-center md:justify-start">
+              <span class="text-2xl animate-bounce" style="animation-delay: 1.5s;">💕</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-container right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
+        <div class="flex flex-col items-center md:flex-row-reverse gap-6">
+          <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 overflow-hidden morphing-border shadow-lg image-hover-effect" style="animation-delay: -6s;">
+            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="To Forever" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+          </div>
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-green-200/50">
+            <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.6s;">To Forever</h3>
+            <p class="text-gray-700 leading-relaxed">Now, here we are — about to get married and beyond excited to celebrate with all of you!</p>
+            <p class="mt-4 font-bold text-citrus-green heartbeat-text" style="animation: heartbeat 2s ease-in-out infinite;">With love, R & K</p>
+            <div class="mt-4 flex justify-center md:justify-end space-x-2">
+              <span class="text-2xl animate-bounce" style="animation-delay: 2s;">💍</span>
+              <span class="text-2xl animate-bounce" style="animation-delay: 2.2s;">💒</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+    <section id="event" class="py-20 bg-citrus-light bg-transparent-for-petals">
+        <div class="container mx-auto px-6 text-center content-wrapper">
+            <h2 class="font-serif-display text-5xl font-bold text-gray-800" data-aos="fade-up">The Wedding</h2>
+            <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+            <p class="text-xl uppercase tracking-wide text-gray-500 mb-12" data-aos="fade-up" data-aos-delay="200">JOIN US TO CELEBRATE</p>
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+                <div class="text-center" data-aos="fade-right">
+                    <div class="mb-4">
+                        <img src="https://img.icons8.com/ios/100/81A26B/wedding-rings.png" alt="Ceremony Icon" class="mx-auto"/>
+                    </div>
+                    <h3 class="font-heading text-4xl text-citrus-green mb-2">The Ceremony & Reception</h3>
+                    <p class="text-lg">Sunday, April 19, 2026 at 4:30 PM</p>
+                    <p class="text-lg mt-4 font-semibold">The Emerald Events Place</p>
+                    <p class="text-gray-500">Cabrera Rd, Antipolo City, 1870 Rizal</p>
+                    <div class="mt-8">
+                        <a href="https://maps.app.goo.gl/v1xjURzm47ShGyDP6" target="_blank" class="btn-primary">
+                            Open in Google Maps
+                        </a>
+                    </div>
+                </div>
+                <div class="h-96 md:h-full rounded-lg shadow-xl overflow-hidden" data-aos="fade-left">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d61783.25814589349!2d121.166947!3d14.573208!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c7fb8fce5735%3A0xc84901512d88bd1e!2sThe%20Emerald%20Events%20Place!5e0!3m2!1sen!2sjp!4v1752373039070!5m2!1sen!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<section id="attire" class="py-20 bg-transparent-for-petals">
+  <div class="container mx-auto px-6 text-center content-wrapper">
+    <h2 class="font-serif-display text-5xl font-bold text-gray-800" data-aos="fade-up">Attire</h2>
+    <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+    <p class="text-xl uppercase tracking-wide text-gray-500 mb-8" data-aos="fade-up" data-aos-delay="200">Soft Citrus Garden Theme</p>
+
+    <div class="max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="300">
+      <p class="text-lg leading-relaxed mb-6">
+        We kindly request our guests to dress in <strong>formal attire</strong>. To complement our soft citrus garden theme, we suggest the following colors:
+      </p>
+
+      <!-- Interactive Color Swatches -->
+	<div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-6 justify-center text-sm mb-8">
+        <div class="group">
+          <div class="w-16 h-16 rounded-full bg-[#FFDAB9] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
+          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Peach</p>
+        </div>
+        <div class="group">
+          <div class="w-16 h-16 rounded-full bg-[#FFFACD] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
+          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Lemon</p>
+        </div>
+        <div class="group">
+          <div class="w-16 h-16 rounded-full bg-[#A2C18D] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
+          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Sage Green</p>
+        </div>
+        <div class="group">
+          <div class="w-16 h-16 rounded-full bg-[#E6DAF5] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
+          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Lavender</p>
+        </div>
+        <div class="group">
+          <div class="w-16 h-16 rounded-full bg-[#FFF7E1] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
+          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Ivory</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsible Style Suggestions -->
+    <div class="max-w-2xl mx-auto text-left" data-aos="fade-up" data-aos-delay="400">
+      <button onclick="toggleTips()" class="btn-secondary w-full mb-4 text-center">
+        View Style Tips
+      </button>
+      <div id="styleTips" class="hidden bg-white/70 backdrop-blur-md rounded-lg p-6 shadow-md transition-all duration-300">
+        <ul class="list-disc pl-6 text-gray-700 space-y-2">
+          <li>Ladies: Long dresses, flowy fabrics, garden-friendly heels or flats</li>
+          <li>Gentlemen: Light-colored suits or barongs with earth-tone accents</li>
+          <li>We recommend avoiding black or bold neon tones</li>
+          <li>Coordinate within suggested palette if attending as a group</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Optional: Moodboard Style Image -->
+
+</section>
+<section class="py-20 bg-gradient-to-b from-lime-50 via-white to-yellow-50">
+  <div class="container mx-auto px-6 content-wrapper text-center">
+    <h3 class="text-4xl font-serif-display text-citrus-green font-semibold mb-4" data-aos="fade-up">
+      Attire Inspiration
+    </h3>
+    <p class="text-gray-600 mb-12 max-w-xl mx-auto italic" data-aos="fade-up" data-aos-delay="100">
+      A few soft, elegant looks to help guide your outfit for our garden celebration.
+    </p>
+
+    <!-- carousel -->
+    <div class="relative max-w-4xl mx-auto overflow-hidden rounded-3xl shadow-2xl border border-yellow-100 bg-white/80 backdrop-blur-md ring-1 ring-lime-100" data-aos="fade-up" data-aos-delay="200">
+      <div class="carousel flex transition-transform duration-500 ease-in-out" id="attire-carousel-woman">
+        <!-- Slide 1 -->
+        <div class="min-w-full">
+          <img src="https://exi0r.github.io/wedding/image/bridesmaid.jpg" alt="Soft Yellow Bridesmaid Inspiration"
+               class="w-full h-64 sm:h-80 md:h-[28rem] object-contain object-top rounded-t-3xl shadow-inner">
+          <div class="p-5 text-lime-800 text-lg font-bold italic bg-lime-50 border-t border-lime-100">
+            Soft yellow gowns for bridesmaids
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="min-w-full">
+          <img src="https://exi0r.github.io/wedding/image/groomsmen.jpg" alt="Garden Groom Style"
+               class="w-full h-64 sm:h-80 md:h-[28rem] object-contain object-top rounded-t-3xl shadow-inner">
+          <div class="p-5 text-sage-800 text-lg font-bold italic bg-sage-50 border-t border-sage-100">
+            Sage green suit for groomsmen
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="min-w-full">
+          <img src="https://exi0r.github.io/wedding/image/guests.png" alt="Guests in Citrus Hues"
+               class="w-full h-64 sm:h-80 md:h-[28rem] object-contain object-top rounded-t-3xl shadow-inner">
+          <div class="p-5 text-yellow-800 text-lg font-bold italic bg-yellow-50 border-t border-yellow-100">
+            Guest palette in neutral or soft citrus hues
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="absolute inset-y-1/2 left-0 flex items-center pl-4">
+        <button onclick="prevSlide('attire-carousel-woman')" class="bg-white/90 text-citrus-green hover:bg-citrus-green hover:text-white p-2 rounded-full shadow-md transition duration-300 backdrop-blur-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      </div>
+      <div class="absolute inset-y-1/2 right-0 flex items-center pr-4">
+        <button onclick="nextSlide('attire-carousel-woman')" class="bg-white/90 text-citrus-green hover:bg-citrus-green hover:text-white p-2 rounded-full shadow-md transition duration-300 backdrop-blur-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Entourage Section -->
+
+<section id="entourage" class="py-16 md:py-20 bg-citrus-light bg-transparent-for-petals">
+  <div class="container mx-auto px-6 content-wrapper text-center">
+    <h2 class="font-serif-display text-4xl md:text-5xl font-bold text-gray-800" data-aos="fade-up">Our Entourage</h2>
+    <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+    <p class="text-xl uppercase tracking-wide text-gray-500 mb-12" data-aos="fade-up" data-aos-delay="200">THE PEOPLE WHO STAND WITH US</p>
+
+
+    <div class="grid grid-cols-2 md:grid-cols-2 md:gap-10 max-w-5xl mx-auto">
+      
+      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 group border border-yellow-100/50" data-aos="zoom-in" data-aos-duration="800">
+        <div class="relative mb-6">
+          <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="Best Man" class="rounded-full w-32 h-32 mx-auto object-cover morphing-border shadow-lg image-hover-effect">
+        </div>
+        <h3 class="text-2xl font-heading text-citrus-green shimmer-text group-hover:scale-105 transition-transform duration-300">John Reyes</h3>
+        <p class="text-gray-500 mt-2 group-hover:text-citrus-green transition-colors duration-300">Best Man</p>
+        <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span class="text-2xl animate-bounce" style="animation-delay: 0.2s;">🤵</span>
+        </div>
+      </div>
+      
+      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 group border border-peach-200/50" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+        <div class="relative mb-6">
+          <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Maid of Honor" class="rounded-full w-32 h-32 mx-auto object-cover morphing-border shadow-lg image-hover-effect" style="animation-delay: -2s;">
+        </div>
+        <h3 class="text-2xl font-heading text-citrus-green shimmer-text group-hover:scale-105 transition-transform duration-300" style="animation-delay: 0.1s;">Angela Cruz</h3>
+        <p class="text-gray-500 mt-2 group-hover:text-citrus-green transition-colors duration-300">Maid of Honor</p>
+        <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span class="text-2xl animate-bounce" style="animation-delay: 0.4s;">👰</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
+        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
+        <p class="text-gray-500">Principal Sponsors</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
+        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
+        <p class="text-gray-500">Principal Sponsors</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
+        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
+        <p class="text-gray-500">Principal Sponsors</p>
+      </div>
+      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
+        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
+        <p class="text-gray-500">Principal Sponsors</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
+        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
+        <p class="text-gray-500">Principal Sponsors</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
+        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
+        <p class="text-gray-500">Principal Sponsors</p>
+      </div>
+
+
+    </div>
+
+    <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-4xl mx-auto text-left">
+      
+      <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-right">
+        <h4 class="text-2xl font-serif-display text-citrus-green mb-4 text-center md:text-left">Groomsmen</h4>
+        <ul class="text-gray-700 space-y-2 text-center md:text-left">
+          <li>Alex Santiago</li>
+          <li>Ben Tolentino</li>
+          <li>Carlos Navarro</li>
+        </ul>
+      </div>
+
+      <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-left">
+        <h4 class="text-2xl font-serif-display text-citrus-green mb-4 text-center md:text-left">Bridesmaids</h4>
+        <ul class="text-gray-700 space-y-2 text-center md:text-left">
+          <li>Jasmine Lopez</li>
+          <li>Cheska Dela Cruz</li>
+          <li>Faith Rivera</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Gallery Section -->
+
+
+    <section id="gallery" class="py-20 bg-citrus-light bg-transparent-for-petals relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-32 right-10 w-20 h-20 bg-yellow-300 rounded-full float-gentle"></div>
+            <div class="absolute bottom-20 left-16 w-28 h-28 bg-citrus-green rounded-full float-gentle" style="animation-delay: -3s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center content-wrapper relative z-10">
+            <div class="text-center mb-12">
+                <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up" data-aos-duration="1000">Gallery</h2>
+		        <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(90deg, #F59E0B, #FCD34D, #F59E0B); background-size: 200% auto; animation: shimmer 2s linear infinite;"></div>
+                <p class="text-xl uppercase tracking-wide text-gray-500 mb-8 float-gentle" data-aos="fade-up" data-aos-delay="200">CHERISHED MOMENTS</p>
+                
+                <!-- Elegant divider -->
+                <div class="flex items-center justify-center mb-8" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex-1 h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent"></div>
+                    <div class="mx-4 text-xl animate-bounce" style="animation-delay: 0.5s;">📸</div>
+                    <div class="flex-1 h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent"></div>
+                </div>
+            </div>
+
+             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              <a href="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" class="glightbox gallery-item group"
+                 data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="100">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
+                  <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg"
+                       alt="Gallery Image 1"
+                       class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute bottom-4 left-4 text-white">
+                      <div class="text-2xl mb-1">👫</div>
+                      <div class="text-sm font-medium">Our Beginning</div>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                      <div class="text-2xl">🔍</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              <a href="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" class="glightbox gallery-item group"
+                 data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="200">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
+                  <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg"
+                       alt="Gallery Image 2"
+                       class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute bottom-4 left-4 text-white">
+                      <div class="text-2xl mb-1">✨</div>
+                      <div class="text-sm font-medium">Special Moments</div>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                      <div class="text-2xl">🔍</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              <a href="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" class="glightbox gallery-item group"
+                 data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="300">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
+                  <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg"
+                       alt="Gallery Image 3"
+                       class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute bottom-4 left-4 text-white">
+                      <div class="text-2xl mb-1">💕</div>
+                      <div class="text-sm font-medium">Together</div>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                      <div class="text-2xl">🔍</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              <a href="https://exi0r.github.io/wedding/image/IMG_6782.jpeg" class="glightbox gallery-item group"
+                 data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="400">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
+                  <img src="https://exi0r.github.io/wedding/image/IMG_6782.jpeg"
+                       alt="Gallery Image 4"
+                       class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute bottom-4 left-4 text-white">
+                      <div class="text-2xl mb-1">🌟</div>
+                      <div class="text-sm font-medium">Love Story</div>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                      <div class="text-2xl">🔍</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              <a href="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" class="glightbox gallery-item group"
+                 data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="500">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
+                  <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg"
+                       alt="Gallery Image 5"
+                       class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute bottom-4 left-4 text-white">
+                      <div class="text-2xl mb-1">💍</div>
+                      <div class="text-sm font-medium">Engagement</div>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                      <div class="text-2xl">🔍</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+
+              <a href="https://exi0r.github.io/wedding/image/IMG_6633.jpeg" class="glightbox gallery-item group"
+                 data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="600">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
+                  <img src="https://exi0r.github.io/wedding/image/IMG_6633.jpeg"
+                       alt="Gallery Image 6"
+                       class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute bottom-4 left-4 text-white">
+                      <div class="text-2xl mb-1">💐</div>
+                      <div class="text-sm font-medium">Our Journey</div>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                      <div class="text-2xl">🔍</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Elegant closing divider -->
+            <div class="mt-16 flex items-center justify-center" data-aos="fade-up" data-aos-delay="700">
+                <div class="flex-1 h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent"></div>
+                <div class="mx-4 text-2xl animate-bounce" style="animation-delay: 1s;">📷</div>
+                <div class="flex-1 h-px bg-gradient-to-r from-transparent via-yellow-300 to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rsvp" class="py-24" style="background: url('https://exi0r.github.io/wedding/image/background_new2.png') no-repeat center center/cover; background-attachment: fixed;">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative container mx-auto px-6 text-center content-wrapper">
+            <h2 class="font-serif-display text-5xl font-bold text-citrus-green" data-aos="fade-up">Will You Be There?</h2>
+            <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+            <p class="text-xl font-bold uppercase tracking-wide text-dark-gray-200 mb-8" data-aos="fade-up" data-aos-delay="200">PLEASE RSVP BY MARCH 19, 2026</p>
+            <div class="max-w-2xl mx-auto bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-lg" data-aos="fade-up" data-aos-delay="300">
+                <p class="text-lg mb-6 text-[#FFA500]">Your presence at our wedding is the greatest gift of all. Please let us know if you can make it:</p>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeGKSchOOEoQyRZRf8AXHKoxRgSbPCeHFTHlo5E9tvvS2A5Sw/viewform?embedded=true" width="100%" height="667" frameborder="0" marginheight="0" marginwidth="0" class="rounded-md">Loading…</iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-citrus-light text-center bg-transparent-for-petals">
+        <div class="container mx-auto px-6 content-wrapper">
+            <p class="font-heading text-6xl text-citrus-green mb-2" data-aos="fade-up">Thank You</p>
+            <p class="text-gray-600" data-aos="fade-up" data-aos-delay="100">We can't wait to share our special day with you!</p>
+            <p class="mt-4 text-6xl font-heading text-citrus-green" data-aos="fade-up" data-aos-delay="200">Raymond & Karen</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Removed particles.js script -->
+    <script>
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS with enhanced settings
+            AOS.init({
+                duration: 1200,
+                once: false,
+                offset: 50,
+                easing: 'ease-in-out-cubic',
+                delay: 100,
+                anchorPlacement: 'top-bottom',
+                mirror: true
+            });
+        });
+
+        // Scroll Progress Indicator
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+        }
+
+        // Enhanced scroll effects
+        function handleScroll() {
+            updateScrollProgress();
+            
+            // Dynamic header background
+            const header = document.querySelector('header');
+            const scrolled = window.pageYOffset;
+            if (scrolled > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+                header.style.boxShadow = '0 10px 40px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.9)';
+                header.style.backdropFilter = 'blur(10px)';
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', updateScrollProgress);
+
+        // Enhanced Mobile Menu Animation
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuButton && mobileMenu) {
+            const menuIcon = mobileMenuButton.querySelector('svg');
+            let menuOpen = false;
+
+            mobileMenuButton.addEventListener('click', () => {
+                menuOpen = !menuOpen;
+                
+                if (menuOpen) {
+                    mobileMenu.classList.remove('hidden');
+                    setTimeout(() => {
+                        mobileMenu.style.transform = 'translateY(0)';
+                        mobileMenu.style.opacity = '1';
+                    }, 10);
+                    if (menuIcon) menuIcon.style.transform = 'rotate(90deg)';
+                } else {
+                    mobileMenu.style.transform = 'translateY(-10px)';
+                    mobileMenu.style.opacity = '0';
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300);
+                    if (menuIcon) menuIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Close mobile menu when clicking links
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menuOpen = false;
+                    mobileMenu.style.transform = 'translateY(-10px)';
+                    mobileMenu.style.opacity = '0';
+                    if (menuIcon) menuIcon.style.transform = 'rotate(0deg)';
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300);
+                });
+            });
+        }
+
+        // Intersection Observer for navigation active states
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '-50px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.remove('text-citrus-green');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('text-citrus-green');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+
+        // Carousel functionality (combined with bottom script)
+        let currentSlide = 0;
+        
+        function initializeCarousel() {
+            const carousel = document.getElementById('attire-carousel-woman');
+            if (!carousel) return;
+            
+            const totalSlides = carousel.children.length;
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+
+            function nextSlideInternal() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }
+
+            function prevSlideInternal() {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+            
+            // Make functions globally available
+            window.nextSlide = nextSlideInternal;
+            window.prevSlide = prevSlideInternal;
+        }
+        
+        // Initialize carousel when DOM is ready
+        document.addEventListener('DOMContentLoaded', initializeCarousel);
+
+
+
+        // --- SCRIPT: Countdown Timer Flip Animation ---
+        function updateFlip(flipper, value) {
+            const numElement = flipper.querySelector('.font-bold');
+            if (!numElement) return;
+            const currentValue = parseInt(numElement.textContent);
+            if (value !== currentValue) {
+                numElement.textContent = value;
+                flipper.classList.add('flipped');
+                setTimeout(() => {
+                    flipper.classList.remove('flipped');
+                }, 600);
+            }
+        }
+
+        const countdown = () => {
+            const countDate = new Date('April 19, 2026 16:30:00').getTime();
+            const now = new Date().getTime();
+            const gap = countDate - now;
+
+            if (gap < 0) {
+                // Optionally handle what happens when the countdown finishes
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const textDay = Math.floor(gap / day);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
+
+            updateFlip(document.getElementById('days-flipper'), textDay);
+            updateFlip(document.getElementById('hours-flipper'), textHour);
+            updateFlip(document.getElementById('minutes-flipper'), textMinute);
+            updateFlip(document.getElementById('seconds-flipper'), textSecond);
+        };
+        const countdownInterval = setInterval(countdown, 1000);
+        countdown(); // Initial call
+
+        // Note: Mobile menu handling moved to enhanced version above
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+            // --- Music Player Logic ---
+            const musicModal = document.getElementById('music-modal');
+            const playMusicBtn = document.getElementById('play-music-btn');
+            const noMusicBtn = document.getElementById('no-music-btn');
+            const bgMusic = document.getElementById('bg-music');
+            const musicToggleBtn = document.getElementById('music-toggle-btn');
+            const musicOnIcon = document.getElementById('music-on-icon');
+            const musicOffIcon = document.getElementById('music-off-icon');
+    
+            const startMusic = () => {
+                bgMusic.play().catch(error => console.error("Autoplay was prevented.", error));
+                musicModal.style.display = 'none';
+                musicToggleBtn.classList.remove('hidden');
+                musicOnIcon.classList.remove('hidden');
+                musicOffIcon.classList.add('hidden');
+            };
+            const stopMusic = () => {
+                musicModal.style.display = 'none';
+                musicToggleBtn.classList.remove('hidden');
+                musicOnIcon.classList.add('hidden');
+                musicOffIcon.classList.remove('hidden');
+            };
+    
+            playMusicBtn.addEventListener('click', startMusic);
+            noMusicBtn.addEventListener('click', stopMusic);
+    
+            musicToggleBtn.addEventListener('click', () => {
+                if (bgMusic.paused) {
+                    bgMusic.play();
+                    musicOnIcon.classList.remove('hidden');
+                    musicOffIcon.classList.add('hidden');
+                } else {
+                    bgMusic.pause();
+                    musicOnIcon.classList.add('hidden');
+                    musicOffIcon.classList.remove('hidden');
+                }
+            });
+
+        // GLightbox
+        const lightbox = GLightbox({
+            selector: '.glightbox'
+        });
+
+        // --- SCRIPT: Floating Petal Animation ---
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let petals = [];
+        let mouse = { x: null, y: null };
+        
+        const petalImages = [
+            "https://exi0r.github.io/wedding/image/pngegg.png",
+            "https://exi0r.github.io/wedding/image/petal2.png",
+            "https://exi0r.github.io/wedding/image/petal4.png",
+            "https://exi0r.github.io/wedding/image/yellowpet1.png",
+            "https://exi0r.github.io/wedding/image/yellowpet3.png",
+            "https://exi0r.github.io/wedding/image/yellowpet4.png",
+            "https://exi0r.github.io/wedding/image/yellowpet2.png"
+        ].map(src => {
+            const img = new Image();
+            img.src = src;
+            return img;
+        });
+        
+        const numPetals = 40;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height * 2 - canvas.height;
+                this.w = 25 + Math.random() * 15;
+                this.h = 20 + Math.random() * 10;
+                this.opacity = this.w / 40;
+                this.image = petalImages[Math.floor(Math.random() * petalImages.length)];
+                this.xSpeed = 1 + Math.random();
+                this.ySpeed = 0.5 + Math.random() * 0.5;
+                this.flip = Math.random();
+                this.flipSpeed = Math.random() * 0.03;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = Math.random() * 0.01 - 0.005;
+            }
+
+            draw() {
+                if (this.y > canvas.height || this.x > canvas.width) {
+                    this.x = -this.w;
+                    this.y = Math.random() * canvas.height * 2 - canvas.height;
+                }
+                
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
+                ctx.rotate(this.rotation);
+                ctx.drawImage(this.image, -this.w / 2, -this.h / 2, this.w, this.h * Math.cos(this.flip));
+                ctx.restore();
+            }
+
+            update() {
+                this.y += this.ySpeed;
+                this.x += Math.sin(this.y / 50) * this.xSpeed;
+                this.rotation += this.rotationSpeed;
+                this.flip += this.flipSpeed;
+
+                // Mouse interaction
+                if (mouse.x !== null) {
+                    let dx = this.x - mouse.x;
+                    let dy = this.y - mouse.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        const force = (100 - distance) / 100;
+                        this.x += (dx / distance) * force * 5;
+                        this.y += (dy / distance) * force * 5;
+                    }
+                }
+
+
+                if (this.y > canvas.height + 50) {
+                    this.y = -50;
+                    this.x = Math.random() * canvas.width;
+                }
+                this.draw();
+            }
+        }
+
+        function initPetals() {
+            petals = [];
+            for (let i = 0; i < numPetals; i++) {
+                petals.push(new Petal());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(petal => petal.update());
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initPetals();
+        });
+
+        // Use the main body for mousemove to track cursor everywhere
+        document.body.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        document.body.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+        
+        // Start after images have a chance to load
+        window.onload = function() {
+            resizeCanvas();
+            initPetals();
+            // Check if all images are loaded before starting animation
+            let loadedCount = 0;
+            petalImages.forEach(img => {
+                img.onload = () => {
+                    loadedCount++;
+                    if (loadedCount === petalImages.length) {
+                        animate();
+                    }
+                }
+                // If already loaded (from cache)
+                if(img.complete) {
+                    loadedCount++;
+                     if (loadedCount === petalImages.length) {
+                        animate();
+                    }
+                }
+            });
+        };
+
+    </script>
+<script>
+  function toggleTips() {
+    const tips = document.getElementById('styleTips');
+    tips.classList.toggle('hidden');
+  }
+</script>
+<!-- Carousel script moved to main script section -->
+
+
+</body>
+</html>
