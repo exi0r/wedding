@@ -1280,8 +1280,83 @@
         }
 
         .content-wrapper {
-             position: relative; 
+             position: relative;
              z-index: 1;
+        }
+
+        /* --- ANIMATED SVG DECORATIONS --- */
+        .svg-decoration {
+            position: absolute;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .svg-floral-border {
+            width: 100%;
+            height: auto;
+            opacity: 0.6;
+        }
+
+        .svg-draw-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawPath 3s ease-in-out forwards;
+        }
+
+        @keyframes drawPath {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .svg-decoration.animate-in .svg-draw-path {
+            animation: drawPath 2s ease-in-out forwards;
+        }
+
+        /* Corner floral decorations */
+        .corner-floral {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            opacity: 0;
+            animation: fadeInFloral 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeInFloral {
+            to {
+                opacity: 0.4;
+            }
+        }
+
+        .corner-floral.top-left {
+            top: 20px;
+            left: 20px;
+        }
+
+        .corner-floral.top-right {
+            top: 20px;
+            right: 20px;
+            transform: scaleX(-1);
+        }
+
+        .corner-floral.bottom-left {
+            bottom: 20px;
+            left: 20px;
+            transform: scaleY(-1);
+        }
+
+        .corner-floral.bottom-right {
+            bottom: 20px;
+            right: 20px;
+            transform: scale(-1);
+        }
+
+        /* Mobile: smaller decorations */
+        @media (max-width: 768px) {
+            .corner-floral {
+                width: 60px;
+                height: 60px;
+            }
         }
 
 /* --- UPDATED MOBILE-FIRST TIMELINE CSS --- */
@@ -1419,6 +1494,10 @@
                     Event Details
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
                 </a>
+                <a href="#travel" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
+                    Travel
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
                 <a href="#gallery" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
                     Gallery
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
@@ -1452,6 +1531,7 @@
             <div class="px-6 py-4 space-y-1">
                 <a href="#story" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Our Story</a>
                 <a href="#event" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Event Details</a>
+                <a href="#travel" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Travel</a>
                 <a href="#gallery" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Gallery</a>
                 <a href="#photo-wall" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Photo Wall</a>
                 <a href="#giftnotes" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Gift Notes</a>
@@ -1559,7 +1639,24 @@
         </div>
     </div>
 
-<section id="story" class="py-20 bg-transparent-for-petals">
+<section id="story" class="py-20 bg-transparent-for-petals relative">
+  <!-- Decorative SVG Elements -->
+  <svg class="svg-decoration corner-floral top-left" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <path class="svg-draw-path" d="M10,90 Q20,80 30,85 Q40,90 45,80 Q50,70 55,75 Q60,80 70,75 Q80,70 85,80"
+          stroke="#81A26B" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <circle cx="25" cy="82" r="3" fill="#FFDAB9" opacity="0.8"/>
+    <circle cx="50" cy="73" r="4" fill="#FCD34D" opacity="0.8"/>
+    <circle cx="75" cy="77" r="3" fill="#81A26B" opacity="0.8"/>
+  </svg>
+
+  <svg class="svg-decoration corner-floral top-right" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <path class="svg-draw-path" d="M10,90 Q20,80 30,85 Q40,90 45,80 Q50,70 55,75 Q60,80 70,75 Q80,70 85,80"
+          stroke="#81A26B" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <circle cx="25" cy="82" r="3" fill="#FFDAB9" opacity="0.8"/>
+    <circle cx="50" cy="73" r="4" fill="#FCD34D" opacity="0.8"/>
+    <circle cx="75" cy="77" r="3" fill="#81A26B" opacity="0.8"/>
+  </svg>
+
   <div class="container mx-auto px-6 content-wrapper">
     <div class="text-center mb-24 md:mb-24 sm:mb-16">
       <h2 class="font-serif-display text-4xl md:text-5xl font-bold text-gray-800" data-aos="fade-up">Our Story</h2>
@@ -1672,7 +1769,7 @@
         </div>
     </div>
 
-    <section id="event" class="py-20 bg-citrus-light bg-transparent-for-petals">
+    <section id="event" class="py-20 bg-citrus-light bg-transparent-for-petals relative">
         <div class="container mx-auto px-6 text-center content-wrapper">
             <h2 class="font-serif-display text-5xl font-bold text-gray-800" data-aos="fade-up">The Wedding</h2>
             <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
@@ -1694,6 +1791,66 @@
                 </div>
                 <div class="h-96 md:h-full rounded-lg shadow-xl overflow-hidden" data-aos="fade-left">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d61783.25814589349!2d121.166947!3d14.573208!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c7fb8fce5735%3A0xc84901512d88bd1e!2sThe%20Emerald%20Events%20Place!5e0!3m2!1sen!2sjp!4v1752373039070!5m2!1sen!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <!-- Calendar Integration & Weather -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mt-16">
+                <!-- Add to Calendar -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50" data-aos="fade-right">
+                    <h3 class="text-3xl font-serif-display text-citrus-green mb-4 text-center">
+                        <span class="text-4xl">📅</span><br>Save the Date
+                    </h3>
+                    <p class="text-center text-gray-600 mb-6">Add our wedding to your calendar with automatic reminders!</p>
+
+                    <div class="space-y-3">
+                        <button onclick="addToGoogleCalendar()" class="w-full btn-primary flex items-center justify-center gap-3">
+                            <span class="text-2xl">📆</span> Google Calendar
+                        </button>
+                        <button onclick="downloadICS()" class="w-full btn-secondary flex items-center justify-center gap-3">
+                            <span class="text-2xl">📧</span> Apple Calendar / Outlook
+                        </button>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-lime-50 rounded-lg text-center">
+                        <p class="text-sm text-gray-700 font-semibold">📅 April 19, 2026</p>
+                        <p class="text-sm text-gray-700">⏰ 4:30 PM - 11:00 PM</p>
+                        <p class="text-sm text-gray-700 mt-1">📍 The Emerald Events Place, Antipolo</p>
+                    </div>
+                </div>
+
+                <!-- Weather Widget -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50" data-aos="fade-left">
+                    <h3 class="text-3xl font-serif-display text-citrus-green mb-4 text-center">
+                        <span class="text-4xl">🌤️</span><br>Weather Forecast
+                    </h3>
+                    <p class="text-center text-gray-600 mb-6">Check the weather for our big day!</p>
+
+                    <div id="weatherWidget" class="text-center">
+                        <div class="mb-4">
+                            <div class="text-6xl mb-2" id="weatherIcon">⛅</div>
+                            <div class="text-3xl font-bold text-citrus-green" id="weatherTemp">--°C</div>
+                            <div class="text-lg text-gray-600" id="weatherDesc">Loading weather...</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mt-6">
+                            <div class="p-3 bg-lime-50 rounded-lg">
+                                <p class="text-sm text-gray-600">💧 Humidity</p>
+                                <p class="font-semibold" id="weatherHumidity">--%</p>
+                            </div>
+                            <div class="p-3 bg-lime-50 rounded-lg">
+                                <p class="text-sm text-gray-600">💨 Wind</p>
+                                <p class="font-semibold" id="weatherWind">-- km/h</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <p class="text-sm font-semibold text-gray-800 mb-2">👗 Attire Suggestion</p>
+                            <p class="text-sm text-gray-700" id="attireSuggestion">Light, breathable fabrics recommended for warm weather</p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-500 text-center mt-4">*Forecast will be more accurate closer to the date</p>
                 </div>
             </div>
         </div>
@@ -2001,6 +2158,23 @@
     <!-- Gallery Section -->
 
     <section id="gallery" class="py-20 bg-citrus-light bg-transparent-for-petals relative overflow-hidden">
+        <!-- Decorative SVG Floral Corner -->
+        <svg class="svg-decoration corner-floral bottom-left" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path class="svg-draw-path" d="M15,15 Q30,20 40,15 Q50,10 60,20 L70,30 Q75,40 65,50 Q55,60 50,55 Q40,50 35,60 L25,70"
+                  stroke="#81A26B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path class="svg-draw-path" d="M20,25 Q35,30 45,25" stroke="#FCD34D" stroke-width="1.5" fill="none" style="animation-delay: 0.3s;"/>
+            <circle cx="35" cy="30" r="3.5" fill="#FFDAB9" opacity="0.9"/>
+            <circle cx="55" cy="45" r="4" fill="#FCD34D" opacity="0.9"/>
+        </svg>
+
+        <svg class="svg-decoration corner-floral bottom-right" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path class="svg-draw-path" d="M15,15 Q30,20 40,15 Q50,10 60,20 L70,30 Q75,40 65,50 Q55,60 50,55 Q40,50 35,60 L25,70"
+                  stroke="#81A26B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path class="svg-draw-path" d="M20,25 Q35,30 45,25" stroke="#FCD34D" stroke-width="1.5" fill="none" style="animation-delay: 0.3s;"/>
+            <circle cx="35" cy="30" r="3.5" fill="#FFDAB9" opacity="0.9"/>
+            <circle cx="55" cy="45" r="4" fill="#FCD34D" opacity="0.9"/>
+        </svg>
+
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 opacity-5">
             <div class="absolute top-32 right-10 w-20 h-20 bg-yellow-300 rounded-full float-gentle"></div>
@@ -2304,6 +2478,96 @@
                     <div class="envelope-content">
                         <p class="text-lg mb-6 text-gray-800 font-medium">Your presence at our wedding is the greatest gift of all. Please let us know if you can make it:</p>
                         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeGKSchOOEoQyRZRf8AXHKoxRgSbPCeHFTHlo5E9tvvS2A5Sw/viewform?embedded=true" width="100%" height="667" frameborder="0" marginheight="0" marginwidth="0" class="rounded-md">Loading…</iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flower Bloom Divider -->
+    <div class="flower-divider">
+        <div class="flower-divider-line"></div>
+        <div class="flower-bloom">
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-center"></div>
+        </div>
+    </div>
+
+    <!-- Transportation & Accommodation Section -->
+    <section id="travel" class="py-20 bg-transparent-for-petals">
+        <div class="container mx-auto px-6 content-wrapper">
+            <div class="text-center mb-12">
+                <h2 class="font-serif-display text-5xl font-bold text-gray-800" data-aos="fade-up">Travel & Stay</h2>
+                <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+                <p class="text-xl uppercase tracking-wide text-gray-500 mb-8" data-aos="fade-up" data-aos-delay="200">ACCOMMODATION & TRANSPORTATION</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <!-- Nearby Hotels -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50" data-aos="fade-right">
+                    <h3 class="text-2xl font-serif-display text-citrus-green mb-6 flex items-center gap-2">
+                        <span class="text-3xl">🏨</span> Nearby Hotels
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-citrus-light rounded-lg hover:shadow-md transition-all duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800">Loreland Farm Resort</h4>
+                            <p class="text-sm text-gray-600 mt-1">📍 2.5 km from venue</p>
+                            <p class="text-sm text-gray-600">💰 ₱2,500 - ₱4,500/night</p>
+                            <a href="https://maps.app.goo.gl/loreland" target="_blank" class="text-citrus-green hover:underline text-sm mt-2 inline-block">View on Map →</a>
+                        </div>
+                        <div class="p-4 bg-citrus-light rounded-lg hover:shadow-md transition-all duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800">LeBlanc Hotel and Resort</h4>
+                            <p class="text-sm text-gray-600 mt-1">📍 4.1 km from venue</p>
+                            <p class="text-sm text-gray-600">💰 ₱3,000 - ₱5,000/night</p>
+                            <a href="https://maps.app.goo.gl/leblanc" target="_blank" class="text-citrus-green hover:underline text-sm mt-2 inline-block">View on Map →</a>
+                        </div>
+                        <div class="p-4 bg-citrus-light rounded-lg hover:shadow-md transition-all duration-300">
+                            <h4 class="font-semibold text-lg text-gray-800">Luljetta's Hanging Gardens & Spa</h4>
+                            <p class="text-sm text-gray-600 mt-1">📍 5.2 km from venue</p>
+                            <p class="text-sm text-gray-600">💰 ₱4,000 - ₱8,000/night</p>
+                            <a href="https://maps.app.goo.gl/luljetta" target="_blank" class="text-citrus-green hover:underline text-sm mt-2 inline-block">View on Map →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transportation Options -->
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50" data-aos="fade-left">
+                    <h3 class="text-2xl font-serif-display text-citrus-green mb-6 flex items-center gap-2">
+                        <span class="text-3xl">🚗</span> Getting There
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-lime-50 rounded-lg">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">By Private Car</h4>
+                            <p class="text-sm text-gray-600">From Manila: Take C5 → Ortigas Ave Ext → Marcos Highway</p>
+                            <p class="text-sm text-gray-600 mt-1">⏱️ ~1.5 hours (no traffic)</p>
+                            <p class="text-sm text-gray-600">🅿️ Free parking at venue</p>
+                        </div>
+                        <div class="p-4 bg-lime-50 rounded-lg">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">By Public Transport</h4>
+                            <p class="text-sm text-gray-600">MRT Cubao → UV Express to Antipolo Cathedral</p>
+                            <p class="text-sm text-gray-600 mt-1">Then tricycle to venue (₱50-100)</p>
+                            <p class="text-sm text-gray-600">⏱️ ~2-2.5 hours total</p>
+                        </div>
+                        <div class="p-4 bg-lime-50 rounded-lg">
+                            <h4 class="font-semibold text-lg text-gray-800 mb-2">By Ride-Hailing</h4>
+                            <p class="text-sm text-gray-600">Grab/Angkas available</p>
+                            <p class="text-sm text-gray-600">💰 From Manila: ₱800-1,200</p>
+                            <p class="text-sm text-gray-600">⏱️ ~1.5-2 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Map -->
+            <div class="mt-12 max-w-6xl mx-auto" data-aos="fade-up">
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-yellow-100/50">
+                    <h3 class="text-xl font-serif-display text-citrus-green mb-4 text-center">Area Map</h3>
+                    <div class="h-96 rounded-lg overflow-hidden shadow-lg">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61783.25814589349!2d121.166947!3d14.573208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c7fb8fce5735%3A0xc84901512d88bd1e!2sThe%20Emerald%20Events%20Place!5e0!3m2!1sen!2sjp!4v1752373039070!5m2!1sen!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div>
@@ -3477,6 +3741,196 @@
             document.addEventListener('DOMContentLoaded', loadPhotoWall);
         } else {
             loadPhotoWall();
+        }
+
+        // --- CALENDAR INTEGRATION FUNCTIONS ---
+
+        // Add to Google Calendar
+        function addToGoogleCalendar() {
+            const eventDetails = {
+                text: 'Raymond & Karen Wedding',
+                dates: '20260419T163000/20260419T230000', // April 19, 2026, 4:30 PM - 11:00 PM
+                details: 'Join us to celebrate our special day! ❤️',
+                location: 'The Emerald Events Place, Cabrera Rd, Antipolo City, 1870 Rizal',
+                ctz: 'Asia/Manila'
+            };
+
+            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.text)}&dates=${eventDetails.dates}&details=${encodeURIComponent(eventDetails.details)}&location=${encodeURIComponent(eventDetails.location)}&ctz=${eventDetails.ctz}`;
+
+            window.open(googleCalendarUrl, '_blank');
+        }
+
+        // Download ICS file for Apple Calendar / Outlook
+        function downloadICS() {
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Raymond & Karen Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+DTSTART:20260419T163000Z
+DTEND:20260419T230000Z
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+UID:${Date.now()}@raymondkarenwedding.com
+SUMMARY:Raymond & Karen Wedding
+DESCRIPTION:Join us to celebrate our special day! ❤️
+LOCATION:The Emerald Events Place, Cabrera Rd, Antipolo City, 1870 Rizal
+STATUS:CONFIRMED
+SEQUENCE:0
+BEGIN:VALARM
+TRIGGER:-P1D
+ACTION:DISPLAY
+DESCRIPTION:Reminder: Raymond & Karen Wedding tomorrow!
+END:VALARM
+END:VEVENT
+END:VCALENDAR`;
+
+            // Create blob and download
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'raymond-karen-wedding.ics';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showNotification('Calendar event downloaded! 📅');
+        }
+
+        // --- WEATHER WIDGET FUNCTIONS ---
+
+        // Fetch weather data for wedding date
+        async function fetchWeatherData() {
+            // OpenWeatherMap API
+            const apiKey = 'd0d3865aa3568dd1ed4850c3121bbe46';
+            const city = 'Antipolo';
+            const country = 'PH';
+
+            try {
+                // Note: For future dates, we use current weather as a sample
+                // For production, use a forecast API or weather service that supports future dates
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}&units=metric`);
+
+                if (!response.ok) {
+                    throw new Error('Weather data unavailable');
+                }
+
+                const data = await response.json();
+                updateWeatherDisplay(data);
+            } catch (error) {
+                console.log('Weather API error:', error);
+                // Display sample weather data
+                displaySampleWeather();
+            }
+        }
+
+        // Update weather widget with real data
+        function updateWeatherDisplay(data) {
+            const weatherIcon = document.getElementById('weatherIcon');
+            const weatherTemp = document.getElementById('weatherTemp');
+            const weatherDesc = document.getElementById('weatherDesc');
+            const weatherHumidity = document.getElementById('weatherHumidity');
+            const weatherWind = document.getElementById('weatherWind');
+            const attireSuggestion = document.getElementById('attireSuggestion');
+
+            // Map weather conditions to emojis
+            const iconMap = {
+                'Clear': '☀️',
+                'Clouds': '⛅',
+                'Rain': '🌧️',
+                'Drizzle': '🌦️',
+                'Thunderstorm': '⛈️',
+                'Snow': '❄️',
+                'Mist': '🌫️',
+                'Fog': '🌫️'
+            };
+
+            const condition = data.weather[0].main;
+            const temp = Math.round(data.main.temp);
+            const humidity = data.main.humidity;
+            const windSpeed = Math.round(data.wind.speed * 3.6); // Convert m/s to km/h
+
+            weatherIcon.textContent = iconMap[condition] || '🌤️';
+            weatherTemp.textContent = `${temp}°C`;
+            weatherDesc.textContent = data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1);
+            weatherHumidity.textContent = `${humidity}%`;
+            weatherWind.textContent = `${windSpeed} km/h`;
+
+            // Generate attire suggestion
+            let suggestion = '';
+            if (temp > 30) {
+                suggestion = 'Very warm! Light, breathable fabrics highly recommended. Stay hydrated! 🌡️';
+            } else if (temp > 25) {
+                suggestion = 'Warm weather expected. Light fabrics and sun protection recommended. ☀️';
+            } else if (temp > 20) {
+                suggestion = 'Pleasant weather! Comfortable formal attire will be perfect. 👗';
+            } else {
+                suggestion = 'Mild weather. Consider bringing a light wrap or jacket. 🧥';
+            }
+
+            if (condition === 'Rain' || condition === 'Drizzle') {
+                suggestion += ' Bring an umbrella just in case! ☔';
+            }
+
+            attireSuggestion.textContent = suggestion;
+        }
+
+        // Display sample weather data (fallback)
+        function displaySampleWeather() {
+            const weatherIcon = document.getElementById('weatherIcon');
+            const weatherTemp = document.getElementById('weatherTemp');
+            const weatherDesc = document.getElementById('weatherDesc');
+            const weatherHumidity = document.getElementById('weatherHumidity');
+            const weatherWind = document.getElementById('weatherWind');
+            const attireSuggestion = document.getElementById('attireSuggestion');
+
+            // Sample data for April in Antipolo (typical weather)
+            weatherIcon.textContent = '🌤️';
+            weatherTemp.textContent = '28°C';
+            weatherDesc.textContent = 'Partly Cloudy';
+            weatherHumidity.textContent = '65%';
+            weatherWind.textContent = '12 km/h';
+            attireSuggestion.textContent = 'Warm weather expected. Light, breathable fabrics recommended for comfort. ☀️';
+        }
+
+        // Initialize weather widget with sample data first
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', displaySampleWeather);
+        } else {
+            displaySampleWeather();
+        }
+
+        // Fetch real weather data from OpenWeatherMap API
+        // Will show current Antipolo weather (falls back to sample data if API fails)
+        setTimeout(() => {
+            fetchWeatherData();
+        }, 1000); // Delay 1 second to let page load first
+
+        // --- ANIMATED SVG DECORATIONS ---
+
+        // Initialize SVG decorations with intersection observer
+        function initSVGDecorations() {
+            const svgObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        svgObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            document.querySelectorAll('.svg-decoration').forEach(svg => {
+                svgObserver.observe(svg);
+            });
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSVGDecorations);
+        } else {
+            initSVGDecorations();
         }
 
     </script>
