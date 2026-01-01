@@ -506,118 +506,121 @@
             height: 100px;
             position: relative;
             z-index: 10;
-            background: white;
-            border-radius: 50%;
+            background: transparent;
         }
 
         .flower-petal {
             position: absolute;
-            width: 35px;
-            height: 55px;
-            background: linear-gradient(135deg, #FFDAB9 0%, #FFC0CB 50%, #FFDAB9 100%);
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(135deg, #F4D03F 0%, #F9E79F 50%, #F7DC6F 100%);
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             top: 50%;
             left: 50%;
             transform-origin: center bottom;
             opacity: 0;
-            animation: petalBloom 1.5s ease-out forwards;
-            box-shadow: 0 2px 8px rgba(255, 182, 193, 0.3);
+            transform: translate(-50%, -100%) scale(0);
+            box-shadow: 0 2px 8px rgba(244, 208, 63, 0.5);
+            z-index: 2;
         }
 
-        .flower-petal:nth-child(1) {
-            transform: translate(-50%, -100%) rotate(0deg) scale(0);
-            animation-delay: 0.1s;
+        .flower-bloom.blooming .flower-petal {
+            animation-duration: 1.2s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
         }
 
-        .flower-petal:nth-child(2) {
-            transform: translate(-50%, -100%) rotate(72deg) scale(0);
-            animation-delay: 0.2s;
+        .flower-bloom.blooming .flower-petal:nth-child(1) {
+            animation-delay: 0s;
         }
 
-        .flower-petal:nth-child(3) {
-            transform: translate(-50%, -100%) rotate(144deg) scale(0);
+        .flower-bloom.blooming .flower-petal:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .flower-bloom.blooming .flower-petal:nth-child(3) {
             animation-delay: 0.3s;
         }
 
-        .flower-petal:nth-child(4) {
-            transform: translate(-50%, -100%) rotate(216deg) scale(0);
-            animation-delay: 0.4s;
+        .flower-bloom.blooming .flower-petal:nth-child(4) {
+            animation-delay: 0.45s;
         }
 
-        .flower-petal:nth-child(5) {
-            transform: translate(-50%, -100%) rotate(288deg) scale(0);
-            animation-delay: 0.5s;
+        .flower-bloom.blooming .flower-petal:nth-child(5) {
+            animation-delay: 0.6s;
         }
 
         .flower-center {
             position: absolute;
-            width: 25px;
-            height: 25px;
+            width: 28px;
+            height: 28px;
             background: radial-gradient(circle, #FCD34D 0%, #F59E0B 100%);
             border-radius: 50%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0);
-            animation: centerBloom 0.6s ease-out 0.7s forwards;
             box-shadow: 0 3px 12px rgba(245, 158, 11, 0.5);
-            z-index: 5;
+            z-index: 10;
         }
 
-        @keyframes petalBloom {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+        .flower-bloom.blooming .flower-center {
+            animation: centerBloom 0.8s ease-out 0.8s forwards;
         }
 
-        .flower-petal:nth-child(1) {
+        .flower-bloom.blooming .flower-petal:nth-child(1) {
             animation-name: petalBloom1;
         }
-        .flower-petal:nth-child(2) {
+        .flower-bloom.blooming .flower-petal:nth-child(2) {
             animation-name: petalBloom2;
         }
-        .flower-petal:nth-child(3) {
+        .flower-bloom.blooming .flower-petal:nth-child(3) {
             animation-name: petalBloom3;
         }
-        .flower-petal:nth-child(4) {
+        .flower-bloom.blooming .flower-petal:nth-child(4) {
             animation-name: petalBloom4;
         }
-        .flower-petal:nth-child(5) {
+        .flower-bloom.blooming .flower-petal:nth-child(5) {
             animation-name: petalBloom5;
         }
 
         @keyframes petalBloom1 {
-            from { opacity: 0; transform: translate(-50%, -100%) rotate(0deg) scale(0); }
-            to { opacity: 1; transform: translate(-50%, -100%) rotate(0deg) scale(1); }
+            0% { opacity: 0; transform: translate(-50%, -100%) rotate(0deg) scale(0); }
+            60% { opacity: 1; transform: translate(-50%, -100%) rotate(0deg) scale(1.1); }
+            100% { opacity: 1; transform: translate(-50%, -100%) rotate(0deg) scale(1); }
         }
         @keyframes petalBloom2 {
-            from { opacity: 0; transform: translate(-50%, -100%) rotate(72deg) scale(0); }
-            to { opacity: 1; transform: translate(-50%, -100%) rotate(72deg) scale(1); }
+            0% { opacity: 0; transform: translate(-50%, -100%) rotate(72deg) scale(0); }
+            60% { opacity: 1; transform: translate(-50%, -100%) rotate(72deg) scale(1.1); }
+            100% { opacity: 1; transform: translate(-50%, -100%) rotate(72deg) scale(1); }
         }
         @keyframes petalBloom3 {
-            from { opacity: 0; transform: translate(-50%, -100%) rotate(144deg) scale(0); }
-            to { opacity: 1; transform: translate(-50%, -100%) rotate(144deg) scale(1); }
+            0% { opacity: 0; transform: translate(-50%, -100%) rotate(144deg) scale(0); }
+            60% { opacity: 1; transform: translate(-50%, -100%) rotate(144deg) scale(1.1); }
+            100% { opacity: 1; transform: translate(-50%, -100%) rotate(144deg) scale(1); }
         }
         @keyframes petalBloom4 {
-            from { opacity: 0; transform: translate(-50%, -100%) rotate(216deg) scale(0); }
-            to { opacity: 1; transform: translate(-50%, -100%) rotate(216deg) scale(1); }
+            0% { opacity: 0; transform: translate(-50%, -100%) rotate(216deg) scale(0); }
+            60% { opacity: 1; transform: translate(-50%, -100%) rotate(216deg) scale(1.1); }
+            100% { opacity: 1; transform: translate(-50%, -100%) rotate(216deg) scale(1); }
         }
         @keyframes petalBloom5 {
-            from { opacity: 0; transform: translate(-50%, -100%) rotate(288deg) scale(0); }
-            to { opacity: 1; transform: translate(-50%, -100%) rotate(288deg) scale(1); }
+            0% { opacity: 0; transform: translate(-50%, -100%) rotate(288deg) scale(0); }
+            60% { opacity: 1; transform: translate(-50%, -100%) rotate(288deg) scale(1.1); }
+            100% { opacity: 1; transform: translate(-50%, -100%) rotate(288deg) scale(1); }
         }
 
         @keyframes centerBloom {
             0% {
                 transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
             }
-            50% {
-                transform: translate(-50%, -50%) scale(1.3);
+            60% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
             }
             100% {
                 transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
             }
         }
 
@@ -627,7 +630,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent 0%, #FFDAB9 20%, #FFC0CB 50%, #FFDAB9 80%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, #F4D03F 20%, #F9E79F 50%, #F4D03F 80%, transparent 100%);
             z-index: 1;
         }
 
@@ -1098,7 +1101,7 @@
     </section>
 
     <!-- Flower Bloom Divider -->
-    <div class="flower-divider" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="flower-divider">
         <div class="flower-divider-line"></div>
         <div class="flower-bloom">
             <div class="flower-petal"></div>
@@ -1187,7 +1190,7 @@
 </section>
 
     <!-- Flower Bloom Divider -->
-    <div class="flower-divider" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="flower-divider">
         <div class="flower-divider-line"></div>
         <div class="flower-bloom">
             <div class="flower-petal"></div>
@@ -1346,95 +1349,174 @@
     <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
     <p class="text-xl uppercase tracking-wide text-gray-500 mb-12" data-aos="fade-up" data-aos-delay="200">THE PEOPLE WHO STAND WITH US</p>
 
-
-    <div class="grid grid-cols-2 md:grid-cols-2 md:gap-10 max-w-5xl mx-auto">
-      
-      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 group border border-yellow-100/50" data-aos="zoom-in" data-aos-duration="800">
+    <!-- Groom & Bride -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
+      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 group border border-blue-100/50" data-aos="zoom-in" data-aos-duration="800">
         <div class="relative mb-6">
-          <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="Best Man" class="rounded-full w-32 h-32 mx-auto object-cover morphing-border shadow-lg image-hover-effect">
+          <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="Groom" class="rounded-full w-40 h-40 mx-auto object-cover morphing-border shadow-lg image-hover-effect">
         </div>
-        <h3 class="text-2xl font-heading text-citrus-green shimmer-text group-hover:scale-105 transition-transform duration-300">John Reyes</h3>
-        <p class="text-gray-500 mt-2 group-hover:text-citrus-green transition-colors duration-300">Best Man</p>
+        <h3 class="text-3xl font-heading text-citrus-green shimmer-text group-hover:scale-105 transition-transform duration-300">Raymond Almanon</h3>
+        <p class="text-gray-500 mt-2 text-lg group-hover:text-citrus-green transition-colors duration-300">Groom</p>
         <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="text-2xl animate-bounce" style="animation-delay: 0.2s;">🤵</span>
+          <span class="text-3xl animate-bounce">🤵</span>
         </div>
       </div>
-      
-      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 group border border-peach-200/50" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+
+      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 group border border-pink-100/50" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
         <div class="relative mb-6">
-          <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Maid of Honor" class="rounded-full w-32 h-32 mx-auto object-cover morphing-border shadow-lg image-hover-effect" style="animation-delay: -2s;">
+          <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Bride" class="rounded-full w-40 h-40 mx-auto object-cover morphing-border shadow-lg image-hover-effect" style="animation-delay: -2s;">
         </div>
-        <h3 class="text-2xl font-heading text-citrus-green shimmer-text group-hover:scale-105 transition-transform duration-300" style="animation-delay: 0.1s;">Angela Cruz</h3>
-        <p class="text-gray-500 mt-2 group-hover:text-citrus-green transition-colors duration-300">Maid of Honor</p>
+        <h3 class="text-3xl font-heading text-citrus-green shimmer-text group-hover:scale-105 transition-transform duration-300">Karen Rose Sioson</h3>
+        <p class="text-gray-500 mt-2 text-lg group-hover:text-citrus-green transition-colors duration-300">Bride</p>
         <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="text-2xl animate-bounce" style="animation-delay: 0.4s;">👰</span>
+          <span class="text-3xl animate-bounce">👰</span>
         </div>
       </div>
-
-      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
-        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
-        <p class="text-gray-500">Principal Sponsors</p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
-        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
-        <p class="text-gray-500">Principal Sponsors</p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
-        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
-        <p class="text-gray-500">Principal Sponsors</p>
-      </div>
-      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
-        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
-        <p class="text-gray-500">Principal Sponsors</p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
-        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
-        <p class="text-gray-500">Principal Sponsors</p>
-      </div>
-
-      <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-lime-200 shadow">
-        <h3 class="text-2xl font-heading text-citrus-green mt-4">Mr. & Mrs. Lim</h3>
-        <p class="text-gray-500">Principal Sponsors</p>
-      </div>
-
-
     </div>
 
-    <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 max-w-4xl mx-auto text-left">
-      
-      <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-right">
-        <h4 class="text-2xl font-serif-display text-citrus-green mb-4 text-center md:text-left">Groomsmen</h4>
-        <ul class="text-gray-700 space-y-2 text-center md:text-left">
-          <li>Alex Santiago</li>
-          <li>Ben Tolentino</li>
-          <li>Carlos Navarro</li>
-        </ul>
-      </div>
+    <!-- Parents -->
+    <div class="mb-16">
+      <h3 class="text-3xl font-serif-display text-citrus-green mb-8" data-aos="fade-up">Parents</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-white/70 backdrop-blur-sm p-8 rounded-xl shadow-md" data-aos="fade-right">
+          <div class="relative mb-6">
+            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Parents of the Groom" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-blue-200 shadow-lg">
+          </div>
+          <h4 class="text-xl font-serif-display text-citrus-green mb-4">Parents of the Groom</h4>
+          <p class="text-gray-700 text-lg">Jose Almanon Jr.</p>
+          <p class="text-gray-700 text-lg">Angie Almanon</p>
+        </div>
 
-      <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-left">
-        <h4 class="text-2xl font-serif-display text-citrus-green mb-4 text-center md:text-left">Bridesmaids</h4>
-        <ul class="text-gray-700 space-y-2 text-center md:text-left">
-          <li>Jasmine Lopez</li>
-          <li>Cheska Dela Cruz</li>
-          <li>Faith Rivera</li>
-        </ul>
+        <div class="bg-white/70 backdrop-blur-sm p-8 rounded-xl shadow-md" data-aos="fade-left">
+          <div class="relative mb-6">
+            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Parents of the Bride" class="rounded-full w-32 h-32 mx-auto object-cover border-4 border-pink-200 shadow-lg">
+          </div>
+          <h4 class="text-xl font-serif-display text-citrus-green mb-4">Parents of the Bride</h4>
+          <p class="text-gray-700 text-lg">Pepe Sioson</p>
+          <p class="text-gray-700 text-lg">Teresa Sioson</p>
+        </div>
       </div>
-
     </div>
+
+    <!-- Best Man & Maid of Honor -->
+    <div class="mb-16">
+      <h3 class="text-3xl font-serif-display text-citrus-green mb-8" data-aos="fade-up">Best Man & Maid of Honor</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 group border border-yellow-100/50" data-aos="zoom-in" data-aos-duration="800">
+          <div class="relative mb-6">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="Best Man" class="rounded-full w-32 h-32 mx-auto object-cover morphing-border shadow-lg image-hover-effect">
+          </div>
+          <h3 class="text-2xl font-heading text-citrus-green shimmer-text group-hover:scale-105 transition-transform duration-300">Charles Loreja</h3>
+          <p class="text-gray-500 mt-2 group-hover:text-citrus-green transition-colors duration-300">Best Man</p>
+          <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="text-2xl animate-bounce">🤵</span>
+          </div>
+        </div>
+
+        <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-8 group border border-peach-200/50" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+          <div class="relative mb-6">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Maid of Honor" class="rounded-full w-32 h-32 mx-auto object-cover morphing-border shadow-lg image-hover-effect" style="animation-delay: -2s;">
+          </div>
+          <h3 class="text-2xl font-heading text-citrus-green shimmer-text group-hover:scale-105 transition-transform duration-300">Cathy Sioson</h3>
+          <p class="text-gray-500 mt-2 group-hover:text-citrus-green transition-colors duration-300">Maid of Honor</p>
+          <div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="text-2xl animate-bounce">👰</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Principal Sponsors -->
+    <div class="mb-16">
+      <h3 class="text-3xl font-serif-display text-citrus-green mb-8" data-aos="fade-up">Principal Sponsors</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-24 h-24 mx-auto object-cover border-4 border-lime-200 shadow">
+          <h3 class="text-xl font-heading text-citrus-green mt-4">Riza Chan</h3>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="150">
+          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-24 h-24 mx-auto object-cover border-4 border-lime-200 shadow">
+          <h3 class="text-xl font-heading text-citrus-green mt-4">Nomer Sioson</h3>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-24 h-24 mx-auto object-cover border-4 border-lime-200 shadow">
+          <h3 class="text-xl font-heading text-citrus-green mt-4">Bennett Reyes</h3>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="250">
+          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-24 h-24 mx-auto object-cover border-4 border-lime-200 shadow">
+          <h3 class="text-xl font-heading text-citrus-green mt-4">Chel Lao</h3>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-24 h-24 mx-auto object-cover border-4 border-lime-200 shadow">
+          <h3 class="text-xl font-heading text-citrus-green mt-4">Eliseo Sioson</h3>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="350">
+          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-24 h-24 mx-auto object-cover border-4 border-lime-200 shadow">
+          <h3 class="text-xl font-heading text-citrus-green mt-4">Alma Alvarez</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Groomsmen & Bridesmaids -->
+    <div class="mb-16">
+      <h3 class="text-3xl font-serif-display text-citrus-green mb-8" data-aos="fade-up">Groomsmen & Bridesmaids</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-right">
+          <h4 class="text-2xl font-serif-display text-citrus-green mb-4 text-center md:text-left">Groomsmen</h4>
+          <ul class="text-gray-700 space-y-2 text-center md:text-left">
+            <li>Dimitri Perez</li>
+            <li>Andre Cabrebra</li>
+            <li>Dave Gelasan</li>
+            <li>Cyril Gelasan</li>
+            <li>Brian Dailisan</li>
+          </ul>
+        </div>
+
+        <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-left">
+          <h4 class="text-2xl font-serif-display text-citrus-green mb-4 text-center md:text-left">Bridesmaids</h4>
+          <ul class="text-gray-700 space-y-2 text-center md:text-left">
+            <li>Kate Sioson</li>
+            <li>Cielamie Ramos</li>
+            <li>Iris Sioson</li>
+            <li>Marieliza Sioson</li>
+            <li>Grace Almanon</li>
+            <li>Fernielle Chan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Special Roles -->
+    <div>
+      <h3 class="text-3xl font-serif-display text-citrus-green mb-8" data-aos="fade-up">Special Roles</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-up">
+          <h4 class="text-xl font-serif-display text-citrus-green mb-3">Flower Girl</h4>
+          <p class="text-gray-700 text-lg">Eloise Sioson</p>
+        </div>
+
+        <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
+          <h4 class="text-xl font-serif-display text-citrus-green mb-3">Ring Bearer</h4>
+          <p class="text-gray-700 text-lg">Sky Sioson</p>
+        </div>
+
+        <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
+          <h4 class="text-xl font-serif-display text-citrus-green mb-3">Banner Bearer</h4>
+          <p class="text-gray-700 text-lg">Erriz Chan</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
     <!-- Flower Bloom Divider -->
-    <div class="flower-divider" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="flower-divider">
         <div class="flower-divider-line"></div>
         <div class="flower-bloom">
             <div class="flower-petal"></div>
@@ -1581,7 +1663,7 @@
     </section>
 
     <!-- Flower Bloom Divider -->
-    <div class="flower-divider" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="flower-divider">
         <div class="flower-divider-line"></div>
         <div class="flower-bloom">
             <div class="flower-petal"></div>
@@ -1670,7 +1752,7 @@
     </section>
 
     <!-- Flower Bloom Divider -->
-    <div class="flower-divider" data-aos="zoom-in" data-aos-duration="1000">
+    <div class="flower-divider">
         <div class="flower-divider-line"></div>
         <div class="flower-bloom">
             <div class="flower-petal"></div>
@@ -2010,12 +2092,19 @@
         });
 
         // --- SCRIPT: Floating Petal Animation ---
-        const canvas = document.getElementById('petal-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        let petals = [];
-        let mouse = { x: null, y: null };
-        
+        function initFloatingPetals() {
+            const canvas = document.getElementById('petal-canvas');
+            if (!canvas) {
+                console.error('Petal canvas not found');
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+
+            let petals = [];
+            let mouse = { x: null, y: null };
+            let imagesLoaded = false;
+
         const petalImages = [
             "https://exi0r.github.io/wedding/image/pngegg.png",
             "https://exi0r.github.io/wedding/image/petal2.png",
@@ -2027,10 +2116,14 @@
         ].map(src => {
             const img = new Image();
             img.src = src;
+            img.onerror = () => console.log('Failed to load:', src);
             return img;
         });
-        
+
         const numPetals = 40;
+
+        // Petal colors for fallback (if images don't load)
+        const petalColors = ['#FFDAB9', '#FFC0CB', '#FFE4B5', '#FFFACD', '#FFB6C1', '#FFEFD5'];
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -2043,8 +2136,9 @@
                 this.y = Math.random() * canvas.height * 2 - canvas.height;
                 this.w = 25 + Math.random() * 15;
                 this.h = 20 + Math.random() * 10;
-                this.opacity = this.w / 40;
+                this.opacity = 0.6 + Math.random() * 0.4;
                 this.image = petalImages[Math.floor(Math.random() * petalImages.length)];
+                this.color = petalColors[Math.floor(Math.random() * petalColors.length)];
                 this.xSpeed = 1 + Math.random();
                 this.ySpeed = 0.5 + Math.random() * 0.5;
                 this.flip = Math.random();
@@ -2058,12 +2152,23 @@
                     this.x = -this.w;
                     this.y = Math.random() * canvas.height * 2 - canvas.height;
                 }
-                
+
                 ctx.save();
                 ctx.globalAlpha = this.opacity;
                 ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
                 ctx.rotate(this.rotation);
-                ctx.drawImage(this.image, -this.w / 2, -this.h / 2, this.w, this.h * Math.cos(this.flip));
+
+                // Try to draw image, fallback to colored ellipse
+                if (imagesLoaded && this.image.complete && this.image.naturalWidth > 0) {
+                    ctx.drawImage(this.image, -this.w / 2, -this.h / 2, this.w, this.h * Math.cos(this.flip));
+                } else {
+                    // Fallback: draw colored petal shape
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.w / 2, (this.h / 2) * Math.abs(Math.cos(this.flip)), 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
                 ctx.restore();
             }
 
@@ -2122,29 +2227,73 @@
             mouse.x = null;
             mouse.y = null;
         });
-        
-        // Start after images have a chance to load
-        window.onload = function() {
-            resizeCanvas();
-            initPetals();
-            // Check if all images are loaded before starting animation
-            let loadedCount = 0;
-            petalImages.forEach(img => {
-                img.onload = () => {
-                    loadedCount++;
-                    if (loadedCount === petalImages.length) {
-                        animate();
-                    }
+
+        // Initialize and start animation immediately
+        resizeCanvas();
+        initPetals();
+        animate(); // Start animation right away with fallback shapes
+
+        // Check if images load, then switch to using images
+        let loadedCount = 0;
+        petalImages.forEach(img => {
+            img.onload = () => {
+                loadedCount++;
+                if (loadedCount === petalImages.length) {
+                    imagesLoaded = true;
+                    console.log('All petal images loaded successfully');
                 }
-                // If already loaded (from cache)
-                if(img.complete) {
-                    loadedCount++;
-                     if (loadedCount === petalImages.length) {
-                        animate();
-                    }
+            };
+            // If already loaded (from cache)
+            if (img.complete && img.naturalWidth > 0) {
+                loadedCount++;
+                if (loadedCount === petalImages.length) {
+                    imagesLoaded = true;
                 }
+            }
+        });
+
+        console.log('Falling petals initialized');
+    }
+
+        // Initialize petals when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFloatingPetals);
+        } else {
+            initFloatingPetals();
+        }
+
+        // --- SCRIPT: Flower Bloom on Scroll ---
+        function initFlowerBloom() {
+            const flowerBlooms = document.querySelectorAll('.flower-bloom');
+
+            console.log('Found', flowerBlooms.length, 'flower blooms');
+
+            const bloomObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('blooming')) {
+                        console.log('Flower blooming!');
+                        // Add blooming class to trigger animation
+                        entry.target.classList.add('blooming');
+                        // Optionally unobserve after blooming once
+                        bloomObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when just 10% of flower is visible
+                rootMargin: '0px 0px -200px 0px' // Trigger earlier before scrolling past
             });
-        };
+
+            flowerBlooms.forEach(bloom => {
+                bloomObserver.observe(bloom);
+            });
+        }
+
+        // Initialize flower bloom when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFlowerBloom);
+        } else {
+            initFlowerBloom();
+        }
 
     </script>
 <script>
