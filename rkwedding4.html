@@ -30,8 +30,24 @@
         /* === HERO BACKGROUND === */
         .hero-background {
             background: url('https://exi0r.github.io/wedding/image/background_ring.png') no-repeat center center;
-            background-size: cover;
+            background-size: 110%;
             background-attachment: scroll;
+            animation: kenBurnsHero 30s ease-in-out infinite;
+        }
+
+        @keyframes kenBurnsHero {
+            0% {
+                background-size: 110%;
+                background-position: center center;
+            }
+            50% {
+                background-size: 120%;
+                background-position: 48% 48%;
+            }
+            100% {
+                background-size: 110%;
+                background-position: center center;
+            }
         }
 
         /* Mobile optimization for hero background */
@@ -41,6 +57,7 @@
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-color: #e8e8e8;
+                animation: none; /* Disable Ken Burns on mobile for performance */
             }
         }
 
@@ -386,10 +403,144 @@
             animation: kenBurns 8s ease-in-out infinite;
         }
 
-        /* Parallax Scrolling */
+        /* Enhanced Parallax Scrolling */
         .parallax-layer {
             transition: transform 0.1s ease-out;
             will-change: transform;
+        }
+
+        /* Multi-layer parallax for story section */
+        .parallax-slow {
+            transition: transform 0.2s ease-out;
+        }
+
+        .parallax-medium {
+            transition: transform 0.15s ease-out;
+        }
+
+        .parallax-fast {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Handwritten note annotations */
+        .handwritten-note {
+            position: absolute;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.2rem;
+            color: #81A26B;
+            opacity: 0;
+            transform: translateY(10px) rotate(-5deg);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            z-index: 20;
+        }
+
+        .timeline-content:hover .handwritten-note {
+            opacity: 1;
+            transform: translateY(0) rotate(-5deg);
+        }
+
+        /* Polaroid photo style */
+        .polaroid-photo {
+            background: white;
+            padding: 12px;
+            padding-bottom: 45px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            display: inline-block;
+            width: auto;
+        }
+
+        .polaroid-photo img {
+            display: block;
+            border-radius: 2px;
+        }
+
+        .polaroid-photo::after {
+            content: attr(data-caption);
+            position: absolute;
+            bottom: 8px;
+            left: 12px;
+            right: 12px;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1rem;
+            color: #5D4037;
+        }
+
+        .polaroid-photo:hover {
+            transform: rotate(0deg) scale(1.05) translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .polaroid-photo:nth-child(odd) {
+            transform: rotate(-3deg);
+        }
+
+        .polaroid-photo:nth-child(even) {
+            transform: rotate(3deg);
+        }
+
+        /* Hidden message reveal */
+        .hidden-message-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .hidden-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            z-index: 30;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .hidden-message-container.revealed .hidden-message {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .hidden-message-container.revealed::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 25;
+            border-radius: inherit;
+        }
+
+        /* Click indicator */
+        .click-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.9);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #81A26B;
+            animation: pulse 2s infinite;
+            z-index: 5;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(0.95); }
         }
 
         /* Guest Message Wall Styles */
@@ -408,25 +559,6 @@
             snap-align: start;
         }
 
-        /* Webkit scrollbar styling */
-        #messagesWall::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        #messagesWall::-webkit-scrollbar-track {
-            background: #e5e7eb;
-            border-radius: 10px;
-        }
-
-        #messagesWall::-webkit-scrollbar-thumb {
-            background: #81A26B;
-            border-radius: 10px;
-        }
-
-        #messagesWall::-webkit-scrollbar-thumb:hover {
-            background: #6B8E5A;
-        }
-
         @keyframes floatIn {
             from {
                 opacity: 0;
@@ -439,8 +571,8 @@
         }
 
         .message-card:hover {
-            transform: translateY(-8px) rotate(1deg);
-            box-shadow: 0 12px 30px rgba(129, 162, 107, 0.2);
+            transform: translateY(-5px) rotate(0.5deg);
+            box-shadow: 0 8px 20px rgba(129, 162, 107, 0.2);
         }
 
         .message-card::before {
@@ -449,7 +581,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
+            height: 3px;
             background: linear-gradient(90deg, #81A26B, #FCD34D, #FFDAB9);
         }
 
@@ -460,7 +592,18 @@
             right: 12px;
             font-size: 1.3rem;
             transform: rotate(45deg);
-            opacity: 0.7;
+            opacity: 0.6;
+        }
+
+        /* Photo cards - remove decorative elements */
+        .message-card:has(img) {
+            padding: 0;
+            background: transparent;
+        }
+
+        .message-card:has(img)::before,
+        .message-card:has(img)::after {
+            display: none;
         }
 
         .message-author {
@@ -468,46 +611,187 @@
             font-size: 1.1rem;
             color: #81A26B;
             margin-bottom: 6px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .message-text {
             color: #5D4037;
-            line-height: 1.4;
+            line-height: 1.5;
             margin-bottom: 10px;
             font-style: italic;
             font-size: 0.85rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
         .message-reactions {
             display: flex;
             gap: 6px;
             justify-content: flex-end;
-            padding-top: 8px;
+            padding-top: 6px;
             border-top: 1px solid rgba(129, 162, 107, 0.2);
         }
 
         .reaction-btn {
             background: transparent;
             border: none;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: transform 0.2s;
             padding: 3px;
         }
 
         .reaction-btn:hover {
-            transform: scale(1.3);
+            transform: scale(1.2);
         }
 
         .reaction-btn.reacted {
             animation: heartbeat 0.6s ease;
+        }
+
+        /* Custom scrollbar for messages wall */
+        #messagesWall::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        #messagesWall::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        #messagesWall::-webkit-scrollbar-thumb {
+            background: #81A26B;
+            border-radius: 10px;
+        }
+
+        #messagesWall::-webkit-scrollbar-thumb:hover {
+            background: #6B8E5A;
+        }
+
+        /* Gallery Reaction Animations */
+        .gallery-item {
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+        }
+
+        .reaction-float {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            animation: floatUp 2s ease-out forwards;
+            z-index: 100;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
+            }
+        }
+
+        .reaction-counter {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .reaction-counter span {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        /* Reaction Buttons */
+        .reaction-buttons {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            gap: 8px;
+            z-index: 15;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .reaction-buttons {
+            opacity: 1;
+        }
+
+        .reaction-emoji-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reaction-emoji-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .reaction-emoji-btn:active {
+            transform: scale(1.4);
+            animation: heartbeat 0.6s ease;
+        }
+
+        /* Mobile: Always show reaction buttons */
+        @media (max-width: 768px) {
+            .reaction-buttons {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation Flower Bloom Effect */
+        .nav-link {
+            position: relative;
+            overflow: visible;
+        }
+
+        .nav-link::before {
+            content: '🌸';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            font-size: 2rem;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .nav-link:hover::before {
+            transform: translate(-50%, -50%) scale(1) rotate(360deg);
+            opacity: 0.3;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            transform: scale(1.1);
+            color: #81A26B !important;
         }
 
         /* Envelope Opening Animation for RSVP */
@@ -1139,6 +1423,10 @@
                     Gallery
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
                 </a>
+                <a href="#photo-wall" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
+                    Photo Wall
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
                 <a href="#giftnotes" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
                     Gift Notes
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
@@ -1165,6 +1453,7 @@
                 <a href="#story" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Our Story</a>
                 <a href="#event" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Event Details</a>
                 <a href="#gallery" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Gallery</a>
+                <a href="#photo-wall" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Photo Wall</a>
                 <a href="#giftnotes" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Gift Notes</a>
                 <a href="#hashtag" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Hashtag</a>
                 <a href="#guestbook" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Guestbook</a>
@@ -1282,10 +1571,16 @@
 
       <div class="timeline-container left mb-12" data-aos="fade-right" data-aos-duration="1000">
         <div class="flex flex-col items-center md:flex-row gap-6">
-          <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 overflow-hidden morphing-border shadow-lg ken-burns-container">
-            <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" alt="How we met" class="w-full h-full object-cover ken-burns-effect">
+          <div class="polaroid-photo hidden-message-container" data-caption="First Hello 💼" onclick="toggleMessage(this)">
+            <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" alt="How we met" class="w-40 h-40 md:w-48 md:h-48 object-cover">
+            <span class="click-indicator">Click me!</span>
+            <div class="hidden-message">
+              <p class="font-heading text-xl text-citrus-green mb-2">💌 Hidden Memory</p>
+              <p class="text-sm text-gray-700">"From colleagues to something more... it all started with a simple hello."</p>
+            </div>
           </div>
-          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-yellow-100/50">
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-yellow-100/50 relative">
+            <span class="handwritten-note" style="top: -30px; left: 20px;">Where it all began ✨</span>
             <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text">How We Met</h3>
             <p class="text-gray-700 leading-relaxed">We met as officemates — not exactly working together, but somehow, life found a quiet way to connect us.</p>
             <div class="mt-4 flex justify-center md:justify-start">
@@ -1297,10 +1592,16 @@
 
       <div class="timeline-container right mb-12" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <div class="flex flex-col items-center md:flex-row-reverse gap-6">
-          <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 overflow-hidden morphing-border shadow-lg ken-burns-container" style="animation-delay: -2s;">
-            <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="A Spark" class="w-full h-full object-cover ken-burns-effect">
+          <div class="polaroid-photo hidden-message-container" data-caption="The Spark ✨" onclick="toggleMessage(this)">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="A Spark" class="w-40 h-40 md:w-48 md:h-48 object-cover">
+            <span class="click-indicator">Click me!</span>
+            <div class="hidden-message">
+              <p class="font-heading text-xl text-citrus-green mb-2">💫 Secret Moment</p>
+              <p class="text-sm text-gray-700">"The moment when friendship turned into something magical..."</p>
+            </div>
           </div>
-          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-peach-200/50">
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-peach-200/50 relative">
+            <span class="handwritten-note" style="top: -30px; right: 20px;">Something special 💕</span>
             <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.2s;">A Spark</h3>
             <p class="text-gray-700 leading-relaxed">Over the years, we shared a friendship that came with a few question marks and maybe a little spark we never really defined. Until one day, everything just felt right.</p>
             <div class="mt-4 flex justify-center md:justify-end">
@@ -1312,10 +1613,16 @@
 
       <div class="timeline-container left mb-12" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
         <div class="flex flex-col items-center md:flex-row gap-6">
-          <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 overflow-hidden morphing-border shadow-lg ken-burns-container" style="animation-delay: -4s;">
-            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Making It Official" class="w-full h-full object-cover ken-burns-effect">
+          <div class="polaroid-photo hidden-message-container" data-caption="Made Official 💕" onclick="toggleMessage(this)">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Making It Official" class="w-40 h-40 md:w-48 md:h-48 object-cover">
+            <span class="click-indicator">Click me!</span>
+            <div class="hidden-message">
+              <p class="font-heading text-xl text-citrus-green mb-2">💝 Our Promise</p>
+              <p class="text-sm text-gray-700">"June 2024 - the day we said 'yes' to forever!"</p>
+            </div>
           </div>
-          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-lime-200/50">
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-lime-200/50 relative">
+            <span class="handwritten-note" style="top: -30px; left: 20px;">Finally ours! 🌟</span>
             <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.4s;">Making It Official</h3>
             <p class="text-gray-700 leading-relaxed">In June 2024, we finally made it official. Exactly a year later, Raymond proposed.</p>
             <div class="mt-4 flex justify-center md:justify-start">
@@ -1327,10 +1634,16 @@
 
       <div class="timeline-container right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
         <div class="flex flex-col items-center md:flex-row-reverse gap-6">
-          <div class="flex-shrink-0 w-40 h-40 md:w-48 md:h-48 overflow-hidden morphing-border shadow-lg ken-burns-container" style="animation-delay: -6s;">
-            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="To Forever" class="w-full h-full object-cover ken-burns-effect">
+          <div class="polaroid-photo hidden-message-container" data-caption="To Forever 💍" onclick="toggleMessage(this)">
+            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="To Forever" class="w-40 h-40 md:w-48 md:h-48 object-cover">
+            <span class="click-indicator">Click me!</span>
+            <div class="hidden-message">
+              <p class="font-heading text-xl text-citrus-green mb-2">💒 Our Future</p>
+              <p class="text-sm text-gray-700">"This is just the beginning of our forever together!"</p>
+            </div>
           </div>
-          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-green-200/50">
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-green-200/50 relative">
+            <span class="handwritten-note" style="top: -30px; right: 20px;">Here we go! 💫</span>
             <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.6s;">To Forever</h3>
             <p class="text-gray-700 leading-relaxed">Now, here we are — about to get married and beyond excited to celebrate with all of you!</p>
             <p class="mt-4 font-bold text-citrus-green heartbeat-text" style="animation: heartbeat 2s ease-in-out infinite;">With love, R & K</p>
@@ -1704,7 +2017,8 @@
              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               <a href="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" class="glightbox gallery-item group ken-burns-container"
                  data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
-                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="100">
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="100"
+                 data-image-id="img1">
                 <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                   <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg"
                        alt="Gallery Image 1"
@@ -1718,12 +2032,21 @@
                       <div class="text-2xl">🔍</div>
                     </div>
                   </div>
+                  <div class="reaction-buttons" id="buttons-img1">
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img1', 'hearts', event)" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img1', 'cheers', event)" title="Celebrate">🎉</button>
+                  </div>
+                  <div class="reaction-counter" id="counter-img1">
+                    <span>❤️ <span id="hearts-img1">0</span></span>
+                    <span>🎉 <span id="cheers-img1">0</span></span>
+                  </div>
                 </div>
               </a>
 
               <a href="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" class="glightbox gallery-item group ken-burns-container"
                  data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
-                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="200">
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="200"
+                 data-image-id="img2">
                 <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                   <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg"
                        alt="Gallery Image 2"
@@ -1737,12 +2060,21 @@
                       <div class="text-2xl">🔍</div>
                     </div>
                   </div>
+                  <div class="reaction-buttons" id="buttons-img2">
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img2', 'hearts', event)" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img2', 'cheers', event)" title="Celebrate">🎉</button>
+                  </div>
+                  <div class="reaction-counter" id="counter-img2">
+                    <span>❤️ <span id="hearts-img2">0</span></span>
+                    <span>🎉 <span id="cheers-img2">0</span></span>
+                  </div>
                 </div>
               </a>
 
               <a href="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" class="glightbox gallery-item group ken-burns-container"
                  data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
-                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="300">
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="300"
+                 data-image-id="img3">
                 <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                   <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg"
                        alt="Gallery Image 3"
@@ -1756,12 +2088,21 @@
                       <div class="text-2xl">🔍</div>
                     </div>
                   </div>
+                  <div class="reaction-buttons" id="buttons-img3">
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img3', 'hearts', event)" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img3', 'cheers', event)" title="Celebrate">🎉</button>
+                  </div>
+                  <div class="reaction-counter" id="counter-img3">
+                    <span>❤️ <span id="hearts-img3">0</span></span>
+                    <span>🎉 <span id="cheers-img3">0</span></span>
+                  </div>
                 </div>
               </a>
 
               <a href="https://exi0r.github.io/wedding/image/IMG_6782.jpeg" class="glightbox gallery-item group ken-burns-container"
                  data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
-                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="400">
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="400"
+                 data-image-id="img4">
                 <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                   <img src="https://exi0r.github.io/wedding/image/IMG_6782.jpeg"
                        alt="Gallery Image 4"
@@ -1775,12 +2116,21 @@
                       <div class="text-2xl">🔍</div>
                     </div>
                   </div>
+                  <div class="reaction-buttons" id="buttons-img4">
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img4', 'hearts', event)" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img4', 'cheers', event)" title="Celebrate">🎉</button>
+                  </div>
+                  <div class="reaction-counter" id="counter-img4">
+                    <span>❤️ <span id="hearts-img4">0</span></span>
+                    <span>🎉 <span id="cheers-img4">0</span></span>
+                  </div>
                 </div>
               </a>
 
               <a href="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" class="glightbox gallery-item group ken-burns-container"
                  data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
-                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="500">
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="500"
+                 data-image-id="img5">
                 <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                   <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg"
                        alt="Gallery Image 5"
@@ -1794,12 +2144,21 @@
                       <div class="text-2xl">🔍</div>
                     </div>
                   </div>
+                  <div class="reaction-buttons" id="buttons-img5">
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img5', 'hearts', event)" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img5', 'cheers', event)" title="Celebrate">🎉</button>
+                  </div>
+                  <div class="reaction-counter" id="counter-img5">
+                    <span>❤️ <span id="hearts-img5">0</span></span>
+                    <span>🎉 <span id="cheers-img5">0</span></span>
+                  </div>
                 </div>
               </a>
 
               <a href="https://exi0r.github.io/wedding/image/IMG_6633.jpeg" class="glightbox gallery-item group ken-burns-container"
                  data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
-                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="600">
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="600"
+                 data-image-id="img6">
                 <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
                   <img src="https://exi0r.github.io/wedding/image/IMG_6633.jpeg"
                        alt="Gallery Image 6"
@@ -1812,6 +2171,14 @@
                     <div class="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
                       <div class="text-2xl">🔍</div>
                     </div>
+                  </div>
+                  <div class="reaction-buttons" id="buttons-img6">
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img6', 'hearts', event)" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img6', 'cheers', event)" title="Celebrate">🎉</button>
+                  </div>
+                  <div class="reaction-counter" id="counter-img6">
+                    <span>❤️ <span id="hearts-img6">0</span></span>
+                    <span>🎉 <span id="cheers-img6">0</span></span>
                   </div>
                 </div>
               </a>
@@ -1921,60 +2288,6 @@
         </div>
     </div>
 
-    <!-- Guest Message Wall Section -->
-    <section id="guestbook" class="py-20 bg-transparent-for-petals relative overflow-hidden">
-        <div class="container mx-auto px-6 content-wrapper">
-            <div class="text-center mb-12">
-                <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up">Guest Message Wall</h2>
-                <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
-                <p class="text-xl uppercase tracking-wide text-gray-500 mb-8" data-aos="fade-up" data-aos-delay="200">LEAVE US A MESSAGE</p>
-            </div>
-
-            <!-- Message Input Form -->
-            <div class="max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="300">
-                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50">
-                    <div class="mb-4">
-                        <input type="text" id="guestName" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300 font-lato">
-                    </div>
-                    <div class="mb-4">
-                        <textarea id="guestMessage" placeholder="Write your wishes for the couple..." rows="4" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300 resize-none font-lato"></textarea>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex gap-2">
-                            <button onclick="addEmoji('💕')" class="text-2xl hover:scale-125 transition-transform">💕</button>
-                            <button onclick="addEmoji('🥰')" class="text-2xl hover:scale-125 transition-transform">🥰</button>
-                            <button onclick="addEmoji('🎉')" class="text-2xl hover:scale-125 transition-transform">🎉</button>
-                            <button onclick="addEmoji('✨')" class="text-2xl hover:scale-125 transition-transform">✨</button>
-                            <button onclick="addEmoji('💐')" class="text-2xl hover:scale-125 transition-transform">💐</button>
-                            <button onclick="addEmoji('🌸')" class="text-2xl hover:scale-125 transition-transform">🌸</button>
-                        </div>
-                        <button onclick="submitGuestMessage()" class="btn-primary px-6 py-2">Post Message</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Messages Display Wall -->
-            <div class="relative max-w-6xl mx-auto">
-                <div id="messagesWall" class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory" style="scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: #81A26B #e5e7eb;">
-                    <!-- Messages will be dynamically added here -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Flower Bloom Divider -->
-    <div class="flower-divider">
-        <div class="flower-divider-line"></div>
-        <div class="flower-bloom">
-            <div class="flower-petal"></div>
-            <div class="flower-petal"></div>
-            <div class="flower-petal"></div>
-            <div class="flower-petal"></div>
-            <div class="flower-petal"></div>
-            <div class="flower-center"></div>
-        </div>
-    </div>
-
     <section id="rsvp" class="py-24 relative" style="background: linear-gradient(135deg, #F5EDE0 0%, #E8DFD0 100%);">
         <div class="absolute inset-0 bg-transparent"></div>
         <div class="relative container mx-auto px-6 text-center content-wrapper">
@@ -1993,6 +2306,120 @@
                         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeGKSchOOEoQyRZRf8AXHKoxRgSbPCeHFTHlo5E9tvvS2A5Sw/viewform?embedded=true" width="100%" height="667" frameborder="0" marginheight="0" marginwidth="0" class="rounded-md">Loading…</iframe>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flower Bloom Divider -->
+    <div class="flower-divider">
+        <div class="flower-divider-line"></div>
+        <div class="flower-bloom">
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-center"></div>
+        </div>
+    </div>
+
+    <!-- Guest Message Wall Section -->
+    <section id="guestbook" class="py-20 bg-citrus-light bg-transparent-for-petals relative overflow-hidden">
+        <div class="container mx-auto px-6 content-wrapper">
+            <div class="text-center mb-12">
+                <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up" data-aos-duration="1000">Guest Messages</h2>
+                <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(90deg, #F59E0B, #FCD34D, #F59E0B); background-size: 200% auto; animation: shimmer 2s linear infinite;"></div>
+                <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 float-gentle" data-aos="fade-up" data-aos-delay="200">LEAVE US YOUR BEST WISHES</p>
+            </div>
+
+            <!-- Message Input Form -->
+            <div class="max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50">
+                    <h3 class="text-2xl font-serif-display text-citrus-green mb-4 text-center">Share Your Love</h3>
+                    <p class="text-gray-600 mb-6 text-center">Write a message for the happy couple!</p>
+
+                    <div class="mb-4">
+                        <input type="text" id="guestName" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300">
+                    </div>
+
+                    <div class="mb-4">
+                        <textarea id="guestMessage" placeholder="Your message..." rows="4" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300 resize-none"></textarea>
+                    </div>
+
+                    <div class="flex gap-2 mb-4 justify-center">
+                        <button onclick="addEmoji('❤️')" class="text-2xl hover:scale-125 transition-transform duration-200">❤️</button>
+                        <button onclick="addEmoji('🎉')" class="text-2xl hover:scale-125 transition-transform duration-200">🎉</button>
+                        <button onclick="addEmoji('😊')" class="text-2xl hover:scale-125 transition-transform duration-200">😊</button>
+                        <button onclick="addEmoji('👏')" class="text-2xl hover:scale-125 transition-transform duration-200">👏</button>
+                        <button onclick="addEmoji('💐')" class="text-2xl hover:scale-125 transition-transform duration-200">💐</button>
+                        <button onclick="addEmoji('🥰')" class="text-2xl hover:scale-125 transition-transform duration-200">🥰</button>
+                    </div>
+
+                    <button onclick="submitGuestMessage()" class="btn-primary w-full">Post Message 💌</button>
+                </div>
+            </div>
+
+            <!-- Messages Wall (Two-row Horizontal Scrolling) -->
+            <div class="overflow-x-auto pb-4 snap-x snap-mandatory" id="messagesWall">
+                <!-- Messages will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Flower Bloom Divider -->
+    <div class="flower-divider">
+        <div class="flower-divider-line"></div>
+        <div class="flower-bloom">
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-center"></div>
+        </div>
+    </div>
+
+    <!-- Guest Photo Upload Wall Section -->
+    <section id="photo-wall" class="py-20 bg-transparent-for-petals relative overflow-hidden">
+        <div class="container mx-auto px-6 content-wrapper">
+            <div class="text-center mb-12">
+                <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up">Guest Photo Wall</h2>
+                <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+                <p class="text-xl uppercase tracking-wide text-gray-500 mb-8" data-aos="fade-up" data-aos-delay="200">Share Your Memories With Us</p>
+            </div>
+
+            <!-- Upload Form -->
+            <div class="max-w-2xl mx-auto mb-12" data-aos="fade-up">
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50">
+                    <h3 class="text-2xl font-serif-display text-citrus-green mb-4 text-center">Upload Your Photos</h3>
+                    <p class="text-gray-600 mb-6 text-center">Share your favorite moments from our pre-wedding events!</p>
+
+                    <div class="mb-4">
+                        <input type="text" id="uploaderName" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Choose Photo</label>
+                        <input type="file" id="photoUpload" accept="image/*" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300">
+                    </div>
+
+                    <div class="mb-6">
+                        <textarea id="photoCaption" placeholder="Add a caption (optional)" rows="2" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300 resize-none"></textarea>
+                    </div>
+
+                    <button onclick="uploadPhoto()" class="btn-primary w-full">Upload Photo 📸</button>
+                    <p class="text-xs text-gray-500 mt-3 text-center">Photos will be reviewed before appearing on the wall</p>
+                </div>
+            </div>
+
+            <!-- Photo Wall (Two-row Horizontal Scrolling) -->
+            <div class="overflow-x-auto pb-4 snap-x snap-mandatory" id="photoWall">
+                <!-- Photos will be dynamically added here -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyPhotoWall" class="text-center py-12">
+                <p class="text-gray-500 text-lg">No photos yet. Be the first to share! 📷</p>
             </div>
         </div>
     </section>
@@ -2288,17 +2715,23 @@
             selector: '.glightbox'
         });
 
-        // Parallax Scrolling Effect
+        // Enhanced Parallax Scrolling Effect for Story Section
         function initParallax() {
-            const parallaxElements = document.querySelectorAll('.parallax-layer');
+            const parallaxElements = document.querySelectorAll('.parallax-layer, .parallax-slow, .parallax-medium, .parallax-fast');
 
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
 
                 parallaxElements.forEach(element => {
                     const speed = parseFloat(element.dataset.parallaxSpeed) || 0.5;
-                    const yPos = -(scrolled * speed);
-                    element.style.transform = `translateY(${yPos}px)`;
+                    const rect = element.getBoundingClientRect();
+                    const elementY = rect.top + window.pageYOffset;
+                    const scrollPercentage = (scrolled - elementY + window.innerHeight) / (window.innerHeight + rect.height);
+
+                    if (scrollPercentage >= 0 && scrollPercentage <= 1) {
+                        const yPos = -(scrolled * speed);
+                        element.style.transform = `translateY(${yPos}px)`;
+                    }
                 });
             });
         }
@@ -2306,13 +2739,48 @@
         // Initialize parallax on page load
         document.addEventListener('DOMContentLoaded', initParallax);
 
-        // === GUEST MESSAGE WALL FUNCTIONS (Firebase-Enabled) ===
+        // Toggle Hidden Message on Photo Click
+        function toggleMessage(element) {
+            const isRevealed = element.classList.contains('revealed');
+
+            // Close all other revealed messages first
+            document.querySelectorAll('.hidden-message-container.revealed').forEach(el => {
+                if (el !== element) {
+                    el.classList.remove('revealed');
+                }
+            });
+
+            // Toggle current message
+            if (isRevealed) {
+                element.classList.remove('revealed');
+            } else {
+                element.classList.add('revealed');
+                // Hide click indicator
+                const indicator = element.querySelector('.click-indicator');
+                if (indicator) {
+                    indicator.style.display = 'none';
+                }
+            }
+        }
+
+        // Close message when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.hidden-message-container')) {
+                document.querySelectorAll('.hidden-message-container.revealed').forEach(el => {
+                    el.classList.remove('revealed');
+                });
+            }
+        });
+
+        // === GUEST MESSAGE WALL FUNCTIONS ===
 
         // Initialize guest messages on page load
         function initGuestMessages() {
             if (firebaseEnabled) {
+                // Use Firebase Real-time Database with live sync
                 loadMessagesFromFirebase();
             } else {
+                // Fallback to localStorage
                 loadMessages();
                 const messages = getMessages();
                 if (messages.length === 0) {
@@ -2345,23 +2813,26 @@
         // Load messages from Firebase with real-time updates
         function loadMessagesFromFirebase() {
             const messagesRef = database.ref('guestbook/messages');
+
+            // Listen for real-time updates - automatically syncs across all devices!
             messagesRef.on('value', (snapshot) => {
                 const messagesObj = snapshot.val();
                 const messagesArray = messagesObj ? Object.keys(messagesObj).map(key => ({
                     id: key,
                     ...messagesObj[key]
                 })).sort((a, b) => b.timestamp - a.timestamp) : [];
-                displayMessages(messagesArray, true);
+
+                displayMessages(messagesArray, true); // true = Firebase mode
             });
         }
 
-        // Get messages from localStorage (fallback)
+        // Get messages from localStorage
         function getMessages() {
             const messages = localStorage.getItem('weddingMessages');
             return messages ? JSON.parse(messages) : [];
         }
 
-        // Save messages to localStorage (fallback)
+        // Save messages to localStorage
         function saveMessages(messages) {
             localStorage.setItem('weddingMessages', JSON.stringify(messages));
         }
@@ -2377,6 +2848,7 @@
         function submitGuestMessage() {
             const nameInput = document.getElementById('guestName');
             const messageInput = document.getElementById('guestMessage');
+
             const name = nameInput.value.trim();
             const message = messageInput.value.trim();
 
@@ -2393,17 +2865,22 @@
             };
 
             if (firebaseEnabled) {
+                // Save to Firebase - will automatically sync to all viewers!
                 const messagesRef = database.ref('guestbook/messages');
                 messagesRef.push(newMessage);
             } else {
+                // Fallback to localStorage
                 const messages = getMessages();
                 messages.unshift(newMessage);
                 saveMessages(messages);
                 loadMessages();
             }
 
+            // Clear inputs
             nameInput.value = '';
             messageInput.value = '';
+
+            // Show success feedback
             showNotification('Message posted! Thank you for your wishes! 💕');
         }
 
@@ -2413,7 +2890,7 @@
             displayMessages(messages, false);
         }
 
-        // Universal display function
+        // Universal display function (works for both Firebase and localStorage)
         function displayMessages(messages, isFirebase = false) {
             const wall = document.getElementById('messagesWall');
 
@@ -2474,14 +2951,16 @@
             `;
         }
 
-        // Add reaction to message
+        // Add reaction to message (Firebase or localStorage)
         function addReaction(messageId, reactionType, isFirebase) {
             if (isFirebase && firebaseEnabled) {
+                // Update reaction in Firebase
                 const messageRef = database.ref(`guestbook/messages/${messageId}/reactions/${reactionType}`);
                 messageRef.transaction((currentValue) => {
                     return (currentValue || 0) + 1;
                 });
             } else {
+                // Update reaction in localStorage
                 const messages = getMessages();
                 const messageIndex = parseInt(messageId);
                 if (messages[messageIndex]) {
@@ -2493,6 +2972,8 @@
                     loadMessages();
                 }
             }
+
+            // Trigger animation
             event.target.classList.add('reacted');
             setTimeout(() => {
                 event.target.classList.remove('reacted');
@@ -2524,6 +3005,7 @@
             `;
             notification.textContent = message;
             document.body.appendChild(notification);
+
             setTimeout(() => {
                 notification.style.animation = 'slideOutRight 0.5s ease';
                 setTimeout(() => notification.remove(), 500);
@@ -2765,6 +3247,238 @@
             initFlowerBloom();
         }
 
+        // --- SCRIPT: Gallery Reaction System ---
+
+        // Load reactions from Firebase or localStorage
+        function loadGalleryReactions() {
+            if (firebaseEnabled) {
+                const reactionsRef = database.ref('gallery/reactions');
+                reactionsRef.on('value', (snapshot) => {
+                    const reactions = snapshot.val() || {};
+                    Object.keys(reactions).forEach(imageId => {
+                        updateGalleryCounter(imageId, reactions[imageId]);
+                    });
+                });
+            } else {
+                const savedReactions = localStorage.getItem('galleryReactions');
+                if (savedReactions) {
+                    const reactions = JSON.parse(savedReactions);
+                    Object.keys(reactions).forEach(imageId => {
+                        updateGalleryCounter(imageId, reactions[imageId]);
+                    });
+                }
+            }
+        }
+
+        // Update reaction counter display
+        function updateGalleryCounter(imageId, counts) {
+            const heartsEl = document.getElementById(`hearts-${imageId}`);
+            const cheersEl = document.getElementById(`cheers-${imageId}`);
+            if (heartsEl) heartsEl.textContent = counts.hearts || 0;
+            if (cheersEl) cheersEl.textContent = counts.cheers || 0;
+        }
+
+        // Add reaction when button is clicked
+        function addGalleryReaction(imageId, reactionType, event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            // Create floating emoji animation at button location
+            const button = event.target;
+            const container = button.closest('.interactive-card');
+            const rect = container.getBoundingClientRect();
+            const buttonRect = button.getBoundingClientRect();
+            const x = buttonRect.left - rect.left + buttonRect.width / 2;
+            const y = buttonRect.top - rect.top + buttonRect.height / 2;
+
+            const emoji = reactionType === 'hearts' ? '❤️' : '🎉';
+            const emojiEl = document.createElement('div');
+            emojiEl.className = 'reaction-float';
+            emojiEl.textContent = emoji;
+            emojiEl.style.left = x + 'px';
+            emojiEl.style.top = y + 'px';
+            container.appendChild(emojiEl);
+
+            setTimeout(() => {
+                emojiEl.remove();
+            }, 2000);
+
+            // Update counter in database
+            if (firebaseEnabled) {
+                const reactionRef = database.ref(`gallery/reactions/${imageId}/${reactionType}`);
+                reactionRef.transaction((current) => {
+                    return (current || 0) + 1;
+                });
+            } else {
+                const savedReactions = localStorage.getItem('galleryReactions');
+                const reactions = savedReactions ? JSON.parse(savedReactions) : {};
+                if (!reactions[imageId]) reactions[imageId] = {hearts: 0, cheers: 0};
+                reactions[imageId][reactionType]++;
+                localStorage.setItem('galleryReactions', JSON.stringify(reactions));
+                updateGalleryCounter(imageId, reactions[imageId]);
+            }
+        }
+
+        // Initialize gallery reactions when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadGalleryReactions);
+        } else {
+            loadGalleryReactions();
+        }
+
+        // --- SCRIPT: Guest Photo Upload Wall ---
+        function uploadPhoto() {
+            const nameInput = document.getElementById('uploaderName');
+            const fileInput = document.getElementById('photoUpload');
+            const captionInput = document.getElementById('photoCaption');
+
+            const name = nameInput.value.trim();
+            const file = fileInput.files[0];
+            const caption = captionInput.value.trim();
+
+            if (!name || !file) {
+                alert('Please enter your name and select a photo!');
+                return;
+            }
+
+            // Check file size (max 5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Photo size must be less than 5MB');
+                return;
+            }
+
+            // Convert image to base64
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const photoData = {
+                    name: name,
+                    caption: caption,
+                    imageData: e.target.result,
+                    timestamp: Date.now(),
+                    approved: false // Requires moderation
+                };
+
+                // Save to Firebase or localStorage
+                if (firebaseEnabled) {
+                    const photosRef = database.ref('photoWall/pending');
+                    photosRef.push(photoData).then(() => {
+                        showNotification('Photo uploaded! It will appear after review. 📸');
+                        nameInput.value = '';
+                        fileInput.value = '';
+                        captionInput.value = '';
+                    }).catch(error => {
+                        alert('Upload failed: ' + error.message);
+                    });
+                } else {
+                    const savedPhotos = localStorage.getItem('photoWallPending');
+                    const photos = savedPhotos ? JSON.parse(savedPhotos) : [];
+                    photoData.approved = true; // Auto-approve in local mode
+                    photos.push(photoData);
+                    localStorage.setItem('photoWallPending', JSON.stringify(photos));
+                    showNotification('Photo uploaded! (Local storage mode - approval feature disabled)');
+                    nameInput.value = '';
+                    fileInput.value = '';
+                    captionInput.value = '';
+                    // Reload photo wall to display all photos
+                    loadPhotoWall();
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Display photos in two-row horizontal scrolling layout (similar to messages)
+        function displayPhotos(photos) {
+            const wall = document.getElementById('photoWall');
+            const empty = document.getElementById('emptyPhotoWall');
+
+            // If no photos, show placeholder
+            if (!photos || photos.length === 0) {
+                wall.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <p class="text-lg">No photos yet. Be the first to share! 📷</p>
+                    </div>
+                `;
+                if (empty) empty.style.display = 'block';
+                return;
+            }
+
+            if (empty) empty.style.display = 'none';
+
+            // Split photos into two rows (alternating)
+            const row1Photos = [];
+            const row2Photos = [];
+
+            photos.forEach((photo, index) => {
+                if (index % 2 === 0) {
+                    row1Photos.push({photo, index});
+                } else {
+                    row2Photos.push({photo, index});
+                }
+            });
+
+            // Helper function to create photo card HTML
+            const createPhotoCard = (photoData) => {
+                const {photo, index} = photoData;
+
+                return `
+                    <div class="message-card relative group overflow-hidden" style="min-width: 220px; max-width: 220px; height: 220px;">
+                        <img src="${photo.imageData || photo.image}" alt="Guest photo" class="w-full h-full object-cover rounded-lg">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg">
+                            <div class="absolute bottom-0 left-0 right-0 p-3 text-white">
+                                <p class="font-heading text-base">${escapeHtml(photo.name)}</p>
+                                ${photo.caption ? `<p class="text-xs mt-1 italic">"${escapeHtml(photo.caption)}"</p>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            };
+
+            // Create two-row layout
+            wall.innerHTML = `
+                <div class="flex flex-col gap-4 min-w-max">
+                    <div class="flex gap-4 min-w-max">
+                        ${row1Photos.map(createPhotoCard).join('')}
+                    </div>
+                    <div class="flex gap-4 min-w-max">
+                        ${row2Photos.map(createPhotoCard).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load approved photos
+        function loadPhotoWall() {
+            if (firebaseEnabled) {
+                const photosRef = database.ref('photoWall/approved');
+                photosRef.on('value', (snapshot) => {
+                    const photosObj = snapshot.val() || {};
+                    const photoArray = Object.keys(photosObj).map(key => ({
+                        id: key,
+                        ...photosObj[key]
+                    })).sort((a, b) => b.timestamp - a.timestamp);
+
+                    displayPhotos(photoArray);
+                });
+            } else {
+                // Load from localStorage
+                const savedPhotos = localStorage.getItem('photoWallPending');
+                if (savedPhotos) {
+                    const photos = JSON.parse(savedPhotos);
+                    const approvedPhotos = photos.filter(p => p.approved);
+                    displayPhotos(approvedPhotos);
+                } else {
+                    displayPhotos([]);
+                }
+            }
+        }
+
+        // Initialize photo wall
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadPhotoWall);
+        } else {
+            loadPhotoWall();
+        }
+
     </script>
 <script>
   function toggleTips() {
@@ -2777,3 +3491,118 @@
 
 </body>
 </html>
+
+<!--
+==========================================
+FIREBASE SETUP INSTRUCTIONS
+==========================================
+
+To enable the LIVE GUESTBOOK feature where all guests can see each other's messages in real-time:
+
+STEP 1: Create a Firebase Project
+----------------------------------
+1. Go to https://console.firebase.google.com/
+2. Click "Add project" or "Create a project"
+3. Enter project name (e.g., "raymond-karen-wedding")
+4. Disable Google Analytics (optional)
+5. Click "Create project"
+
+STEP 2: Set up Realtime Database
+----------------------------------
+1. In Firebase Console, click "Realtime Database" in left menu
+2. Click "Create Database"
+3. Choose location closest to your guests (e.g., United States)
+4. Start in "Test mode" (allows read/write for 30 days)
+   - Or use these rules for better security:
+
+   {
+     "rules": {
+       "guestbook": {
+         "messages": {
+           ".read": true,
+           ".write": true,
+           "$messageId": {
+             ".validate": "newData.hasChildren(['name', 'message', 'timestamp', 'reactions'])"
+           }
+         }
+       }
+     }
+   }
+
+5. Click "Enable"
+
+STEP 3: Get Your Configuration
+----------------------------------
+1. Go to Project Settings (gear icon) → General
+2. Scroll down to "Your apps" section
+3. Click the "</>" (Web) icon
+4. Register app (nickname: "Wedding Website")
+5. Copy the firebaseConfig object
+
+STEP 4: Update This File
+----------------------------------
+1. Find the firebaseConfig section around line 2145
+2. Replace the placeholder values with your actual Firebase config:
+
+const firebaseConfig = {
+    apiKey: "YOUR_ACTUAL_API_KEY",              // Replace this
+    authDomain: "your-project.firebaseapp.com",  // Replace this
+    databaseURL: "https://your-project-default-rtdb.firebaseio.com", // Replace this
+    projectId: "your-project",                   // Replace this
+    storageBucket: "your-project.appspot.com",   // Replace this
+    messagingSenderId: "123456789",              // Replace this
+    appId: "1:123456789:web:xxxxxxxxxxxxx"       // Replace this
+};
+
+STEP 5: Test It!
+----------------------------------
+1. Open your website in a browser
+2. Check browser console (F12) - you should see:
+   "✅ Firebase initialized successfully - Live guestbook enabled!"
+3. Post a message
+4. Open the same website in another browser/device
+5. You should see the message appear automatically!
+
+==========================================
+SECURITY NOTES
+==========================================
+
+The current setup allows anyone to post messages. To prevent spam:
+
+1. After your wedding, update Firebase rules to read-only:
+   {
+     "rules": {
+       "guestbook": {
+         "messages": {
+           ".read": true,
+           ".write": false
+         }
+       }
+     }
+   }
+
+2. You can moderate messages directly in Firebase Console:
+   - Go to Realtime Database
+   - Expand guestbook → messages
+   - Delete inappropriate messages
+
+3. To backup messages:
+   - In Realtime Database, click ⋮ menu
+   - Click "Export JSON"
+   - Save the file
+
+==========================================
+FALLBACK MODE
+==========================================
+
+If Firebase is not configured or fails to load:
+- Website will automatically use localStorage
+- Messages will be saved locally on each device
+- No real-time syncing between visitors
+- You'll see: "⚠️ Firebase not configured - Using localStorage fallback"
+
+This ensures the website still works even if Firebase setup is incomplete!
+
+==========================================
+-->
+
