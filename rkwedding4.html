@@ -392,6 +392,124 @@
             will-change: transform;
         }
 
+        /* Guest Message Wall Styles */
+        .message-card {
+            background: linear-gradient(135deg, #FFF7E1 0%, #FFFFFF 100%);
+            border-radius: 12px;
+            padding: 12px 14px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            animation: floatIn 0.6s ease-out;
+            min-width: 220px;
+            max-width: 220px;
+            flex-shrink: 0;
+            snap-align: start;
+        }
+
+        /* Webkit scrollbar styling */
+        #messagesWall::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        #messagesWall::-webkit-scrollbar-track {
+            background: #e5e7eb;
+            border-radius: 10px;
+        }
+
+        #messagesWall::-webkit-scrollbar-thumb {
+            background: #81A26B;
+            border-radius: 10px;
+        }
+
+        #messagesWall::-webkit-scrollbar-thumb:hover {
+            background: #6B8E5A;
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) rotate(0deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .message-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 12px 30px rgba(129, 162, 107, 0.2);
+        }
+
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #81A26B, #FCD34D, #FFDAB9);
+        }
+
+        .message-card::after {
+            content: '📌';
+            position: absolute;
+            top: -8px;
+            right: 12px;
+            font-size: 1.3rem;
+            transform: rotate(45deg);
+            opacity: 0.7;
+        }
+
+        .message-author {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.1rem;
+            color: #81A26B;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message-text {
+            color: #5D4037;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            font-style: italic;
+            font-size: 0.85rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .message-reactions {
+            display: flex;
+            gap: 6px;
+            justify-content: flex-end;
+            padding-top: 8px;
+            border-top: 1px solid rgba(129, 162, 107, 0.2);
+        }
+
+        .reaction-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+            padding: 3px;
+        }
+
+        .reaction-btn:hover {
+            transform: scale(1.3);
+        }
+
+        .reaction-btn.reacted {
+            animation: heartbeat 0.6s ease;
+        }
+
         /* Envelope Opening Animation for RSVP */
         .envelope-container {
             perspective: 1000px;
@@ -1029,6 +1147,10 @@
                     Hashtag
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
                 </a>
+                <a href="#guestbook" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
+                    Guestbook
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
+                </a>
                 <a href="#rsvp" class="nav-link relative group transition-all duration-300 hover:text-citrus-green">
                     RSVP
                     <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-citrus-green transition-all duration-300 group-hover:w-full"></span>
@@ -1045,6 +1167,7 @@
                 <a href="#gallery" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Gallery</a>
                 <a href="#giftnotes" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Gift Notes</a>
                 <a href="#hashtag" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Hashtag</a>
+                <a href="#guestbook" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">Guestbook</a>
                 <a href="#rsvp" class="block py-3 nav-link text-center rounded-lg hover:bg-citrus-green/10 transition-all duration-300 transform hover:translate-x-2">RSVP</a>
             </div>
         </div>
@@ -1798,6 +1921,60 @@
         </div>
     </div>
 
+    <!-- Guest Message Wall Section -->
+    <section id="guestbook" class="py-20 bg-transparent-for-petals relative overflow-hidden">
+        <div class="container mx-auto px-6 content-wrapper">
+            <div class="text-center mb-12">
+                <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up">Guest Message Wall</h2>
+                <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+                <p class="text-xl uppercase tracking-wide text-gray-500 mb-8" data-aos="fade-up" data-aos-delay="200">LEAVE US A MESSAGE</p>
+            </div>
+
+            <!-- Message Input Form -->
+            <div class="max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50">
+                    <div class="mb-4">
+                        <input type="text" id="guestName" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300 font-lato">
+                    </div>
+                    <div class="mb-4">
+                        <textarea id="guestMessage" placeholder="Write your wishes for the couple..." rows="4" class="w-full px-4 py-3 rounded-lg border-2 border-citrus-green/20 focus:border-citrus-green outline-none transition-all duration-300 resize-none font-lato"></textarea>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex gap-2">
+                            <button onclick="addEmoji('💕')" class="text-2xl hover:scale-125 transition-transform">💕</button>
+                            <button onclick="addEmoji('🥰')" class="text-2xl hover:scale-125 transition-transform">🥰</button>
+                            <button onclick="addEmoji('🎉')" class="text-2xl hover:scale-125 transition-transform">🎉</button>
+                            <button onclick="addEmoji('✨')" class="text-2xl hover:scale-125 transition-transform">✨</button>
+                            <button onclick="addEmoji('💐')" class="text-2xl hover:scale-125 transition-transform">💐</button>
+                            <button onclick="addEmoji('🌸')" class="text-2xl hover:scale-125 transition-transform">🌸</button>
+                        </div>
+                        <button onclick="submitGuestMessage()" class="btn-primary px-6 py-2">Post Message</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages Display Wall -->
+            <div class="relative max-w-6xl mx-auto">
+                <div id="messagesWall" class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory" style="scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: #81A26B #e5e7eb;">
+                    <!-- Messages will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flower Bloom Divider -->
+    <div class="flower-divider">
+        <div class="flower-divider-line"></div>
+        <div class="flower-bloom">
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-petal"></div>
+            <div class="flower-center"></div>
+        </div>
+    </div>
+
     <section id="rsvp" class="py-24 relative" style="background: linear-gradient(135deg, #F5EDE0 0%, #E8DFD0 100%);">
         <div class="absolute inset-0 bg-transparent"></div>
         <div class="relative container mx-auto px-6 text-center content-wrapper">
@@ -1830,8 +2007,40 @@
 
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
     <!-- Removed particles.js script -->
     <script>
+        // === FIREBASE CONFIGURATION ===
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnpHFp7WgtiCBwrFQqPn9RGRYIsq6dOgc",
+            authDomain: "raymond-karen-wedding.firebaseapp.com",
+            databaseURL: "https://raymond-karen-wedding-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "raymond-karen-wedding",
+            storageBucket: "raymond-karen-wedding.firebasestorage.app",
+            messagingSenderId: "885930537934",
+            appId: "1:885930537934:web:c334d3c0463abdb07d319f",
+            measurementId: "G-WDLZ53211C"
+        };
+
+        // Initialize Firebase
+        let database;
+        let firebaseEnabled = false;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            firebaseEnabled = true;
+            console.log('✅ Firebase initialized successfully - Live guestbook enabled!');
+            console.log('🎉 Messages will sync in real-time across all devices!');
+        } catch (error) {
+            console.error('❌ Firebase initialization error:', error);
+            console.log('⚠️ Using localStorage fallback - messages will be local only');
+            firebaseEnabled = false;
+        }
+
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize AOS with enhanced settings
@@ -2096,6 +2305,233 @@
 
         // Initialize parallax on page load
         document.addEventListener('DOMContentLoaded', initParallax);
+
+        // === GUEST MESSAGE WALL FUNCTIONS (Firebase-Enabled) ===
+
+        // Initialize guest messages on page load
+        function initGuestMessages() {
+            if (firebaseEnabled) {
+                loadMessagesFromFirebase();
+            } else {
+                loadMessages();
+                const messages = getMessages();
+                if (messages.length === 0) {
+                    const sampleMessages = [
+                        {
+                            name: "Maria Santos",
+                            message: "Wishing you both a lifetime of love and happiness! 💕",
+                            timestamp: Date.now() - 100000,
+                            reactions: { heart: 5, congrats: 3 }
+                        },
+                        {
+                            name: "John Reyes",
+                            message: "Congratulations to the beautiful couple! May your love story be filled with joy! 🎉",
+                            timestamp: Date.now() - 200000,
+                            reactions: { heart: 7, congrats: 2 }
+                        },
+                        {
+                            name: "Anna Cruz",
+                            message: "So happy for you both! Cheers to your forever! ✨🥰",
+                            timestamp: Date.now() - 300000,
+                            reactions: { heart: 4, congrats: 5 }
+                        }
+                    ];
+                    localStorage.setItem('weddingMessages', JSON.stringify(sampleMessages));
+                    loadMessages();
+                }
+            }
+        }
+
+        // Load messages from Firebase with real-time updates
+        function loadMessagesFromFirebase() {
+            const messagesRef = database.ref('guestbook/messages');
+            messagesRef.on('value', (snapshot) => {
+                const messagesObj = snapshot.val();
+                const messagesArray = messagesObj ? Object.keys(messagesObj).map(key => ({
+                    id: key,
+                    ...messagesObj[key]
+                })).sort((a, b) => b.timestamp - a.timestamp) : [];
+                displayMessages(messagesArray, true);
+            });
+        }
+
+        // Get messages from localStorage (fallback)
+        function getMessages() {
+            const messages = localStorage.getItem('weddingMessages');
+            return messages ? JSON.parse(messages) : [];
+        }
+
+        // Save messages to localStorage (fallback)
+        function saveMessages(messages) {
+            localStorage.setItem('weddingMessages', JSON.stringify(messages));
+        }
+
+        // Add emoji to message
+        function addEmoji(emoji) {
+            const textarea = document.getElementById('guestMessage');
+            textarea.value += emoji;
+            textarea.focus();
+        }
+
+        // Submit guest message (Firebase or localStorage)
+        function submitGuestMessage() {
+            const nameInput = document.getElementById('guestName');
+            const messageInput = document.getElementById('guestMessage');
+            const name = nameInput.value.trim();
+            const message = messageInput.value.trim();
+
+            if (!name || !message) {
+                alert('Please enter your name and message!');
+                return;
+            }
+
+            const newMessage = {
+                name: name,
+                message: message,
+                timestamp: Date.now(),
+                reactions: { heart: 0, congrats: 0 }
+            };
+
+            if (firebaseEnabled) {
+                const messagesRef = database.ref('guestbook/messages');
+                messagesRef.push(newMessage);
+            } else {
+                const messages = getMessages();
+                messages.unshift(newMessage);
+                saveMessages(messages);
+                loadMessages();
+            }
+
+            nameInput.value = '';
+            messageInput.value = '';
+            showNotification('Message posted! Thank you for your wishes! 💕');
+        }
+
+        // Load and display messages (localStorage fallback)
+        function loadMessages() {
+            const messages = getMessages();
+            displayMessages(messages, false);
+        }
+
+        // Universal display function
+        function displayMessages(messages, isFirebase = false) {
+            const wall = document.getElementById('messagesWall');
+
+            // If no messages, show placeholder
+            if (!messages || messages.length === 0) {
+                wall.innerHTML = `
+                    <div class="text-center py-12 text-gray-500">
+                        <p class="text-lg">Be the first to leave a message! 💕</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Split messages into two rows (alternating)
+            const row1Messages = [];
+            const row2Messages = [];
+
+            messages.forEach((msg, index) => {
+                if (index % 2 === 0) {
+                    row1Messages.push({msg, index});
+                } else {
+                    row2Messages.push({msg, index});
+                }
+            });
+
+            // Helper function to create message card HTML
+            const createMessageCard = (msgData) => {
+                const {msg, index} = msgData;
+                const messageId = isFirebase ? msg.id : index;
+                const dataAttr = isFirebase ? `data-firebase-id="${msg.id}"` : `data-index="${index}"`;
+
+                return `
+                    <div class="message-card" ${dataAttr}>
+                        <div class="message-author">${escapeHtml(msg.name)}</div>
+                        <div class="message-text">"${escapeHtml(msg.message)}"</div>
+                        <div class="message-reactions">
+                            <button class="reaction-btn" onclick="addReaction('${messageId}', 'heart', ${isFirebase})" title="Send love">
+                                ❤️ <span class="text-sm text-gray-600">${msg.reactions?.heart || 0}</span>
+                            </button>
+                            <button class="reaction-btn" onclick="addReaction('${messageId}', 'congrats', ${isFirebase})" title="Congratulate">
+                                🎉 <span class="text-sm text-gray-600">${msg.reactions?.congrats || 0}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            };
+
+            // Create two-row layout
+            wall.innerHTML = `
+                <div class="flex flex-col gap-4 min-w-max">
+                    <div class="flex gap-4 min-w-max">
+                        ${row1Messages.map(createMessageCard).join('')}
+                    </div>
+                    <div class="flex gap-4 min-w-max">
+                        ${row2Messages.map(createMessageCard).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Add reaction to message
+        function addReaction(messageId, reactionType, isFirebase) {
+            if (isFirebase && firebaseEnabled) {
+                const messageRef = database.ref(`guestbook/messages/${messageId}/reactions/${reactionType}`);
+                messageRef.transaction((currentValue) => {
+                    return (currentValue || 0) + 1;
+                });
+            } else {
+                const messages = getMessages();
+                const messageIndex = parseInt(messageId);
+                if (messages[messageIndex]) {
+                    if (!messages[messageIndex].reactions) {
+                        messages[messageIndex].reactions = { heart: 0, congrats: 0 };
+                    }
+                    messages[messageIndex].reactions[reactionType]++;
+                    saveMessages(messages);
+                    loadMessages();
+                }
+            }
+            event.target.classList.add('reacted');
+            setTimeout(() => {
+                event.target.classList.remove('reacted');
+            }, 600);
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #81A26B, #A2C18D);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 1000;
+                animation: slideInRight 0.5s ease;
+                font-family: 'Lato', sans-serif;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease';
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initGuestMessages);
 
         // Envelope Opening Animation
         function openEnvelope() {
