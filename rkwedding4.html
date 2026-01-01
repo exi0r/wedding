@@ -27,8 +27,42 @@
         .bg-citrus-light { background-color: #FFF7E1; }
         .text-citrus-green { color: #81A26B; }
 
+        /* === HERO BACKGROUND === */
+        .hero-background {
+            background: url('https://exi0r.github.io/wedding/image/background_ring.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: scroll;
+        }
+
+        /* Mobile optimization for hero background */
+        @media (max-width: 768px) {
+            .hero-background {
+                background-position: left center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-color: #e8e8e8;
+            }
+        }
+
+        /* Portrait phones (including 430x932) */
+        @media (max-width: 480px) and (orientation: portrait) {
+            .hero-background {
+                background-size: cover;
+                background-position: left center;
+                min-height: 100vh;
+            }
+        }
+
+        /* Landscape phones */
+        @media (max-width: 932px) and (orientation: landscape) {
+            .hero-background {
+                background-size: cover;
+                background-position: left center;
+            }
+        }
+
         /* === ADVANCED ANIMATIONS === */
-        
+
         /* Elegant fade-in-up animation */
         @keyframes elegantFadeInUp {
             0% {
@@ -1016,7 +1050,7 @@
         </div>
     </header>
 
-    <section id="hero-section" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden" style="background: url('https://exi0r.github.io/wedding/image/background_ring.png') no-repeat center center/cover;">
+    <section id="hero-section" class="hero-background relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
 
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 opacity-20 parallax-layer" data-parallax-speed="0.3">
