@@ -1669,7 +1669,7 @@
       <div class="timeline-container left mb-6 sm:mb-8 md:mb-12" data-aos="fade-right" data-aos-duration="1000">
         <div class="flex flex-col items-center md:flex-row gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="First Hello 💼" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" alt="How we met" class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover">
+            <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" alt="How we met" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
             <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
             <div class="hidden-message">
               <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-citrus-green mb-1 sm:mb-2">💌 Hidden Memory</p>
@@ -1690,7 +1690,7 @@
       <div class="timeline-container right mb-6 sm:mb-8 md:mb-12" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <div class="flex flex-col items-center md:flex-row-reverse gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="The Spark ✨" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="A Spark" class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="A Spark" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
             <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
             <div class="hidden-message">
               <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-citrus-green mb-1 sm:mb-2">💫 Secret Moment</p>
@@ -1711,7 +1711,7 @@
       <div class="timeline-container left mb-6 sm:mb-8 md:mb-12" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
         <div class="flex flex-col items-center md:flex-row gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="Made Official 💕" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Making It Official" class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Making It Official" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
             <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
             <div class="hidden-message">
               <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-citrus-green mb-1 sm:mb-2">💝 Our Promise</p>
@@ -1732,7 +1732,7 @@
       <div class="timeline-container right mb-6 sm:mb-8 md:mb-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
         <div class="flex flex-col items-center md:flex-row-reverse gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="To Forever 💍" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="To Forever" class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover">
+            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="To Forever" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
             <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
             <div class="hidden-message">
               <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-citrus-green mb-1 sm:mb-2">💒 Our Future</p>
@@ -2621,8 +2621,17 @@
             </div>
 
             <!-- Messages Wall (Two-row Horizontal Scrolling) -->
-            <div class="overflow-x-auto pb-4 snap-x snap-mandatory" id="messagesWall">
-                <!-- Messages will be dynamically added here -->
+            <div class="relative">
+                <!-- Scroll Indicator -->
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-citrus-green/90 text-white px-3 py-2 rounded-l-lg shadow-lg animate-pulse pointer-events-none" id="messagesScrollIndicator">
+                    <div class="flex items-center gap-2 text-sm sm:text-base">
+                        <span>Scroll</span>
+                        <span class="text-lg sm:text-xl">→</span>
+                    </div>
+                </div>
+                <div class="overflow-x-auto pb-4 snap-x snap-mandatory" id="messagesWall">
+                    <!-- Messages will be dynamically added here -->
+                </div>
             </div>
         </div>
     </section>
@@ -2674,8 +2683,17 @@
             </div>
 
             <!-- Photo Wall (Two-row Horizontal Scrolling) -->
-            <div class="overflow-x-auto pb-4 snap-x snap-mandatory" id="photoWall">
-                <!-- Photos will be dynamically added here -->
+            <div class="relative">
+                <!-- Scroll Indicator -->
+                <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-citrus-green/90 text-white px-3 py-2 rounded-l-lg shadow-lg animate-pulse pointer-events-none" id="photoScrollIndicator">
+                    <div class="flex items-center gap-2 text-sm sm:text-base">
+                        <span>Scroll</span>
+                        <span class="text-lg sm:text-xl">→</span>
+                    </div>
+                </div>
+                <div class="overflow-x-auto pb-4 snap-x snap-mandatory" id="photoWall">
+                    <!-- Photos will be dynamically added here -->
+                </div>
             </div>
 
             <!-- Empty State -->
@@ -3753,6 +3771,46 @@
             document.addEventListener('DOMContentLoaded', loadPhotoWall);
         } else {
             loadPhotoWall();
+        }
+
+        // --- SCROLL INDICATORS FOR MESSAGES AND PHOTO WALLS ---
+        function setupScrollIndicator(wallId, indicatorId) {
+            const wall = document.getElementById(wallId);
+            const indicator = document.getElementById(indicatorId);
+
+            if (!wall || !indicator) return;
+
+            // Hide indicator when user scrolls
+            wall.addEventListener('scroll', function() {
+                if (wall.scrollLeft > 50) {
+                    indicator.style.display = 'none';
+                }
+            });
+
+            // Check if content is scrollable, hide indicator if not
+            const checkScrollable = () => {
+                if (wall.scrollWidth <= wall.clientWidth) {
+                    indicator.style.display = 'none';
+                } else {
+                    indicator.style.display = 'block';
+                }
+            };
+
+            // Check on load and when content changes
+            checkScrollable();
+            const observer = new MutationObserver(checkScrollable);
+            observer.observe(wall, { childList: true, subtree: true });
+        }
+
+        // Initialize scroll indicators
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                setupScrollIndicator('messagesWall', 'messagesScrollIndicator');
+                setupScrollIndicator('photoWall', 'photoScrollIndicator');
+            });
+        } else {
+            setupScrollIndicator('messagesWall', 'messagesScrollIndicator');
+            setupScrollIndicator('photoWall', 'photoScrollIndicator');
         }
 
         // --- CALENDAR INTEGRATION FUNCTIONS ---
