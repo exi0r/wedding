@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Approval Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .admin-card {
+            transition: all 0.3s ease;
+        }
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .photo-preview {
+            max-height: 300px;
+            object-fit: cover;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Admin Login</h1>
+            <p class="text-gray-600 mb-6 text-center">Photo Approval Panel</p>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2">Password</label>
+                <input type="password" id="adminPassword" placeholder="admin123"
+                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none transition-all duration-300"
+                       onkeypress="if(event.key === 'Enter') loginAdmin()">
+            </div>
+
+            <button onclick="loginAdmin()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                Login
+            </button>
+
+            <p class="text-xs text-gray-500 mt-4 text-center">Default password: admin123</p>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="hidden min-h-screen p-4 md:p-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-800">Photo Approval Panel</h1>
+                        <p class="text-gray-600 mt-2">Review and approve guest photos</p>
+                    </div>
+                    <button onclick="logout()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-all duration-300">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="bg-yellow-100 p-4 rounded-lg">
+                        <p class="text-yellow-800 font-semibold">Pending</p>
+                        <p class="text-3xl font-bold text-yellow-900" id="pendingCount">0</p>
+                    </div>
+                    <div class="bg-green-100 p-4 rounded-lg">
+                        <p class="text-green-800 font-semibold">Approved</p>
+                        <p class="text-3xl font-bold text-green-900" id="approvedCount">0</p>
+                    </div>
+                    <div class="bg-red-100 p-4 rounded-lg">
+                        <p class="text-red-800 font-semibold">Rejected</p>
+                        <p class="text-3xl font-bold text-red-900" id="rejectedCount">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="bg-white rounded-lg shadow-lg mb-4">
+                <div class="flex border-b">
+                    <button onclick="switchTab('pending')" id="pendingTab" class="flex-1 px-6 py-4 font-semibold border-b-2 border-purple-600 text-purple-600">
+                        Pending Review
+                    </button>
+                    <button onclick="switchTab('approved')" id="approvedTab" class="flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors">
+                        Approved
+                    </button>
+                    <button onclick="switchTab('rejected')" id="rejectedTab" class="flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors">
+                        Rejected
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pending Photos Grid -->
+            <div id="pendingPhotos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Photos will be dynamically added here -->
+            </div>
+
+            <!-- Approved Photos Grid -->
+            <div id="approvedPhotos" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Photos will be dynamically added here -->
+            </div>
+
+            <!-- Rejected Photos Grid -->
+            <div id="rejectedPhotos" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Photos will be dynamically added here -->
+            </div>
+
+            <!-- Empty States -->
+            <div id="emptyPending" class="hidden bg-white rounded-lg shadow-lg p-12 text-center">
+                <p class="text-gray-500 text-lg">No pending photos to review 🎉</p>
+            </div>
+
+            <div id="emptyApproved" class="hidden bg-white rounded-lg shadow-lg p-12 text-center">
+                <p class="text-gray-500 text-lg">No approved photos yet</p>
+            </div>
+
+            <div id="emptyRejected" class="hidden bg-white rounded-lg shadow-lg p-12 text-center">
+                <p class="text-gray-500 text-lg">No rejected photos</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnpHFp7WgtiCBwrFQqPn9RGRYIsq6dOgc",
+            authDomain: "raymond-karen-wedding.firebaseapp.com",
+            databaseURL: "https://raymond-karen-wedding-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "raymond-karen-wedding",
+            storageBucket: "raymond-karen-wedding.firebasestorage.app",
+            messagingSenderId: "885930537934",
+            appId: "1:885930537934:web:c334d3c0463abdb07d319f",
+            measurementId: "G-WDLZ53211C"
+        };
+
+        // Initialize Firebase
+        let database;
+        let firebaseEnabled = false;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            firebaseEnabled = true;
+            console.log('✅ Firebase initialized successfully');
+        } catch (error) {
+            console.error('❌ Firebase initialization error:', error);
+            alert('Firebase connection failed. Please check your internet connection.');
+        }
+
+        // Admin password (In production, use proper authentication!)
+        const ADMIN_PASSWORD = "admin123"; // Change this to your desired password
+        let isLoggedIn = false;
+        let currentTab = 'pending';
+
+        // Login function
+        function loginAdmin() {
+            const password = document.getElementById('adminPassword').value;
+
+            if (password === ADMIN_PASSWORD) {
+                isLoggedIn = true;
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                loadAllPhotos();
+            } else {
+                alert('Incorrect password!');
+                document.getElementById('adminPassword').value = '';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            isLoggedIn = false;
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('adminPassword').value = '';
+        }
+
+        // Switch tabs
+        function switchTab(tab) {
+            currentTab = tab;
+
+            // Update tab styles
+            document.getElementById('pendingTab').className = 'flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors';
+            document.getElementById('approvedTab').className = 'flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors';
+            document.getElementById('rejectedTab').className = 'flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors';
+
+            document.getElementById(tab + 'Tab').className = 'flex-1 px-6 py-4 font-semibold border-b-2 border-purple-600 text-purple-600';
+
+            // Show/hide grids
+            document.getElementById('pendingPhotos').classList.add('hidden');
+            document.getElementById('approvedPhotos').classList.add('hidden');
+            document.getElementById('rejectedPhotos').classList.add('hidden');
+            document.getElementById('emptyPending').classList.add('hidden');
+            document.getElementById('emptyApproved').classList.add('hidden');
+            document.getElementById('emptyRejected').classList.add('hidden');
+
+            if (tab === 'pending') {
+                const grid = document.getElementById('pendingPhotos');
+                if (grid.children.length === 0) {
+                    document.getElementById('emptyPending').classList.remove('hidden');
+                } else {
+                    grid.classList.remove('hidden');
+                }
+            } else if (tab === 'approved') {
+                const grid = document.getElementById('approvedPhotos');
+                if (grid.children.length === 0) {
+                    document.getElementById('emptyApproved').classList.remove('hidden');
+                } else {
+                    grid.classList.remove('hidden');
+                }
+            } else if (tab === 'rejected') {
+                const grid = document.getElementById('rejectedPhotos');
+                if (grid.children.length === 0) {
+                    document.getElementById('emptyRejected').classList.remove('hidden');
+                } else {
+                    grid.classList.remove('hidden');
+                }
+            }
+        }
+
+        // Create photo card
+        function createPhotoCard(photoData, photoId, status) {
+            const card = document.createElement('div');
+            card.className = 'admin-card bg-white rounded-lg shadow-lg overflow-hidden';
+
+            const timestamp = new Date(photoData.timestamp).toLocaleString();
+
+            let actionButtons = '';
+            if (status === 'pending') {
+                actionButtons = `
+                    <div class="flex gap-2">
+                        <button onclick="approvePhoto('${photoId}')" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded transition-all duration-300">
+                            ✓ Approve
+                        </button>
+                        <button onclick="rejectPhoto('${photoId}')" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded transition-all duration-300">
+                            ✗ Reject
+                        </button>
+                    </div>
+                `;
+            } else if (status === 'approved') {
+                actionButtons = `
+                    <button onclick="moveToRejected('${photoId}')" class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded transition-all duration-300">
+                        Move to Rejected
+                    </button>
+                `;
+            } else if (status === 'rejected') {
+                actionButtons = `
+                    <button onclick="approvePendingPhoto('${photoId}')" class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded transition-all duration-300">
+                        Approve
+                    </button>
+                `;
+            }
+
+            card.innerHTML = `
+                <img src="${photoData.imageData}" alt="Guest photo" class="w-full photo-preview">
+                <div class="p-4">
+                    <p class="font-semibold text-gray-800 text-lg">${escapeHtml(photoData.name)}</p>
+                    ${photoData.caption ? `<p class="text-gray-600 mt-2 italic">"${escapeHtml(photoData.caption)}"</p>` : '<p class="text-gray-400 mt-2">No caption</p>'}
+                    <p class="text-xs text-gray-500 mt-3">${timestamp}</p>
+                    <div class="mt-4">
+                        ${actionButtons}
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load all photos
+        function loadAllPhotos() {
+            if (!firebaseEnabled) {
+                alert('Firebase not connected. Cannot load photos.');
+                return;
+            }
+
+            // Load pending photos
+            database.ref('photoWall/pending').on('value', (snapshot) => {
+                const pending = snapshot.val() || {};
+                const pendingGrid = document.getElementById('pendingPhotos');
+                pendingGrid.innerHTML = '';
+
+                const pendingArray = Object.keys(pending);
+                document.getElementById('pendingCount').textContent = pendingArray.length;
+
+                if (pendingArray.length === 0) {
+                    if (currentTab === 'pending') {
+                        document.getElementById('emptyPending').classList.remove('hidden');
+                        pendingGrid.classList.add('hidden');
+                    }
+                } else {
+                    pendingArray.forEach(key => {
+                        const card = createPhotoCard(pending[key], key, 'pending');
+                        pendingGrid.appendChild(card);
+                    });
+                    if (currentTab === 'pending') {
+                        document.getElementById('emptyPending').classList.add('hidden');
+                        pendingGrid.classList.remove('hidden');
+                    }
+                }
+            });
+
+            // Load approved photos
+            database.ref('photoWall/approved').on('value', (snapshot) => {
+                const approved = snapshot.val() || {};
+                const approvedGrid = document.getElementById('approvedPhotos');
+                approvedGrid.innerHTML = '';
+
+                const approvedArray = Object.keys(approved);
+                document.getElementById('approvedCount').textContent = approvedArray.length;
+
+                if (approvedArray.length === 0) {
+                    if (currentTab === 'approved') {
+                        document.getElementById('emptyApproved').classList.remove('hidden');
+                        approvedGrid.classList.add('hidden');
+                    }
+                } else {
+                    approvedArray.forEach(key => {
+                        const card = createPhotoCard(approved[key], key, 'approved');
+                        approvedGrid.appendChild(card);
+                    });
+                    if (currentTab === 'approved') {
+                        document.getElementById('emptyApproved').classList.add('hidden');
+                        approvedGrid.classList.remove('hidden');
+                    }
+                }
+            });
+
+            // Load rejected photos
+            database.ref('photoWall/rejected').on('value', (snapshot) => {
+                const rejected = snapshot.val() || {};
+                const rejectedGrid = document.getElementById('rejectedPhotos');
+                rejectedGrid.innerHTML = '';
+
+                const rejectedArray = Object.keys(rejected);
+                document.getElementById('rejectedCount').textContent = rejectedArray.length;
+
+                if (rejectedArray.length === 0) {
+                    if (currentTab === 'rejected') {
+                        document.getElementById('emptyRejected').classList.remove('hidden');
+                        rejectedGrid.classList.add('hidden');
+                    }
+                } else {
+                    rejectedArray.forEach(key => {
+                        const card = createPhotoCard(rejected[key], key, 'rejected');
+                        rejectedGrid.appendChild(card);
+                    });
+                    if (currentTab === 'rejected') {
+                        document.getElementById('emptyRejected').classList.add('hidden');
+                        rejectedGrid.classList.remove('hidden');
+                    }
+                }
+            });
+        }
+
+        // Approve photo (from pending)
+        function approvePhoto(photoId) {
+            if (!confirm('Approve this photo?')) return;
+
+            database.ref(`photoWall/pending/${photoId}`).once('value').then(snapshot => {
+                const photoData = snapshot.val();
+                if (photoData) {
+                    // Add to approved
+                    database.ref(`photoWall/approved/${photoId}`).set(photoData);
+                    // Remove from pending
+                    database.ref(`photoWall/pending/${photoId}`).remove();
+
+                    alert('Photo approved! ✓');
+                }
+            });
+        }
+
+        // Reject photo (from pending)
+        function rejectPhoto(photoId) {
+            if (!confirm('Reject this photo?')) return;
+
+            database.ref(`photoWall/pending/${photoId}`).once('value').then(snapshot => {
+                const photoData = snapshot.val();
+                if (photoData) {
+                    // Add to rejected
+                    database.ref(`photoWall/rejected/${photoId}`).set(photoData);
+                    // Remove from pending
+                    database.ref(`photoWall/pending/${photoId}`).remove();
+
+                    alert('Photo rejected');
+                }
+            });
+        }
+
+        // Move to rejected (from approved)
+        function moveToRejected(photoId) {
+            if (!confirm('Move this photo to rejected?')) return;
+
+            database.ref(`photoWall/approved/${photoId}`).once('value').then(snapshot => {
+                const photoData = snapshot.val();
+                if (photoData) {
+                    // Add to rejected
+                    database.ref(`photoWall/rejected/${photoId}`).set(photoData);
+                    // Remove from approved
+                    database.ref(`photoWall/approved/${photoId}`).remove();
+
+                    alert('Photo moved to rejected');
+                }
+            });
+        }
+
+        // Approve photo (from rejected)
+        function approvePendingPhoto(photoId) {
+            if (!confirm('Approve this photo?')) return;
+
+            database.ref(`photoWall/rejected/${photoId}`).once('value').then(snapshot => {
+                const photoData = snapshot.val();
+                if (photoData) {
+                    // Add to approved
+                    database.ref(`photoWall/approved/${photoId}`).set(photoData);
+                    // Remove from rejected
+                    database.ref(`photoWall/rejected/${photoId}`).remove();
+
+                    alert('Photo approved! ✓');
+                }
+            });
+        }
+
+        // Check if already logged in (session)
+        if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('adminPanel').classList.remove('hidden');
+            isLoggedIn = true;
+            loadAllPhotos();
+        }
+
+        // Save login state
+        window.addEventListener('beforeunload', () => {
+            if (isLoggedIn) {
+                sessionStorage.setItem('adminLoggedIn', 'true');
+            }
+        });
+    </script>
+</body>
+</html>
