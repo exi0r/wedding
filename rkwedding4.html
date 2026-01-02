@@ -50,6 +50,41 @@
             }
         }
 
+        /* Shimmer animation for mobile */
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .shimmer-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.12) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 8s ease-in-out infinite;
+            pointer-events: none;
+            display: none;
+        }
+
+        /* Parallax background container for mobile */
+        .hero-background-inner {
+            position: absolute;
+            inset: 0;
+            background-position: left center;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            will-change: transform;
+            display: none;
+        }
+
         /* Mobile optimization for hero background */
         @media (max-width: 768px) {
             .hero-background {
@@ -60,6 +95,16 @@
                 min-height: 100vh;
                 height: 100vh;
                 animation: none;
+                background-image: none; /* Remove background from parent for parallax */
+            }
+
+            .hero-background-inner {
+                background-image: url('https://exi0r.github.io/wedding/image/background_ring.png');
+                display: block;
+            }
+
+            .shimmer-overlay {
+                display: block;
             }
         }
 
@@ -71,6 +116,16 @@
                 min-height: 100vh;
                 height: 100vh;
                 animation: none;
+                background-image: none;
+            }
+
+            .hero-background-inner {
+                background-image: url('https://exi0r.github.io/wedding/image/background_ring.png');
+                display: block;
+            }
+
+            .shimmer-overlay {
+                display: block;
             }
         }
 
@@ -82,6 +137,16 @@
                 min-height: 100vh;
                 height: 100vh;
                 animation: none;
+                background-image: none;
+            }
+
+            .hero-background-inner {
+                background-image: url('https://exi0r.github.io/wedding/image/background_ring.png');
+                display: block;
+            }
+
+            .shimmer-overlay {
+                display: block;
             }
         }
 
@@ -1549,6 +1614,12 @@
 
     <section id="hero-section" class="hero-background relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
 
+        <!-- Parallax background for mobile -->
+        <div class="hero-background-inner"></div>
+
+        <!-- Shimmer overlay for mobile -->
+        <div class="shimmer-overlay"></div>
+
         <!-- Animated Background Elements -->
         <div class="absolute inset-0 opacity-20 parallax-layer" data-parallax-speed="0.3">
             <div class="absolute top-10 left-10 w-4 h-4 bg-white rounded-full float-gentle"></div>
@@ -2813,6 +2884,37 @@
                 anchorPlacement: 'top-bottom',
                 mirror: true
             });
+
+            // Mobile parallax effect for hero background
+            if (window.innerWidth <= 768) {
+                const heroBackground = document.querySelector('.hero-background-inner');
+                if (heroBackground) {
+                    let ticking = false;
+
+                    window.addEventListener('scroll', function() {
+                        if (!ticking) {
+                            window.requestAnimationFrame(function() {
+                                const scrolled = window.pageYOffset;
+                                const heroSection = document.getElementById('hero-section');
+
+                                if (heroSection) {
+                                    const heroHeight = heroSection.offsetHeight;
+
+                                    // Only apply parallax while hero section is in view
+                                    if (scrolled < heroHeight) {
+                                        const parallaxValue = scrolled * 0.5; // Move at 50% of scroll speed
+                                        heroBackground.style.transform = `translateY(${parallaxValue}px)`;
+                                    }
+                                }
+
+                                ticking = false;
+                            });
+
+                            ticking = true;
+                        }
+                    });
+                }
+            }
         });
 
         // Scroll Progress Indicator
