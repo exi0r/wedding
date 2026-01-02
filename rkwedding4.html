@@ -50,31 +50,54 @@
             }
         }
 
+        /* Mobile Ken Burns animation */
+        @keyframes kenBurnsHeroMobile {
+            0% {
+                background-size: auto 100%;
+                background-position: left center;
+            }
+            50% {
+                background-size: auto 110%;
+                background-position: left center;
+            }
+            100% {
+                background-size: auto 100%;
+                background-position: left center;
+            }
+        }
+
         /* Mobile optimization for hero background */
         @media (max-width: 768px) {
             .hero-background {
                 background-position: left center;
-                background-size: cover;
+                background-size: auto 100%;
                 background-repeat: no-repeat;
                 background-color: #e8e8e8;
-                animation: none; /* Disable Ken Burns on mobile for performance */
+                min-height: 100vh;
+                height: 100vh;
+                animation: kenBurnsHeroMobile 30s ease-in-out infinite;
             }
         }
 
         /* Portrait phones (including 430x932) */
         @media (max-width: 480px) and (orientation: portrait) {
             .hero-background {
-                background-size: cover;
+                background-size: auto 100%;
                 background-position: left center;
                 min-height: 100vh;
+                height: 100vh;
+                animation: kenBurnsHeroMobile 30s ease-in-out infinite;
             }
         }
 
         /* Landscape phones */
         @media (max-width: 932px) and (orientation: landscape) {
             .hero-background {
-                background-size: cover;
+                background-size: auto 100%;
                 background-position: left center;
+                min-height: 100vh;
+                height: 100vh;
+                animation: kenBurnsHeroMobile 30s ease-in-out infinite;
             }
         }
 
@@ -1375,13 +1398,7 @@
     left: 50%;
     transform: translateX(-50%); /* Perfectly center the line */
     z-index: -1; /* Behind content and dots */
-    display: none; /* Hidden on mobile */
-}
-
-@media (min-width: 768px) {
-    .timeline::after {
-        display: block; /* Show on desktop */
-    }
+    display: block; /* Always visible */
 }
 
 /* Container for each timeline event */
@@ -2668,6 +2685,9 @@
             </div>
 
             <!-- Messages Wall (Two-row Horizontal Scrolling) -->
+            <div class="text-center mb-3">
+                <p class="text-sm text-gray-600 italic">👉 Swipe or scroll left to view more messages →</p>
+            </div>
             <div class="relative">
                 <!-- Scroll Indicator -->
                 <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-citrus-green/90 text-white px-3 py-2 rounded-l-lg shadow-lg animate-pulse pointer-events-none" id="messagesScrollIndicator">
@@ -2730,6 +2750,9 @@
             </div>
 
             <!-- Photo Wall (Two-row Horizontal Scrolling) -->
+            <div class="text-center mb-3">
+                <p class="text-sm text-gray-600 italic">👉 Swipe or scroll left to view more photos →</p>
+            </div>
             <div class="relative">
                 <!-- Scroll Indicator -->
                 <div class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-citrus-green/90 text-white px-3 py-2 rounded-l-lg shadow-lg animate-pulse pointer-events-none" id="photoScrollIndicator">
