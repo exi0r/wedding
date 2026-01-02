@@ -2453,22 +2453,75 @@
         </div>
     </div>
 
-    <section id="rsvp" class="py-24 relative" style="background: linear-gradient(135deg, #F5EDE0 0%, #E8DFD0 100%);">
+    <section id="rsvp" class="py-12 sm:py-16 md:py-20 relative" style="background: linear-gradient(135deg, #F5EDE0 0%, #E8DFD0 100%);">
         <div class="absolute inset-0 bg-transparent"></div>
         <div class="relative container mx-auto px-6 text-center content-wrapper">
-            <h2 class="font-serif-display text-5xl font-bold text-citrus-green" data-aos="fade-up">Will You Be There?</h2>
-            <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
-            <p class="text-xl font-bold uppercase tracking-wide text-dark-gray-200 mb-8" data-aos="fade-up" data-aos-delay="200">PLEASE RSVP BY MARCH 19, 2026</p>
+            <h2 class="font-serif-display text-3xl sm:text-4xl md:text-5xl font-bold text-citrus-green" data-aos="fade-up">Will You Be There?</h2>
+            <div class="mx-auto mt-3 mb-4 w-20 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+            <p class="text-base sm:text-lg md:text-xl font-bold uppercase tracking-wide text-dark-gray-200 mb-6" data-aos="fade-up" data-aos-delay="200">PLEASE RSVP BY MARCH 19, 2026</p>
 
             <div class="max-w-2xl mx-auto envelope-container" id="rsvp-envelope" data-aos="fade-up" data-aos-delay="300">
                 <div class="envelope-flap"></div>
                 <div class="envelope-seal">
                     <div class="flex items-center justify-center h-full text-white text-xs font-bold">💌</div>
                 </div>
-                <div class="envelope-body p-6 sm:p-8 rounded-lg">
+                <div class="envelope-body p-4 sm:p-6 rounded-lg">
                     <div class="envelope-content">
-                        <p class="text-lg mb-6 text-gray-800 font-medium">Your presence at our wedding is the greatest gift of all. Please let us know if you can make it:</p>
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeGKSchOOEoQyRZRf8AXHKoxRgSbPCeHFTHlo5E9tvvS2A5Sw/viewform?embedded=true" width="100%" height="667" frameborder="0" marginheight="0" marginwidth="0" class="rounded-md">Loading…</iframe>
+                        <p class="text-sm sm:text-base mb-4 text-gray-800 font-medium">Your presence at our wedding is the greatest gift of all. Please let us know if you can make it:</p>
+
+                        <form id="rsvpForm" class="space-y-3 sm:space-y-4 text-left">
+                            <!-- Full Name -->
+                            <div>
+                                <label for="rsvpName" class="block text-sm font-semibold text-gray-700 mb-1">Full Name *</label>
+                                <input type="text" id="rsvpName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-citrus-green focus:border-transparent transition-all duration-300 text-sm" placeholder="Enter your full name">
+                            </div>
+
+                            <!-- Phone -->
+                            <div>
+                                <label for="rsvpPhone" class="block text-sm font-semibold text-gray-700 mb-1">Phone Number *</label>
+                                <input type="tel" id="rsvpPhone" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-citrus-green focus:border-transparent transition-all duration-300 text-sm" placeholder="+63 912 345 6789">
+                            </div>
+
+                            <!-- Attendance -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-1">Will you attend? *</label>
+                                <div class="flex gap-3 sm:gap-4">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="attendance" value="yes" required class="w-4 h-4 text-citrus-green focus:ring-citrus-green">
+                                        <span class="ml-2 text-sm text-gray-700">Yes, I'll be there! 🎉</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="attendance" value="no" required class="w-4 h-4 text-citrus-green focus:ring-citrus-green">
+                                        <span class="ml-2 text-sm text-gray-700">Sorry, can't make it 😢</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Number of Guests -->
+                            <div id="guestCountSection">
+                                <label for="rsvpGuests" class="block text-sm font-semibold text-gray-700 mb-1">Number of Guests (including you) *</label>
+                                <input type="number" id="rsvpGuests" min="1" max="10" value="1" required readonly class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed transition-all duration-300 text-sm" placeholder="1">
+                            </div>
+
+                            <!-- Special Message -->
+                            <div>
+                                <label for="rsvpMessage" class="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">Other Request: Dietary Restriction or Seat count change, add a comment here and we will contact you.</label>
+                                <textarea id="rsvpMessage" rows="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-citrus-green focus:border-transparent transition-all duration-300 text-sm" placeholder="E.g., vegetarian meal, need 1 extra seat, etc."></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 sm:py-4 px-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 text-base sm:text-lg">
+                                Submit RSVP 💌
+                            </button>
+
+                            <!-- Success/Error Messages -->
+                            <div id="rsvpSuccess" class="hidden bg-green-100 border border-green-400 text-green-700 px-3 py-2 rounded-lg text-sm">
+                                ✅ Thank you! Your RSVP has been received successfully.
+                            </div>
+                            <div id="rsvpError" class="hidden bg-red-100 border border-red-400 text-red-700 px-3 py-2 rounded-lg text-sm">
+                                ❌ Oops! Something went wrong. Please try again.
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -3995,6 +4048,209 @@ END:VCALENDAR`;
             document.addEventListener('DOMContentLoaded', initSVGDecorations);
         } else {
             initSVGDecorations();
+        }
+
+        // --- RSVP FORM HANDLING ---
+        /*
+         * ATTENDEE LIST SETUP IN FIREBASE:
+         * Create a node called "attendees" in your Firebase Realtime Database with this structure:
+         *
+         * attendees/
+         *   "John Smith": 2
+         *   "Jane Doe": 4
+         *   "Robert Johnson": 1
+         *   "Maria Garcia": 3
+         *
+         * OR with more details:
+         * attendees/
+         *   "John Smith": { seats: 2 }
+         *   "Jane Doe": { seats: 4 }
+         *
+         * The system will auto-populate the guest count when the user types their name.
+         * If name is not found, it defaults to 1 seat.
+         */
+
+        // Store for attendee list cache
+        let attendeeList = {};
+        let attendeeListLoaded = false;
+
+        // Load attendee list from Firebase on page load
+        function loadAttendeeList() {
+            if (!firebaseEnabled) return;
+
+            database.ref('attendees').once('value', (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    attendeeList = data;
+                    attendeeListLoaded = true;
+                    console.log('✅ Attendee list loaded:', Object.keys(attendeeList).length, 'guests');
+                } else {
+                    console.log('ℹ️ No attendee list found. All guests will default to 1 seat.');
+                }
+            }).catch((error) => {
+                console.error('Error loading attendee list:', error);
+            });
+        }
+
+        // Lookup name in attendee list
+        function lookupAttendee(nameInput) {
+            const name = nameInput.trim().toLowerCase();
+            const guestInput = document.getElementById('rsvpGuests');
+
+            if (!name || name.length < 2) {
+                // Reset to 1 if name is too short
+                if (guestInput) {
+                    guestInput.value = 1;
+                }
+                return;
+            }
+
+            // Search for name in attendee list (case-insensitive)
+            let reservedSeats = 1; // Default to 1
+
+            for (const [key, value] of Object.entries(attendeeList)) {
+                if (key.toLowerCase() === name || key.toLowerCase().includes(name) || name.includes(key.toLowerCase())) {
+                    reservedSeats = value.seats || value || 1; // Support both {seats: N} and direct number
+                    console.log(`Found match: ${key} with ${reservedSeats} seats`);
+                    break;
+                }
+            }
+
+            // Set guest count to reserved seats or 1
+            if (guestInput) {
+                guestInput.value = reservedSeats;
+                console.log(`Updated guest count to: ${reservedSeats}`);
+            }
+        }
+
+        // Debounce function to avoid too many lookups
+        let lookupTimeout;
+        function debouncedLookup(value) {
+            clearTimeout(lookupTimeout);
+            lookupTimeout = setTimeout(() => {
+                console.log('Looking up name:', value);
+                lookupAttendee(value);
+            }, 100); // Wait 100ms after user stops typing (very fast response)
+        }
+
+        // Initialize RSVP form
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load attendee list from Firebase
+            loadAttendeeList();
+
+            // Add name lookup on input
+            const nameInput = document.getElementById('rsvpName');
+            nameInput.addEventListener('input', function() {
+                console.log('Input event fired, attendeeListLoaded:', attendeeListLoaded);
+                if (attendeeListLoaded) {
+                    debouncedLookup(this.value);
+                } else {
+                    console.log('Attendee list not loaded yet, skipping lookup');
+                }
+            });
+
+            // Handle form submission
+            const rsvpForm = document.getElementById('rsvpForm');
+            rsvpForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitRSVP();
+            });
+        });
+
+        // Submit RSVP to Firebase
+        async function submitRSVP() {
+            if (!firebaseEnabled) {
+                alert('Firebase is not initialized. Please check your connection.');
+                return;
+            }
+
+            const name = document.getElementById('rsvpName').value.trim();
+            const phone = document.getElementById('rsvpPhone').value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
+            const guests = document.getElementById('rsvpGuests').value || '1';
+            const message = document.getElementById('rsvpMessage').value.trim();
+
+            if (!name || !phone || !attendance) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Check for duplicate submission
+            try {
+                const snapshot = await database.ref('rsvps').once('value');
+                const existingRsvps = snapshot.val();
+
+                if (existingRsvps) {
+                    // Check if name or phone already exists
+                    for (const [id, data] of Object.entries(existingRsvps)) {
+                        const existingName = data.name?.toLowerCase().trim();
+                        const existingPhone = data.phone?.trim();
+                        const currentName = name.toLowerCase().trim();
+                        const currentPhone = phone.trim();
+
+                        if (existingName === currentName || existingPhone === currentPhone) {
+                            // Already submitted
+                            const errorDiv = document.getElementById('rsvpError');
+                            errorDiv.innerHTML = `
+                                <strong>⚠️ You have already submitted your RSVP!</strong><br>
+                                <span class="text-sm">If you need to make changes, please contact the bride or groom directly.</span>
+                            `;
+                            errorDiv.classList.remove('hidden');
+                            document.getElementById('rsvpSuccess').classList.add('hidden');
+
+                            // Hide error message after 8 seconds
+                            setTimeout(() => {
+                                errorDiv.classList.add('hidden');
+                            }, 8000);
+
+                            return; // Stop submission
+                        }
+                    }
+                }
+
+                // No duplicate found, proceed with submission
+                const rsvpData = {
+                    name: name,
+                    phone: phone,
+                    attendance: attendance,
+                    guests: attendance === 'yes' ? guests : '0',
+                    message: message,
+                    timestamp: new Date().toISOString(),
+                    submittedAt: new Date().toLocaleString()
+                };
+
+                // Save to Firebase
+                const rsvpRef = database.ref('rsvps').push();
+                await rsvpRef.set(rsvpData);
+
+                // Show success message
+                const successDiv = document.getElementById('rsvpSuccess');
+                successDiv.innerHTML = '✅ Thank you! Your RSVP has been received successfully.';
+                successDiv.classList.remove('hidden');
+                document.getElementById('rsvpError').classList.add('hidden');
+
+                // Reset form
+                document.getElementById('rsvpForm').reset();
+                // Reset guest count to 1
+                document.getElementById('rsvpGuests').value = 1;
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successDiv.classList.add('hidden');
+                }, 5000);
+
+            } catch (error) {
+                console.error('Error saving RSVP:', error);
+                const errorDiv = document.getElementById('rsvpError');
+                errorDiv.innerHTML = '❌ Oops! Something went wrong. Please try again.';
+                errorDiv.classList.remove('hidden');
+                document.getElementById('rsvpSuccess').classList.add('hidden');
+
+                // Hide error message after 5 seconds
+                setTimeout(() => {
+                    errorDiv.classList.add('hidden');
+                }, 5000);
+            }
         }
 
     </script>
