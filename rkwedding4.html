@@ -1410,7 +1410,7 @@
     border: 4px solid #FF9F80; /* Light Salmon */
     border-radius: 50%;
     z-index: 10;
-    top: 50%;
+    top: 60%; /* Moved lower to avoid photo overlap */
 
     /* --- Position for Mobile: Centered on the line --- */
     left: 50%;
@@ -1639,7 +1639,7 @@
         </div>
     </div>
 
-<section id="story" class="py-20 bg-transparent-for-petals relative">
+<section id="story" class="py-12 sm:py-16 md:py-20 bg-transparent-for-petals relative">
   <!-- Decorative SVG Elements -->
   <svg class="svg-decoration corner-floral top-left" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <path class="svg-draw-path" d="M10,90 Q20,80 30,85 Q40,90 45,80 Q50,70 55,75 Q60,80 70,75 Q80,70 85,80"
@@ -1657,96 +1657,96 @@
     <circle cx="75" cy="77" r="3" fill="#81A26B" opacity="0.8"/>
   </svg>
 
-  <div class="container mx-auto px-6 content-wrapper">
-    <div class="text-center mb-24 md:mb-24 sm:mb-16">
-      <h2 class="font-serif-display text-4xl md:text-5xl font-bold text-gray-800" data-aos="fade-up">Our Story</h2>
-      <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
-      <p class="text-xl uppercase tracking-wide text-gray-500" data-aos="fade-up" data-aos-delay="200">A JOURNEY OF LOVE</p>
+  <div class="container mx-auto px-3 sm:px-6 content-wrapper">
+    <div class="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-24">
+      <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800" data-aos="fade-up">Our Story</h2>
+      <div class="mx-auto mt-3 sm:mt-4 mb-4 sm:mb-6 w-16 sm:w-20 md:w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+      <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500" data-aos="fade-up" data-aos-delay="200">A JOURNEY OF LOVE</p>
     </div>
 
-    <div class="timeline" style="padding-top: 2rem;">
+    <div class="timeline" style="padding-top: 1rem;">
 
-      <div class="timeline-container left mb-12" data-aos="fade-right" data-aos-duration="1000">
-        <div class="flex flex-col items-center md:flex-row gap-6">
+      <div class="timeline-container left mb-6 sm:mb-8 md:mb-12" data-aos="fade-right" data-aos-duration="1000">
+        <div class="flex flex-col items-center md:flex-row gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="First Hello 💼" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" alt="How we met" class="w-40 h-40 md:w-48 md:h-48 object-cover">
-            <span class="click-indicator">Click me!</span>
+            <img src="https://exi0r.github.io/wedding/image/IMG_0983.jpeg" alt="How we met" class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover">
+            <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
             <div class="hidden-message">
-              <p class="font-heading text-xl text-citrus-green mb-2">💌 Hidden Memory</p>
-              <p class="text-sm text-gray-700">"From colleagues to something more... it all started with a simple hello."</p>
+              <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-citrus-green mb-1 sm:mb-2">💌 Hidden Memory</p>
+              <p class="text-[10px] sm:text-xs md:text-sm text-gray-700">"From colleagues to something more... it all started with a simple hello."</p>
             </div>
           </div>
-          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-yellow-100/50 relative">
-            <span class="handwritten-note" style="top: -30px; left: 20px;">Where it all began ✨</span>
-            <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text">How We Met</h3>
-            <p class="text-gray-700 leading-relaxed">We met as officemates — not exactly working together, but somehow, life found a quiet way to connect us.</p>
-            <div class="mt-4 flex justify-center md:justify-start">
-              <span class="text-2xl animate-bounce" style="animation-delay: 0.5s;">💼</span>
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-yellow-100/50 relative">
+            <span class="handwritten-note text-[10px] sm:text-xs md:text-sm" style="top: -20px; left: 10px;">Where it all began ✨</span>
+            <h3 class="font-serif-display text-base sm:text-lg md:text-xl lg:text-2xl text-citrus-green mb-1 sm:mb-2 shimmer-text leading-tight">How We Met</h3>
+            <p class="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">We met as officemates — not exactly working together, but somehow, life found a quiet way to connect us.</p>
+            <div class="mt-2 sm:mt-3 md:mt-4 flex justify-center md:justify-start">
+              <span class="text-lg sm:text-xl md:text-2xl animate-bounce" style="animation-delay: 0.5s;">💼</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="timeline-container right mb-12" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-        <div class="flex flex-col items-center md:flex-row-reverse gap-6">
+      <div class="timeline-container right mb-6 sm:mb-8 md:mb-12" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+        <div class="flex flex-col items-center md:flex-row-reverse gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="The Spark ✨" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="A Spark" class="w-40 h-40 md:w-48 md:h-48 object-cover">
-            <span class="click-indicator">Click me!</span>
+            <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="A Spark" class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover">
+            <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
             <div class="hidden-message">
-              <p class="font-heading text-xl text-citrus-green mb-2">💫 Secret Moment</p>
-              <p class="text-sm text-gray-700">"The moment when friendship turned into something magical..."</p>
+              <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-citrus-green mb-1 sm:mb-2">💫 Secret Moment</p>
+              <p class="text-[10px] sm:text-xs md:text-sm text-gray-700">"The moment when friendship turned into something magical..."</p>
             </div>
           </div>
-          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-peach-200/50 relative">
-            <span class="handwritten-note" style="top: -30px; right: 20px;">Something special 💕</span>
-            <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.2s;">A Spark</h3>
-            <p class="text-gray-700 leading-relaxed">Over the years, we shared a friendship that came with a few question marks and maybe a little spark we never really defined. Until one day, everything just felt right.</p>
-            <div class="mt-4 flex justify-center md:justify-end">
-              <span class="text-2xl animate-bounce" style="animation-delay: 1s;">✨</span>
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-peach-200/50 relative">
+            <span class="handwritten-note text-[10px] sm:text-xs md:text-sm" style="top: -20px; right: 10px;">Something special 💕</span>
+            <h3 class="font-serif-display text-base sm:text-lg md:text-xl lg:text-2xl text-citrus-green mb-1 sm:mb-2 shimmer-text leading-tight" style="animation-delay: 0.2s;">A Spark</h3>
+            <p class="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">Over the years, we shared a friendship that came with a few question marks and maybe a little spark we never really defined. Until one day, everything just felt right.</p>
+            <div class="mt-2 sm:mt-3 md:mt-4 flex justify-center md:justify-end">
+              <span class="text-lg sm:text-xl md:text-2xl animate-bounce" style="animation-delay: 1s;">✨</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="timeline-container left mb-12" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
-        <div class="flex flex-col items-center md:flex-row gap-6">
+      <div class="timeline-container left mb-6 sm:mb-8 md:mb-12" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
+        <div class="flex flex-col items-center md:flex-row gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="Made Official 💕" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Making It Official" class="w-40 h-40 md:w-48 md:h-48 object-cover">
-            <span class="click-indicator">Click me!</span>
+            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Making It Official" class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover">
+            <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
             <div class="hidden-message">
-              <p class="font-heading text-xl text-citrus-green mb-2">💝 Our Promise</p>
-              <p class="text-sm text-gray-700">"June 2024 - the day we said 'yes' to forever!"</p>
+              <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-citrus-green mb-1 sm:mb-2">💝 Our Promise</p>
+              <p class="text-[10px] sm:text-xs md:text-sm text-gray-700">"June 2024 - the day we said 'yes' to forever!"</p>
             </div>
           </div>
-          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-lime-200/50 relative">
-            <span class="handwritten-note" style="top: -30px; left: 20px;">Finally ours! 🌟</span>
-            <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.4s;">Making It Official</h3>
-            <p class="text-gray-700 leading-relaxed">In June 2024, we finally made it official. Exactly a year later, Raymond proposed.</p>
-            <div class="mt-4 flex justify-center md:justify-start">
-              <span class="text-2xl animate-bounce" style="animation-delay: 1.5s;">💕</span>
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-lime-200/50 relative">
+            <span class="handwritten-note text-[10px] sm:text-xs md:text-sm" style="top: -20px; left: 10px;">Finally ours! 🌟</span>
+            <h3 class="font-serif-display text-base sm:text-lg md:text-xl lg:text-2xl text-citrus-green mb-1 sm:mb-2 shimmer-text leading-tight" style="animation-delay: 0.4s;">Making It Official</h3>
+            <p class="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">In June 2024, we finally made it official. Exactly a year later, Raymond proposed.</p>
+            <div class="mt-2 sm:mt-3 md:mt-4 flex justify-center md:justify-start">
+              <span class="text-lg sm:text-xl md:text-2xl animate-bounce" style="animation-delay: 1.5s;">💕</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="timeline-container right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
-        <div class="flex flex-col items-center md:flex-row-reverse gap-6">
+      <div class="timeline-container right mb-6 sm:mb-8 md:mb-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
+        <div class="flex flex-col items-center md:flex-row-reverse gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="To Forever 💍" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="To Forever" class="w-40 h-40 md:w-48 md:h-48 object-cover">
-            <span class="click-indicator">Click me!</span>
+            <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="To Forever" class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 object-cover">
+            <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
             <div class="hidden-message">
-              <p class="font-heading text-xl text-citrus-green mb-2">💒 Our Future</p>
-              <p class="text-sm text-gray-700">"This is just the beginning of our forever together!"</p>
+              <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-citrus-green mb-1 sm:mb-2">💒 Our Future</p>
+              <p class="text-[10px] sm:text-xs md:text-sm text-gray-700">"This is just the beginning of our forever together!"</p>
             </div>
           </div>
-          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-green-200/50 relative">
-            <span class="handwritten-note" style="top: -30px; right: 20px;">Here we go! 💫</span>
-            <h3 class="font-serif-display text-2xl text-citrus-green mb-2 shimmer-text" style="animation-delay: 0.6s;">To Forever</h3>
-            <p class="text-gray-700 leading-relaxed">Now, here we are — about to get married and beyond excited to celebrate with all of you!</p>
-            <p class="mt-4 font-bold text-citrus-green heartbeat-text" style="animation: heartbeat 2s ease-in-out infinite;">With love, R & K</p>
-            <div class="mt-4 flex justify-center md:justify-end space-x-2">
-              <span class="text-2xl animate-bounce" style="animation-delay: 2s;">💍</span>
-              <span class="text-2xl animate-bounce" style="animation-delay: 2.2s;">💒</span>
+          <div class="timeline-content bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-xl w-full max-w-sm md:max-w-none text-center md:text-left interactive-card border border-green-200/50 relative">
+            <span class="handwritten-note text-[10px] sm:text-xs md:text-sm" style="top: -20px; right: 10px;">Here we go! 💫</span>
+            <h3 class="font-serif-display text-base sm:text-lg md:text-xl lg:text-2xl text-citrus-green mb-1 sm:mb-2 shimmer-text leading-tight" style="animation-delay: 0.6s;">To Forever</h3>
+            <p class="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">Now, here we are — about to get married and beyond excited to celebrate with all of you!</p>
+            <p class="mt-2 sm:mt-3 md:mt-4 font-bold text-xs sm:text-sm md:text-base text-citrus-green heartbeat-text" style="animation: heartbeat 2s ease-in-out infinite;">With love, R & K</p>
+            <div class="mt-2 sm:mt-3 md:mt-4 flex justify-center md:justify-end space-x-2">
+              <span class="text-lg sm:text-xl md:text-2xl animate-bounce" style="animation-delay: 2s;">💍</span>
+              <span class="text-lg sm:text-xl md:text-2xl animate-bounce" style="animation-delay: 2.2s;">💒</span>
             </div>
           </div>
         </div>
