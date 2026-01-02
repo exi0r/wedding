@@ -93,6 +93,12 @@
                     <button onclick="switchTab('rejected')" id="rejectedTab" class="flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors">
                         Rejected
                     </button>
+                    <button onclick="switchTab('attendees')" id="attendeesTab" class="flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors">
+                        Attendees
+                    </button>
+                    <button onclick="switchTab('rsvps')" id="rsvpsTab" class="flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors">
+                        RSVPs
+                    </button>
                 </div>
             </div>
 
@@ -111,6 +117,197 @@
                 <!-- Photos will be dynamically added here -->
             </div>
 
+            <!-- Attendees Management Section -->
+            <div id="attendeesSection" class="hidden">
+                <!-- CSV Upload Section -->
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">📋 Bulk Upload via CSV</h3>
+                    <p class="text-sm text-gray-600 mb-4">Upload a CSV file with guest names and seat counts. Perfect for adding many guests at once!</p>
+
+                    <!-- CSV Format Instructions -->
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                        <p class="text-sm font-semibold text-blue-800 mb-2">CSV Format:</p>
+                        <code class="text-xs bg-white px-2 py-1 rounded block mb-2">Name,Seats</code>
+                        <p class="text-xs text-blue-700">Example:</p>
+                        <code class="text-xs bg-white px-2 py-1 rounded block">
+                            Name,Seats<br>
+                            John Smith,2<br>
+                            Jane Doe,4<br>
+                            Robert Johnson,1
+                        </code>
+                        <p class="text-xs text-blue-600 mt-2">✓ First row with headers will be automatically skipped</p>
+                        <button onclick="downloadSampleCSV()" class="mt-3 text-xs bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded transition-all duration-300">
+                            📥 Download Sample CSV
+                        </button>
+                    </div>
+
+                    <!-- File Upload -->
+                    <div class="mb-4">
+                        <input type="file" id="csvFile" accept=".csv"
+                               class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none transition-all duration-300">
+                    </div>
+
+                    <button onclick="uploadCSV()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                        📤 Upload CSV File
+                    </button>
+
+                    <!-- Progress Bar -->
+                    <div id="uploadProgress" class="hidden mt-4">
+                        <div class="bg-gray-200 rounded-full h-4 overflow-hidden">
+                            <div id="progressBar" class="bg-purple-600 h-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-2 text-center" id="progressText">Uploading...</p>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="csvResults" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                        <p class="font-semibold">✅ Upload Complete!</p>
+                        <p class="text-sm" id="csvResultsText"></p>
+                    </div>
+                    <div id="csvError" class="hidden mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                        <p class="font-semibold">❌ Upload Error</p>
+                        <p class="text-sm" id="csvErrorText"></p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Add New Attendee Form -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Add New Attendee</h3>
+                        <p class="text-sm text-gray-600 mb-4">Add guests to the attendee list with their reserved seat count.</p>
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-semibold">Full Name *</label>
+                            <input type="text" id="attendeeName" placeholder="John Smith"
+                                   class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none transition-all duration-300">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-semibold">Reserved Seats *</label>
+                            <input type="number" id="attendeeSeats" min="1" max="20" value="1"
+                                   class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none transition-all duration-300">
+                        </div>
+
+                        <button onclick="addAttendee()" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105">
+                            ➕ Add Attendee
+                        </button>
+
+                        <div id="attendeeFormSuccess" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                            ✅ Attendee added successfully!
+                        </div>
+                        <div id="attendeeFormError" class="hidden mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                            ❌ Please fill in all fields.
+                        </div>
+                    </div>
+
+                    <!-- Attendee List Stats -->
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Stats</h3>
+                        <div class="space-y-4">
+                            <div class="bg-purple-100 p-4 rounded-lg">
+                                <p class="text-purple-800 font-semibold">Total Guests</p>
+                                <p class="text-3xl font-bold text-purple-900" id="totalAttendees">0</p>
+                            </div>
+                            <div class="bg-blue-100 p-4 rounded-lg">
+                                <p class="text-blue-800 font-semibold">Total Reserved Seats</p>
+                                <p class="text-3xl font-bold text-blue-900" id="totalSeats">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Attendee List -->
+                <div class="bg-white rounded-lg shadow-lg p-6 mt-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Attendee List</h3>
+                    <div class="mb-4">
+                        <input type="text" id="searchAttendee" placeholder="Search by name..."
+                               class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none"
+                               onkeyup="filterAttendees()">
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700 w-16">#</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700">Name</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700">Reserved Seats</th>
+                                    <th class="px-4 py-3 text-right font-semibold text-gray-700">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attendeeList">
+                                <!-- Attendees will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="emptyAttendees" class="hidden text-center py-8 text-gray-500">
+                        No attendees in the list yet. Add your first guest above!
+                    </div>
+                </div>
+            </div>
+
+            <!-- RSVP Management Section -->
+            <div id="rsvpsSection" class="hidden">
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">RSVP Submissions</h3>
+                            <p class="text-sm text-gray-600 mt-1">View and manage all RSVP submissions from your wedding website.</p>
+                        </div>
+                        <button onclick="exportRsvpsToCSV()" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center gap-2 whitespace-nowrap">
+                            <span>📥</span>
+                            <span>Export CSV</span>
+                        </button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-green-100 p-4 rounded-lg">
+                            <p class="text-green-800 font-semibold">Attending</p>
+                            <p class="text-3xl font-bold text-green-900" id="attendingCount">0</p>
+                        </div>
+                        <div class="bg-red-100 p-4 rounded-lg">
+                            <p class="text-red-800 font-semibold">Not Attending</p>
+                            <p class="text-3xl font-bold text-red-900" id="notAttendingCount">0</p>
+                        </div>
+                        <div class="bg-blue-100 p-4 rounded-lg">
+                            <p class="text-blue-800 font-semibold">Total Guests</p>
+                            <p class="text-3xl font-bold text-blue-900" id="totalRsvpGuests">0</p>
+                        </div>
+                    </div>
+
+                    <!-- Search -->
+                    <div class="mb-4">
+                        <input type="text" id="searchRsvp" placeholder="Search by name or phone..."
+                               class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none"
+                               onkeyup="filterRsvps()">
+                    </div>
+
+                    <!-- RSVP Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700 w-16">#</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700">Name</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700">Phone</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700">Attendance</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700">Guests</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700">Message</th>
+                                    <th class="px-4 py-3 text-left font-semibold text-gray-700">Submitted</th>
+                                    <th class="px-4 py-3 text-right font-semibold text-gray-700">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rsvpList">
+                                <!-- RSVPs will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="emptyRsvps" class="hidden text-center py-8 text-gray-500">
+                        No RSVP submissions yet.
+                    </div>
+                </div>
+            </div>
+
             <!-- Empty States -->
             <div id="emptyPending" class="hidden bg-white rounded-lg shadow-lg p-12 text-center">
                 <p class="text-gray-500 text-lg">No pending photos to review 🎉</p>
@@ -122,6 +319,74 @@
 
             <div id="emptyRejected" class="hidden bg-white rounded-lg shadow-lg p-12 text-center">
                 <p class="text-gray-500 text-lg">No rejected photos</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Attendee Modal -->
+    <div id="editModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onclick="closeEditModalOnBackdrop(event)">
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full p-6" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Edit Attendee</h3>
+                <button onclick="closeEditModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2 font-semibold">Name *</label>
+                <input type="text" id="editName"
+                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none transition-all duration-300">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2 font-semibold">Reserved Seats *</label>
+                <input type="number" id="editSeats" min="1" max="20"
+                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none transition-all duration-300">
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="closeEditModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-lg transition-all duration-300">
+                    Cancel
+                </button>
+                <button onclick="saveEditedAttendee()" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300">
+                    Save Changes
+                </button>
+            </div>
+
+            <div id="editModalError" class="hidden mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-sm">
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit RSVP Modal -->
+    <div id="editRsvpModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onclick="closeEditRsvpModalOnBackdrop(event)">
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full p-6" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800">Edit RSVP</h3>
+                <button onclick="closeEditRsvpModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2 font-semibold">Name *</label>
+                <input type="text" id="editRsvpName"
+                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none transition-all duration-300">
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 mb-2 font-semibold">Number of Guests *</label>
+                <input type="number" id="editRsvpGuests" min="0" max="20"
+                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-300 focus:border-purple-500 outline-none transition-all duration-300">
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="closeEditRsvpModal()" class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-lg transition-all duration-300">
+                    Cancel
+                </button>
+                <button onclick="saveEditedRsvp()" class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-all duration-300">
+                    Save Changes
+                </button>
+            </div>
+
+            <div id="editRsvpModalError" class="hidden mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded text-sm">
             </div>
         </div>
     </div>
@@ -192,6 +457,8 @@
             document.getElementById('pendingTab').className = 'flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors';
             document.getElementById('approvedTab').className = 'flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors';
             document.getElementById('rejectedTab').className = 'flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors';
+            document.getElementById('attendeesTab').className = 'flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors';
+            document.getElementById('rsvpsTab').className = 'flex-1 px-6 py-4 font-semibold text-gray-600 hover:text-purple-600 transition-colors';
 
             document.getElementById(tab + 'Tab').className = 'flex-1 px-6 py-4 font-semibold border-b-2 border-purple-600 text-purple-600';
 
@@ -199,6 +466,8 @@
             document.getElementById('pendingPhotos').classList.add('hidden');
             document.getElementById('approvedPhotos').classList.add('hidden');
             document.getElementById('rejectedPhotos').classList.add('hidden');
+            document.getElementById('attendeesSection').classList.add('hidden');
+            document.getElementById('rsvpsSection').classList.add('hidden');
             document.getElementById('emptyPending').classList.add('hidden');
             document.getElementById('emptyApproved').classList.add('hidden');
             document.getElementById('emptyRejected').classList.add('hidden');
@@ -224,6 +493,12 @@
                 } else {
                     grid.classList.remove('hidden');
                 }
+            } else if (tab === 'attendees') {
+                document.getElementById('attendeesSection').classList.remove('hidden');
+                loadAttendees();
+            } else if (tab === 'rsvps') {
+                document.getElementById('rsvpsSection').classList.remove('hidden');
+                loadRsvps();
             }
         }
 
@@ -434,6 +709,712 @@
                     alert('Photo approved! ✓');
                 }
             });
+        }
+
+        // --- ATTENDEE MANAGEMENT FUNCTIONS ---
+
+        let attendeesCache = {};
+
+        // Load all attendees from Firebase
+        function loadAttendees() {
+            if (!firebaseEnabled) {
+                alert('Firebase not connected. Cannot load attendees.');
+                return;
+            }
+
+            database.ref('attendees').on('value', (snapshot) => {
+                attendeesCache = snapshot.val() || {};
+                displayAttendees(attendeesCache);
+                updateAttendeeStats(attendeesCache);
+            });
+        }
+
+        // Display attendees in the table
+        function displayAttendees(attendees) {
+            const tbody = document.getElementById('attendeeList');
+            const emptyState = document.getElementById('emptyAttendees');
+            tbody.innerHTML = '';
+
+            const attendeeArray = Object.entries(attendees);
+
+            if (attendeeArray.length === 0) {
+                emptyState.classList.remove('hidden');
+                tbody.parentElement.parentElement.classList.add('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                tbody.parentElement.parentElement.classList.remove('hidden');
+
+                attendeeArray.sort((a, b) => a[0].localeCompare(b[0]));
+
+                attendeeArray.forEach(([name, data], index) => {
+                    const seats = typeof data === 'object' ? (data.seats || 1) : data;
+                    const row = document.createElement('tr');
+                    row.className = 'border-b hover:bg-gray-50 transition-colors attendee-row';
+                    row.setAttribute('data-name', name.toLowerCase());
+                    row.setAttribute('data-index', index + 1);
+
+                    row.innerHTML = `
+                        <td class="px-4 py-3 text-gray-500 font-semibold">${index + 1}</td>
+                        <td class="px-4 py-3 text-gray-800">${escapeHtml(name)}</td>
+                        <td class="px-4 py-3 text-gray-600">${seats}</td>
+                        <td class="px-4 py-3 text-right">
+                            <button onclick="editAttendee('${escapeHtml(name)}', ${seats})"
+                                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mr-2 transition-all duration-300">
+                                Edit
+                            </button>
+                            <button onclick="deleteAttendee('${escapeHtml(name)}')"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition-all duration-300">
+                                Delete
+                            </button>
+                        </td>
+                    `;
+
+                    tbody.appendChild(row);
+                });
+            }
+        }
+
+        // Update stats
+        function updateAttendeeStats(attendees) {
+            const attendeeArray = Object.entries(attendees);
+            const totalGuests = attendeeArray.length;
+            let totalSeats = 0;
+
+            attendeeArray.forEach(([name, data]) => {
+                const seats = typeof data === 'object' ? (data.seats || 1) : data;
+                totalSeats += parseInt(seats);
+            });
+
+            document.getElementById('totalAttendees').textContent = totalGuests;
+            document.getElementById('totalSeats').textContent = totalSeats;
+        }
+
+        // Add new attendee
+        function addAttendee() {
+            const nameInput = document.getElementById('attendeeName');
+            const seatsInput = document.getElementById('attendeeSeats');
+            const successMsg = document.getElementById('attendeeFormSuccess');
+            const errorMsg = document.getElementById('attendeeFormError');
+
+            const name = nameInput.value.trim();
+            const seats = parseInt(seatsInput.value);
+
+            // Hide previous messages
+            successMsg.classList.add('hidden');
+            errorMsg.classList.add('hidden');
+
+            if (!name || !seats || seats < 1) {
+                errorMsg.classList.remove('hidden');
+                return;
+            }
+
+            // Check if attendee already exists
+            if (attendeesCache[name]) {
+                if (!confirm(`${name} already exists with ${attendeesCache[name]} seat(s). Update to ${seats} seat(s)?`)) {
+                    return;
+                }
+            }
+
+            // Save to Firebase
+            database.ref(`attendees/${name}`).set(seats)
+                .then(() => {
+                    successMsg.classList.remove('hidden');
+                    nameInput.value = '';
+                    seatsInput.value = '1';
+
+                    // Hide success message after 3 seconds
+                    setTimeout(() => {
+                        successMsg.classList.add('hidden');
+                    }, 3000);
+                })
+                .catch((error) => {
+                    console.error('Error adding attendee:', error);
+                    alert('Failed to add attendee. Please try again.');
+                });
+        }
+
+        // Edit attendee - store original name for reference
+        let editingOriginalName = '';
+
+        function editAttendee(name, currentSeats) {
+            // Store the original name
+            editingOriginalName = name;
+
+            // Populate modal fields
+            document.getElementById('editName').value = name;
+            document.getElementById('editSeats').value = currentSeats;
+
+            // Clear any previous errors
+            document.getElementById('editModalError').classList.add('hidden');
+
+            // Show modal
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        // Close edit modal
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+            editingOriginalName = '';
+        }
+
+        // Close modal when clicking on backdrop
+        function closeEditModalOnBackdrop(event) {
+            if (event.target.id === 'editModal') {
+                closeEditModal();
+            }
+        }
+
+        // Save edited attendee
+        async function saveEditedAttendee() {
+            const newName = document.getElementById('editName').value.trim();
+            const newSeats = parseInt(document.getElementById('editSeats').value);
+            const errorDiv = document.getElementById('editModalError');
+
+            // Validate inputs
+            if (!newName) {
+                errorDiv.textContent = 'Name cannot be empty.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            if (isNaN(newSeats) || newSeats < 1) {
+                errorDiv.textContent = 'Please enter a valid number of seats (minimum 1).';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Check if name changed
+            const nameChanged = newName !== editingOriginalName;
+
+            try {
+                if (nameChanged) {
+                    // Check if new name already exists (and it's not the same entry)
+                    const snapshot = await database.ref(`attendees/${newName}`).once('value');
+                    if (snapshot.exists()) {
+                        errorDiv.textContent = `An attendee named "${newName}" already exists.`;
+                        errorDiv.classList.remove('hidden');
+                        return;
+                    }
+
+                    // Delete old entry and create new one
+                    await database.ref(`attendees/${editingOriginalName}`).remove();
+                    await database.ref(`attendees/${newName}`).set(newSeats);
+                } else {
+                    // Just update seats
+                    await database.ref(`attendees/${newName}`).set(newSeats);
+                }
+
+                // Close modal and show success
+                closeEditModal();
+                alert(`✓ Successfully updated attendee!`);
+
+            } catch (error) {
+                console.error('Error updating attendee:', error);
+                errorDiv.textContent = 'Failed to update attendee. Please try again.';
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Allow Enter key to save and ESC key to close modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const editModal = document.getElementById('editModal');
+            if (editModal) {
+                editModal.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !editModal.classList.contains('hidden')) {
+                        saveEditedAttendee();
+                    }
+                });
+            }
+
+            // ESC key to close modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !editModal.classList.contains('hidden')) {
+                    closeEditModal();
+                }
+            });
+        });
+
+        // Delete attendee
+        function deleteAttendee(name) {
+            if (!confirm(`Are you sure you want to remove ${name} from the attendee list?`)) {
+                return;
+            }
+
+            database.ref(`attendees/${name}`).remove()
+                .then(() => {
+                    alert(`✓ ${name} removed from attendee list`);
+                })
+                .catch((error) => {
+                    console.error('Error deleting attendee:', error);
+                    alert('Failed to delete attendee. Please try again.');
+                });
+        }
+
+        // Filter/search attendees
+        function filterAttendees() {
+            const searchTerm = document.getElementById('searchAttendee').value.toLowerCase();
+            const rows = document.querySelectorAll('.attendee-row');
+
+            rows.forEach(row => {
+                const name = row.getAttribute('data-name');
+                if (name.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // --- RSVP MANAGEMENT FUNCTIONS ---
+
+        let rsvpsCache = {};
+
+        // Load all RSVPs from Firebase
+        function loadRsvps() {
+            if (!firebaseEnabled) {
+                alert('Firebase not connected. Cannot load RSVPs.');
+                return;
+            }
+
+            database.ref('rsvps').on('value', (snapshot) => {
+                rsvpsCache = snapshot.val() || {};
+                displayRsvps(rsvpsCache);
+                updateRsvpStats(rsvpsCache);
+            });
+        }
+
+        // Display RSVPs in the table
+        function displayRsvps(rsvps) {
+            const tbody = document.getElementById('rsvpList');
+            const emptyState = document.getElementById('emptyRsvps');
+            tbody.innerHTML = '';
+
+            const rsvpArray = Object.entries(rsvps);
+
+            if (rsvpArray.length === 0) {
+                emptyState.classList.remove('hidden');
+                tbody.parentElement.parentElement.classList.add('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                tbody.parentElement.parentElement.classList.remove('hidden');
+
+                // Sort by timestamp (most recent first)
+                rsvpArray.sort((a, b) => new Date(b[1].timestamp) - new Date(a[1].timestamp));
+
+                rsvpArray.forEach(([id, data], index) => {
+                    const row = document.createElement('tr');
+                    row.className = 'border-b hover:bg-gray-50 transition-colors rsvp-row';
+                    row.setAttribute('data-searchable', `${data.name} ${data.phone}`.toLowerCase());
+
+                    const attendanceBadge = data.attendance === 'yes'
+                        ? '<span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">✓ Attending</span>'
+                        : '<span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-semibold">✗ Not Attending</span>';
+
+                    const shortMessage = data.message && data.message.length > 30
+                        ? data.message.substring(0, 30) + '...'
+                        : (data.message || '-');
+
+                    const submittedDate = data.submittedAt || new Date(data.timestamp).toLocaleString();
+
+                    row.innerHTML = `
+                        <td class="px-4 py-3 text-gray-500 font-semibold">${index + 1}</td>
+                        <td class="px-4 py-3 text-gray-800 font-semibold">${escapeHtml(data.name)}</td>
+                        <td class="px-4 py-3 text-gray-600">${escapeHtml(data.phone)}</td>
+                        <td class="px-4 py-3">${attendanceBadge}</td>
+                        <td class="px-4 py-3 text-gray-600">${data.guests || '0'}</td>
+                        <td class="px-4 py-3 text-gray-600 text-sm" title="${escapeHtml(data.message || '')}">${escapeHtml(shortMessage)}</td>
+                        <td class="px-4 py-3 text-gray-500 text-xs">${submittedDate}</td>
+                        <td class="px-4 py-3 text-right">
+                            <button onclick="editRsvp('${id}', '${escapeHtml(data.name)}', ${data.guests || 0})"
+                                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded mr-2 transition-all duration-300">
+                                Edit
+                            </button>
+                            <button onclick="deleteRsvp('${id}', '${escapeHtml(data.name)}')"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition-all duration-300">
+                                Delete
+                            </button>
+                        </td>
+                    `;
+
+                    tbody.appendChild(row);
+                });
+            }
+        }
+
+        // Update RSVP stats
+        function updateRsvpStats(rsvps) {
+            const rsvpArray = Object.entries(rsvps);
+            let attending = 0;
+            let notAttending = 0;
+            let totalGuests = 0;
+
+            rsvpArray.forEach(([id, data]) => {
+                if (data.attendance === 'yes') {
+                    attending++;
+                    totalGuests += parseInt(data.guests) || 0;
+                } else {
+                    notAttending++;
+                }
+            });
+
+            document.getElementById('attendingCount').textContent = attending;
+            document.getElementById('notAttendingCount').textContent = notAttending;
+            document.getElementById('totalRsvpGuests').textContent = totalGuests;
+        }
+
+        // Edit RSVP - store original ID for reference
+        let editingRsvpId = '';
+
+        function editRsvp(id, name, guests) {
+            // Store the original ID
+            editingRsvpId = id;
+
+            // Populate modal fields
+            document.getElementById('editRsvpName').value = name;
+            document.getElementById('editRsvpGuests').value = guests;
+
+            // Clear any previous errors
+            document.getElementById('editRsvpModalError').classList.add('hidden');
+
+            // Show modal
+            document.getElementById('editRsvpModal').classList.remove('hidden');
+        }
+
+        // Close RSVP edit modal
+        function closeEditRsvpModal() {
+            document.getElementById('editRsvpModal').classList.add('hidden');
+            editingRsvpId = '';
+        }
+
+        // Close modal when clicking on backdrop
+        function closeEditRsvpModalOnBackdrop(event) {
+            if (event.target.id === 'editRsvpModal') {
+                closeEditRsvpModal();
+            }
+        }
+
+        // Save edited RSVP
+        async function saveEditedRsvp() {
+            const newName = document.getElementById('editRsvpName').value.trim();
+            const newGuests = parseInt(document.getElementById('editRsvpGuests').value);
+            const errorDiv = document.getElementById('editRsvpModalError');
+
+            // Validate inputs
+            if (!newName) {
+                errorDiv.textContent = 'Name cannot be empty.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            if (isNaN(newGuests) || newGuests < 0) {
+                errorDiv.textContent = 'Please enter a valid number of guests (minimum 0).';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                // Update name and guests fields
+                await database.ref(`rsvps/${editingRsvpId}/name`).set(newName);
+                await database.ref(`rsvps/${editingRsvpId}/guests`).set(newGuests.toString());
+
+                // Close modal and show success
+                closeEditRsvpModal();
+                alert(`✓ Successfully updated RSVP!`);
+
+            } catch (error) {
+                console.error('Error updating RSVP:', error);
+                errorDiv.textContent = 'Failed to update RSVP. Please try again.';
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Delete RSVP
+        function deleteRsvp(id, name) {
+            if (!confirm(`Are you sure you want to delete the RSVP from ${name}?`)) {
+                return;
+            }
+
+            database.ref(`rsvps/${id}`).remove()
+                .then(() => {
+                    alert(`✓ RSVP from ${name} has been deleted`);
+                })
+                .catch((error) => {
+                    console.error('Error deleting RSVP:', error);
+                    alert('Failed to delete RSVP. Please try again.');
+                });
+        }
+
+        // Filter/search RSVPs
+        function filterRsvps() {
+            const searchTerm = document.getElementById('searchRsvp').value.toLowerCase();
+            const rows = document.querySelectorAll('.rsvp-row');
+
+            rows.forEach(row => {
+                const searchable = row.getAttribute('data-searchable');
+                if (searchable.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // Export RSVPs to CSV
+        function exportRsvpsToCSV() {
+            if (Object.keys(rsvpsCache).length === 0) {
+                alert('No RSVPs to export.');
+                return;
+            }
+
+            // Create CSV header
+            let csvContent = 'Name,Phone,Attendance,Guests,Message,Submitted Date\n';
+
+            // Convert RSVPs to array and sort by timestamp
+            const rsvpArray = Object.entries(rsvpsCache);
+            rsvpArray.sort((a, b) => new Date(b[1].timestamp) - new Date(a[1].timestamp));
+
+            // Add each RSVP as a row
+            rsvpArray.forEach(([id, data]) => {
+                const name = (data.name || '').replace(/"/g, '""'); // Escape quotes
+                const phone = (data.phone || '').replace(/"/g, '""');
+                const attendance = data.attendance === 'yes' ? 'Attending' : 'Not Attending';
+                const guests = data.guests || '0';
+                const message = (data.message || '').replace(/"/g, '""').replace(/\n/g, ' '); // Escape quotes and remove newlines
+                const submittedDate = data.submittedAt || new Date(data.timestamp).toLocaleString();
+
+                csvContent += `"${name}","${phone}","${attendance}","${guests}","${message}","${submittedDate}"\n`;
+            });
+
+            // Create blob and download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+
+            // Generate filename with current date
+            const today = new Date();
+            const dateString = today.toISOString().split('T')[0]; // YYYY-MM-DD
+            link.download = `wedding_rsvps_${dateString}.csv`;
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+
+            console.log(`📥 Exported ${rsvpArray.length} RSVPs to CSV`);
+        }
+
+        // Allow Enter key to save and ESC key to close RSVP modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const editRsvpModal = document.getElementById('editRsvpModal');
+            if (editRsvpModal) {
+                editRsvpModal.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !editRsvpModal.classList.contains('hidden')) {
+                        saveEditedRsvp();
+                    }
+                });
+            }
+
+            // ESC key to close RSVP modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && !editRsvpModal.classList.contains('hidden')) {
+                    closeEditRsvpModal();
+                }
+            });
+        });
+
+        // --- CSV UPLOAD FUNCTIONS ---
+
+        // Download sample CSV template
+        function downloadSampleCSV() {
+            const csvContent = `Name,Seats
+John Smith,2
+Jane Doe,4
+Robert Johnson,1
+Maria Garcia,3
+David Lee,2`;
+
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'attendees_template.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            console.log('📥 Sample CSV downloaded');
+        }
+
+        // Parse CSV file
+        function parseCSV(text) {
+            const lines = text.split('\n').filter(line => line.trim());
+            const attendees = [];
+            let skippedHeader = false;
+
+            lines.forEach((line, index) => {
+                const parts = line.split(',').map(p => p.trim());
+
+                if (parts.length < 2) return; // Skip invalid lines
+
+                const name = parts[0];
+                const seats = parts[1];
+
+                // Skip header row if detected
+                if (index === 0 && (name.toLowerCase().includes('name') || seats.toLowerCase().includes('seat'))) {
+                    skippedHeader = true;
+                    return;
+                }
+
+                // Validate seats is a number
+                const seatsNum = parseInt(seats);
+                if (isNaN(seatsNum) || seatsNum < 1) {
+                    console.warn(`Skipping invalid entry: ${name}, ${seats}`);
+                    return;
+                }
+
+                attendees.push({ name, seats: seatsNum });
+            });
+
+            return { attendees, skippedHeader };
+        }
+
+        // Upload CSV file
+        async function uploadCSV() {
+            const fileInput = document.getElementById('csvFile');
+            const progressDiv = document.getElementById('uploadProgress');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const resultsDiv = document.getElementById('csvResults');
+            const resultsText = document.getElementById('csvResultsText');
+            const errorDiv = document.getElementById('csvError');
+            const errorText = document.getElementById('csvErrorText');
+
+            // Reset UI
+            progressDiv.classList.add('hidden');
+            resultsDiv.classList.add('hidden');
+            errorDiv.classList.add('hidden');
+            progressBar.style.width = '0%';
+
+            // Check Firebase connection
+            if (!firebaseEnabled) {
+                errorText.textContent = 'Firebase is not connected. Please refresh the page and try again.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Validate file selected
+            if (!fileInput.files || !fileInput.files[0]) {
+                errorText.textContent = 'Please select a CSV file to upload.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            const file = fileInput.files[0];
+
+            // Validate file type
+            if (!file.name.endsWith('.csv')) {
+                errorText.textContent = 'Please select a valid CSV file (.csv extension).';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            console.log('📋 Starting CSV upload for file:', file.name);
+
+            // Read file
+            const reader = new FileReader();
+            reader.onload = async function(e) {
+                try {
+                    const csvText = e.target.result;
+                    console.log('📄 CSV file read, parsing...');
+                    const { attendees, skippedHeader } = parseCSV(csvText);
+                    console.log('✅ Parsed attendees:', attendees.length, 'entries');
+
+                    if (attendees.length === 0) {
+                        errorText.textContent = 'No valid attendees found in CSV file. Please check the format.';
+                        errorDiv.classList.remove('hidden');
+                        console.error('❌ No valid attendees found in CSV');
+                        return;
+                    }
+
+                    // Show progress
+                    progressDiv.classList.remove('hidden');
+                    progressText.textContent = `Uploading ${attendees.length} attendees...`;
+
+                    // Confirm before uploading
+                    if (!confirm(`Found ${attendees.length} attendees in CSV file.\n\n⚠️ This will overwrite existing attendees with the same name.\n\nContinue with upload?`)) {
+                        progressDiv.classList.add('hidden');
+                        console.log('ℹ️ User cancelled upload');
+                        return;
+                    }
+
+                    console.log('🚀 Starting Firebase upload...');
+
+                    // Batch upload to Firebase
+                    let uploaded = 0;
+                    let failed = 0;
+                    const batchSize = 10; // Upload in batches of 10
+
+                    for (let i = 0; i < attendees.length; i += batchSize) {
+                        const batch = attendees.slice(i, i + batchSize);
+
+                        // Upload batch
+                        await Promise.all(batch.map(async (attendee) => {
+                            try {
+                                console.log(`⬆️ Uploading: ${attendee.name} (${attendee.seats} seats)`);
+                                await database.ref(`attendees/${attendee.name}`).set(attendee.seats);
+                                uploaded++;
+                                console.log(`✅ Uploaded: ${attendee.name}`);
+                            } catch (error) {
+                                console.error(`❌ Failed to upload ${attendee.name}:`, error);
+                                failed++;
+                            }
+                        }));
+
+                        // Update progress
+                        const progress = Math.round(((i + batch.length) / attendees.length) * 100);
+                        progressBar.style.width = `${progress}%`;
+                        progressText.textContent = `Uploading... ${uploaded + failed}/${attendees.length}`;
+                    }
+
+                    console.log(`📊 Upload complete: ${uploaded} successful, ${failed} failed`);
+
+                    // Show results
+                    progressDiv.classList.add('hidden');
+
+                    if (failed === 0) {
+                        resultsText.textContent = `Successfully uploaded ${uploaded} attendees!`;
+                        resultsDiv.classList.remove('hidden');
+                        console.log('✅ All attendees uploaded successfully!');
+                    } else {
+                        resultsText.textContent = `Uploaded ${uploaded} attendees. ${failed} failed.`;
+                        resultsDiv.classList.remove('hidden');
+                        console.warn(`⚠️ Some uploads failed: ${failed} errors`);
+                    }
+
+                    // Reset file input
+                    fileInput.value = '';
+
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        resultsDiv.classList.add('hidden');
+                    }, 5000);
+
+                } catch (error) {
+                    console.error('❌ CSV upload error:', error);
+                    errorText.textContent = `Error processing CSV: ${error.message}`;
+                    errorDiv.classList.remove('hidden');
+                    progressDiv.classList.add('hidden');
+                }
+            };
+
+            reader.onerror = function() {
+                errorText.textContent = 'Error reading file. Please try again.';
+                errorDiv.classList.remove('hidden');
+            };
+
+            reader.readAsText(file);
         }
 
         // Check if already logged in (session)
