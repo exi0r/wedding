@@ -1933,115 +1933,151 @@
     </section>
 
 
-<section id="attire" class="py-20 bg-transparent-for-petals">
-  <div class="container mx-auto px-6 text-center content-wrapper">
-    <h2 class="font-serif-display text-5xl font-bold text-gray-800" data-aos="fade-up">Attire</h2>
-    <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
-    <p class="text-xl uppercase tracking-wide text-gray-500 mb-8" data-aos="fade-up" data-aos-delay="200">Soft Citrus Garden Theme</p>
+<section id="attire" class="py-20 bg-transparent-for-petals relative overflow-hidden">
+  <div class="container mx-auto px-6 content-wrapper">
+    <div class="text-center mb-12">
+      <h2 class="font-serif-display text-5xl font-bold text-gray-800" data-aos="fade-up">Attire</h2>
+      <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+      <p class="text-xl uppercase tracking-wide text-gray-500" data-aos="fade-up" data-aos-delay="200">Soft Citrus Garden Theme</p>
+    </div>
 
-    <div class="max-w-3xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="300">
-      <p class="text-lg leading-relaxed mb-6">
-        We kindly request our guests to dress in <strong>formal attire</strong>. To complement our soft citrus garden theme, we suggest the following colors:
-      </p>
+    <!-- Split Hero Layout -->
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center" data-aos="fade-up" data-aos-delay="300">
 
-      <!-- Interactive Color Swatches -->
-	<div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-5 gap-6 justify-center text-sm mb-8">
-        <div class="group">
-          <div class="w-16 h-16 rounded-full bg-[#FFDAB9] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
-          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Peach</p>
+        <!-- Left: Carousel with Integrated Color Palette -->
+        <div class="relative">
+          <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-yellow-100/50">
+            <!-- Carousel -->
+            <div class="relative overflow-hidden" style="height: 500px;">
+              <div class="carousel-attire flex transition-transform duration-700 ease-in-out h-full" id="attire-carousel">
+                <!-- Slide 1 -->
+                <div class="min-w-full h-full">
+                  <img src="https://exi0r.github.io/wedding/image/bridesmaid.jpg" alt="Bridesmaid Inspiration" class="w-full h-full object-cover">
+                </div>
+                <!-- Slide 2 -->
+                <div class="min-w-full h-full">
+                  <img src="https://exi0r.github.io/wedding/image/groomsmen.jpg" alt="Groomsmen Inspiration" class="w-full h-full object-cover">
+                </div>
+                <!-- Slide 3 -->
+                <div class="min-w-full h-full">
+                  <img src="https://exi0r.github.io/wedding/image/guests.png" alt="Guest Attire" class="w-full h-full object-cover">
+                </div>
+              </div>
+
+              <!-- Navigation Arrows -->
+              <button onclick="prevAttireSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-citrus-green hover:text-white text-citrus-green p-3 rounded-full shadow-lg transition-all duration-300 z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button onclick="nextAttireSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-citrus-green hover:text-white text-citrus-green p-3 rounded-full shadow-lg transition-all duration-300 z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Integrated Color Swatches -->
+            <div class="bg-gradient-to-r from-white/95 to-citrus-light/80 backdrop-blur-md p-6">
+              <p class="text-sm font-semibold text-gray-700 mb-3 text-center">Color Palette</p>
+              <div class="flex justify-center gap-3 flex-wrap">
+                <div class="group cursor-pointer" title="Peach">
+                  <div class="w-12 h-12 rounded-full bg-[#FFDAB9] border-3 border-white shadow-lg group-hover:scale-125 group-hover:ring-4 ring-yellow-200 transition-all duration-300"></div>
+                </div>
+                <div class="group cursor-pointer" title="Lemon">
+                  <div class="w-12 h-12 rounded-full bg-[#FFFACD] border-3 border-white shadow-lg group-hover:scale-125 group-hover:ring-4 ring-yellow-200 transition-all duration-300"></div>
+                </div>
+                <div class="group cursor-pointer" title="Sage Green">
+                  <div class="w-12 h-12 rounded-full bg-[#A2C18D] border-3 border-white shadow-lg group-hover:scale-125 group-hover:ring-4 ring-yellow-200 transition-all duration-300"></div>
+                </div>
+                <div class="group cursor-pointer" title="Lavender">
+                  <div class="w-12 h-12 rounded-full bg-[#E6DAF5] border-3 border-white shadow-lg group-hover:scale-125 group-hover:ring-4 ring-yellow-200 transition-all duration-300"></div>
+                </div>
+                <div class="group cursor-pointer" title="Ivory">
+                  <div class="w-12 h-12 rounded-full bg-[#FFF7E1] border-3 border-white shadow-lg group-hover:scale-125 group-hover:ring-4 ring-yellow-200 transition-all duration-300"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="group">
-          <div class="w-16 h-16 rounded-full bg-[#FFFACD] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
-          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Lemon</p>
+
+        <!-- Right: Text Description -->
+        <div class="space-y-6" data-aos="fade-left" data-aos-delay="400">
+          <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-yellow-100/50">
+            <h3 class="font-serif-display text-4xl text-citrus-green mb-6">Dress Code</h3>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+              We kindly request our guests to dress in <strong>formal attire</strong>. To complement our soft citrus garden theme, we encourage you to wear colors from our palette.
+            </p>
+
+            <!-- For Her & For Him -->
+            <div class="space-y-6">
+              <div>
+                <h4 class="font-serif-display text-2xl text-citrus-green mb-3 flex items-center gap-2">
+                  <span>👗</span> For Her
+                </h4>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start gap-2">
+                    <span class="text-citrus-green mt-1">•</span>
+                    <span>Long, flowing dresses in soft citrus tones</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-citrus-green mt-1">•</span>
+                    <span>Garden-friendly heels or elegant flats</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-citrus-green mt-1">•</span>
+                    <span>Light, breathable fabrics</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="font-serif-display text-2xl text-citrus-green mb-3 flex items-center gap-2">
+                  <span>🤵</span> For Him
+                </h4>
+                <ul class="space-y-2 text-gray-700">
+                  <li class="flex items-start gap-2">
+                    <span class="text-citrus-green mt-1">•</span>
+                    <span>Light-colored suits or barongs</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-citrus-green mt-1">•</span>
+                    <span>Earth-tone accents (ties, pocket squares)</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <span class="text-citrus-green mt-1">•</span>
+                    <span>Comfortable formal wear for the garden setting</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Note -->
+            <div class="mt-6 p-4 bg-yellow-50 rounded-lg border-l-4 border-citrus-green">
+              <p class="text-sm text-gray-700">
+                <strong>Note:</strong> We recommend avoiding black or bold neon tones to maintain the soft garden aesthetic.
+              </p>
+            </div>
+          </div>
+
+          <!-- Expandable Style Tips -->
+          <button onclick="toggleTips()" class="btn-secondary w-full text-center">
+            Additional Style Tips
+          </button>
+          <div id="styleTips" class="hidden bg-white/70 backdrop-blur-md rounded-lg p-6 shadow-md transition-all duration-300">
+            <ul class="list-disc pl-6 text-gray-700 space-y-2">
+              <li>Coordinate within suggested palette if attending as a group</li>
+              <li>Lightweight fabrics work best for our outdoor garden venue</li>
+              <li>Consider the weather - bring a light wrap if needed</li>
+              <li>Comfortable footwear recommended for grass and garden paths</li>
+            </ul>
+          </div>
         </div>
-        <div class="group">
-          <div class="w-16 h-16 rounded-full bg-[#A2C18D] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
-          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Sage Green</p>
-        </div>
-        <div class="group">
-          <div class="w-16 h-16 rounded-full bg-[#E6DAF5] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
-          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Lavender</p>
-        </div>
-        <div class="group">
-          <div class="w-16 h-16 rounded-full bg-[#FFF7E1] mx-auto border-2 border-white shadow-md group-hover:ring-4 ring-yellow-100 transition-all duration-300"></div>
-          <p class="mt-2 text-gray-600 group-hover:text-citrus-green">Ivory</p>
-        </div>
+
       </div>
     </div>
 
-    <!-- Collapsible Style Suggestions -->
-    <div class="max-w-2xl mx-auto text-left" data-aos="fade-up" data-aos-delay="400">
-      <button onclick="toggleTips()" class="btn-secondary w-full mb-4 text-center">
-        View Style Tips
-      </button>
-      <div id="styleTips" class="hidden bg-white/70 backdrop-blur-md rounded-lg p-6 shadow-md transition-all duration-300">
-        <ul class="list-disc pl-6 text-gray-700 space-y-2">
-          <li>Ladies: Long dresses, flowy fabrics, garden-friendly heels or flats</li>
-          <li>Gentlemen: Light-colored suits or barongs with earth-tone accents</li>
-          <li>We recommend avoiding black or bold neon tones</li>
-          <li>Coordinate within suggested palette if attending as a group</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Optional: Moodboard Style Image -->
-
-</section>
-<section class="py-20 bg-gradient-to-b from-lime-50 via-white to-yellow-50">
-  <div class="container mx-auto px-6 content-wrapper text-center">
-    <h3 class="text-4xl font-serif-display text-citrus-green font-semibold mb-4" data-aos="fade-up">
-      Attire Inspiration
-    </h3>
-    <p class="text-gray-600 mb-12 max-w-xl mx-auto italic" data-aos="fade-up" data-aos-delay="100">
-      A few soft, elegant looks to help guide your outfit for our garden celebration.
-    </p>
-
-    <!-- carousel -->
-    <div class="relative max-w-4xl mx-auto overflow-hidden rounded-3xl shadow-2xl border border-yellow-100 bg-white/80 backdrop-blur-md ring-1 ring-lime-100" data-aos="fade-up" data-aos-delay="200">
-      <div class="carousel flex transition-transform duration-500 ease-in-out" id="attire-carousel-woman">
-        <!-- Slide 1 -->
-        <div class="min-w-full">
-          <img src="https://exi0r.github.io/wedding/image/bridesmaid.jpg" alt="Soft Yellow Bridesmaid Inspiration"
-               class="w-full h-64 sm:h-80 md:h-[28rem] object-contain object-top rounded-t-3xl shadow-inner">
-          <div class="p-5 text-lime-800 text-lg font-bold italic bg-lime-50 border-t border-lime-100">
-            Soft yellow gowns for bridesmaids
-          </div>
-        </div>
-        <!-- Slide 2 -->
-        <div class="min-w-full">
-          <img src="https://exi0r.github.io/wedding/image/groomsmen.jpg" alt="Garden Groom Style"
-               class="w-full h-64 sm:h-80 md:h-[28rem] object-contain object-top rounded-t-3xl shadow-inner">
-          <div class="p-5 text-sage-800 text-lg font-bold italic bg-sage-50 border-t border-sage-100">
-            Sage green suit for groomsmen
-          </div>
-        </div>
-        <!-- Slide 3 -->
-        <div class="min-w-full">
-          <img src="https://exi0r.github.io/wedding/image/guests.png" alt="Guests in Citrus Hues"
-               class="w-full h-64 sm:h-80 md:h-[28rem] object-contain object-top rounded-t-3xl shadow-inner">
-          <div class="p-5 text-yellow-800 text-lg font-bold italic bg-yellow-50 border-t border-yellow-100">
-            Guest palette in neutral or soft citrus hues
-          </div>
-        </div>
-      </div>
-
-      <!-- Navigation Buttons -->
-      <div class="absolute inset-y-1/2 left-0 flex items-center pl-4">
-        <button onclick="prevSlide('attire-carousel-woman')" class="bg-white/90 text-citrus-green hover:bg-citrus-green hover:text-white p-2 rounded-full shadow-md transition duration-300 backdrop-blur-sm">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-      </div>
-      <div class="absolute inset-y-1/2 right-0 flex items-center pr-4">
-        <button onclick="nextSlide('attire-carousel-woman')" class="bg-white/90 text-citrus-green hover:bg-citrus-green hover:text-white p-2 rounded-full shadow-md transition duration-300 backdrop-blur-sm">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
 </section>
 
     <!-- Entourage Section -->
@@ -2103,7 +2139,7 @@
 
     <!-- Best Man & Maid of Honor -->
     <div class="mb-8 sm:mb-12 md:mb-16">
-      <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-citrus-green mb-4 sm:mb-6 md:mb-8" data-aos="fade-up">Best Man & Maid of Honor</h3>
+      <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-citrus-green mb-4 sm:mb-6 md:mb-8" data-aos="fade-up">Best Man & Maids of Honor</h3>
       <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
         <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md" data-aos="zoom-in" data-aos-duration="800">
           <img src="https://exi0r.github.io/wedding/image/IMG_6684.jpeg" alt="Best Man" class="rounded-full w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto object-cover border-2 sm:border-4 border-yellow-200 shadow-lg mb-3 sm:mb-4">
@@ -2112,9 +2148,13 @@
         </div>
 
         <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
-          <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Maid of Honor" class="rounded-full w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto object-cover border-2 sm:border-4 border-peach-200 shadow-lg mb-3 sm:mb-4">
-          <h4 class="text-xs sm:text-base md:text-xl font-serif-display text-citrus-green mb-2 sm:mb-4 leading-tight">Maid of Honor</h4>
+          <div class="flex justify-center mb-3 sm:mb-4 gap-2 sm:gap-3">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Maid of Honor" class="rounded-full w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 object-cover border-2 sm:border-4 border-peach-200 shadow-lg">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6774.jpeg" alt="Maid of Honor" class="rounded-full w-16 h-16 sm:w-24 sm:h-24 md:w-28 md:h-28 object-cover border-2 sm:border-4 border-peach-200 shadow-lg">
+          </div>
+          <h4 class="text-xs sm:text-base md:text-xl font-serif-display text-citrus-green mb-2 sm:mb-4 leading-tight">Maids of Honor</h4>
           <p class="text-gray-700 text-[10px] sm:text-sm md:text-base lg:text-lg">Cathy Sioson</p>
+          <p class="text-gray-700 text-[10px] sm:text-sm md:text-base lg:text-lg">Kate Sioson</p>
         </div>
       </div>
     </div>
@@ -2123,34 +2163,28 @@
     <div class="mb-8 sm:mb-12 md:mb-16">
       <h3 class="text-xl sm:text-2xl md:text-3xl font-serif-display text-citrus-green mb-4 sm:mb-6 md:mb-8" data-aos="fade-up">Principal Sponsors</h3>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-5xl mx-auto">
-        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
-          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto object-cover border-2 sm:border-4 border-lime-200 shadow">
-          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green mt-2 sm:mt-3 md:mt-4 leading-tight">Riza Chan</h3>
+        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green leading-tight">Riza Chan</h3>
         </div>
 
-        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="150">
-          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto object-cover border-2 sm:border-4 border-lime-200 shadow">
-          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green mt-2 sm:mt-3 md:mt-4 leading-tight">Nomer Sioson</h3>
+        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center" data-aos="fade-up" data-aos-delay="150">
+          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green leading-tight">Nomer Sioson</h3>
         </div>
 
-        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
-          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto object-cover border-2 sm:border-4 border-lime-200 shadow">
-          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green mt-2 sm:mt-3 md:mt-4 leading-tight">Bennett Reyes</h3>
+        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green leading-tight">Bennett Reyes</h3>
         </div>
 
-        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="250">
-          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto object-cover border-2 sm:border-4 border-lime-200 shadow">
-          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green mt-2 sm:mt-3 md:mt-4 leading-tight">Chel Lao</h3>
+        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center" data-aos="fade-up" data-aos-delay="250">
+          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green leading-tight">Chel Lao</h3>
         </div>
 
-        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
-          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto object-cover border-2 sm:border-4 border-lime-200 shadow">
-          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green mt-2 sm:mt-3 md:mt-4 leading-tight">Eliseo Sioson</h3>
+        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center" data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green leading-tight">Eliseo Sioson</h3>
         </div>
 
-        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="350">
-          <img src="https://exi0r.github.io/wedding/image/IMG_8122.jpeg" alt="Principal Sponsor" class="rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto object-cover border-2 sm:border-4 border-lime-200 shadow">
-          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green mt-2 sm:mt-3 md:mt-4 leading-tight">Alma Alvarez</h3>
+        <div class="bg-white rounded-lg sm:rounded-xl shadow-md p-3 sm:p-4 md:p-6 transition-transform duration-300 hover:-translate-y-2 flex items-center justify-center" data-aos="fade-up" data-aos-delay="350">
+          <h3 class="text-xs sm:text-sm md:text-base lg:text-xl font-heading text-citrus-green leading-tight">Alma Alvarez</h3>
         </div>
       </div>
     </div>
@@ -2173,7 +2207,6 @@
         <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl shadow-md" data-aos="fade-left">
           <h4 class="text-sm sm:text-lg md:text-xl lg:text-2xl font-serif-display text-citrus-green mb-2 sm:mb-3 md:mb-4 text-center leading-tight">Bridesmaids</h4>
           <ul class="text-gray-700 space-y-1 sm:space-y-2 text-center text-[10px] sm:text-sm md:text-base">
-            <li>Kate Sioson</li>
             <li>Cielamie Ramos</li>
             <li>Iris Sioson</li>
             <li>Marieliza Sioson</li>
@@ -3507,7 +3540,7 @@
             return img;
         });
 
-        const numPetals = 40;
+        const numPetals = 18; // Reduced for elegance
 
         // Petal colors for fallback (if images don't load)
         const petalColors = ['#FFDAB9', '#FFC0CB', '#FFE4B5', '#FFFACD', '#FFB6C1', '#FFEFD5'];
@@ -3521,17 +3554,32 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height * 2 - canvas.height;
-                this.w = 25 + Math.random() * 15;
-                this.h = 20 + Math.random() * 10;
-                this.opacity = 0.6 + Math.random() * 0.4;
+
+                // Depth layers: 0=far, 1=mid, 2=near
+                this.layer = Math.floor(Math.random() * 3);
+                this.blur = this.layer === 0 ? 1.5 : 0; // Subtle blur for far layer
+                this.scale = 0.5 + (this.layer * 0.25); // Size based on layer
+
+                // Larger petals (adjusted by scale)
+                this.w = (35 + Math.random() * 25) * this.scale;
+                this.h = (28 + Math.random() * 18) * this.scale;
+
+                // Softer opacity range
+                this.opacity = (0.3 + Math.random() * 0.3) * (0.6 + this.layer * 0.2);
+
                 this.image = petalImages[Math.floor(Math.random() * petalImages.length)];
                 this.color = petalColors[Math.floor(Math.random() * petalColors.length)];
-                this.xSpeed = 1 + Math.random();
-                this.ySpeed = 0.5 + Math.random() * 0.5;
+
+                // Gentler drift (Option 1: Gentle Drift)
+                this.xSpeed = (0.5 + Math.random() * 0.5) * (1 + this.layer * 0.3);
+                this.ySpeed = (0.3 + Math.random() * 0.3) * (1 + this.layer * 0.3);
+
                 this.flip = Math.random();
-                this.flipSpeed = Math.random() * 0.03;
+                this.flipSpeed = Math.random() * 0.02; // Slower flip
                 this.rotation = Math.random() * Math.PI * 2;
-                this.rotationSpeed = Math.random() * 0.01 - 0.005;
+
+                // Softer rotation
+                this.rotationSpeed = Math.random() * 0.005 - 0.0025;
             }
 
             draw() {
@@ -3542,6 +3590,12 @@
 
                 ctx.save();
                 ctx.globalAlpha = this.opacity;
+
+                // Apply blur for depth
+                if (this.blur > 0) {
+                    ctx.filter = `blur(${this.blur}px)`;
+                }
+
                 ctx.translate(this.x + this.w / 2, this.y + this.h / 2);
                 ctx.rotate(this.rotation);
 
@@ -4368,6 +4422,26 @@ END:VCALENDAR`;
     const tips = document.getElementById('styleTips');
     tips.classList.toggle('hidden');
   }
+
+  // Attire Carousel Functions
+  let attireSlideIndex = 0;
+
+  function nextAttireSlide() {
+    const carousel = document.getElementById('attire-carousel');
+    const slides = carousel.children.length;
+    attireSlideIndex = (attireSlideIndex + 1) % slides;
+    carousel.style.transform = `translateX(-${attireSlideIndex * 100}%)`;
+  }
+
+  function prevAttireSlide() {
+    const carousel = document.getElementById('attire-carousel');
+    const slides = carousel.children.length;
+    attireSlideIndex = (attireSlideIndex - 1 + slides) % slides;
+    carousel.style.transform = `translateX(-${attireSlideIndex * 100}%)`;
+  }
+
+  // Auto-advance attire carousel every 5 seconds
+  setInterval(nextAttireSlide, 5000);
 </script>
 <!-- Carousel script moved to main script section -->
 
