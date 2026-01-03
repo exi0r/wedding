@@ -1354,6 +1354,81 @@
              z-index: 1;
         }
 
+        /* --- BOTANICAL DIVIDERS --- */
+        .botanical-divider {
+            position: relative;
+            width: 200px;
+            height: 40px;
+            margin: 0 auto;
+        }
+
+        .botanical-divider svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes growVine {
+            from {
+                stroke-dashoffset: 200;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .vine-path {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: growVine 2s ease-out forwards;
+        }
+
+        .citrus-garland {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 0 auto;
+        }
+
+        .citrus-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .citrus-dot:nth-child(1) { background: #FFDAB9; animation-delay: 0s; }
+        .citrus-dot:nth-child(2) { background: #FFFACD; animation-delay: 0.2s; }
+        .citrus-dot:nth-child(3) { background: #A2C18D; animation-delay: 0.4s; }
+        .citrus-dot:nth-child(4) { background: #E6DAF5; animation-delay: 0.6s; }
+        .citrus-dot:nth-child(5) { background: #FFF7E1; animation-delay: 0.8s; }
+        .citrus-dot:nth-child(6) { background: #A2C18D; animation-delay: 1s; }
+        .citrus-dot:nth-child(7) { background: #FFFACD; animation-delay: 1.2s; }
+        .citrus-dot:nth-child(8) { background: #FFDAB9; animation-delay: 1.4s; }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        /* Leaf flourish */
+        .leaf-flourish {
+            width: 120px;
+            height: 30px;
+            margin: 0 auto;
+        }
+
+        .leaf-flourish svg {
+            width: 100%;
+            height: 100%;
+        }
+
         /* --- ANIMATED SVG DECORATIONS --- */
         .svg-decoration {
             position: absolute;
@@ -1663,7 +1738,16 @@
 
         <div class="container mx-auto text-center px-6 content-wrapper relative z-10">
             <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up" data-aos-duration="1000">Counting Down</h2>
-            <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(90deg, #F59E0B, #FCD34D, #F59E0B); background-size: 200% auto; animation: shimmer 2s linear infinite;"></div>
+            <div class="citrus-garland mt-4 mb-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+            </div>
             <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 float-gentle" data-aos="fade-up" data-aos-delay="200">UNTIL OUR BIG DAY</p>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto text-citrus-green" data-aos="fade-up" data-aos-delay="400">
@@ -1736,7 +1820,19 @@
   <div class="container mx-auto px-3 sm:px-6 content-wrapper">
     <div class="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-24">
       <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800" data-aos="fade-up">Our Story</h2>
-      <div class="mx-auto mt-3 sm:mt-4 mb-4 sm:mb-6 w-16 sm:w-20 md:w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="botanical-divider mt-3 sm:mt-4 mb-4 sm:mb-6" data-aos="fade-up" data-aos-delay="100">
+        <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+          <path class="vine-path" d="M 10,20 Q 40,10 60,20 T 100,20 T 140,20 T 190,20"
+                stroke="#A2C18D" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="60" cy="20" r="4" fill="#FFFACD" opacity="0.8"/>
+          <circle cx="100" cy="20" r="4" fill="#FFDAB9" opacity="0.8"/>
+          <circle cx="140" cy="20" r="4" fill="#E6DAF5" opacity="0.8"/>
+          <!-- Leaves -->
+          <path d="M 60,20 Q 55,15 58,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+          <path d="M 100,20 Q 105,15 102,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+          <path d="M 140,20 Q 135,25 138,28" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
       <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500" data-aos="fade-up" data-aos-delay="200">A JOURNEY OF LOVE</p>
     </div>
 
@@ -1848,7 +1944,16 @@
     <section id="event" class="py-20 bg-citrus-light bg-transparent-for-petals relative">
         <div class="container mx-auto px-3 sm:px-6 text-center content-wrapper">
             <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800" data-aos="fade-up">The Wedding</h2>
-            <div class="mx-auto mt-3 sm:mt-4 mb-4 sm:mb-6 w-16 sm:w-20 md:w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+            <div class="citrus-garland mt-3 sm:mt-4 mb-4 sm:mb-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+                <div class="citrus-dot"></div>
+            </div>
             <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-6 sm:mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="200">JOIN US TO CELEBRATE</p>
             <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-12 max-w-6xl mx-auto items-center">
                 <div class="text-center" data-aos="fade-right">
@@ -1937,7 +2042,18 @@
   <div class="container mx-auto px-6 content-wrapper">
     <div class="text-center mb-12">
       <h2 class="font-serif-display text-5xl font-bold text-gray-800" data-aos="fade-up">Attire</h2>
-      <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="botanical-divider mt-4 mb-6" data-aos="fade-up" data-aos-delay="100">
+        <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+          <path class="vine-path" d="M 10,20 Q 40,10 60,20 T 100,20 T 140,20 T 190,20"
+                stroke="#A2C18D" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="60" cy="20" r="4" fill="#FFFACD" opacity="0.8"/>
+          <circle cx="100" cy="20" r="4" fill="#FFDAB9" opacity="0.8"/>
+          <circle cx="140" cy="20" r="4" fill="#E6DAF5" opacity="0.8"/>
+          <path d="M 60,20 Q 55,15 58,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+          <path d="M 100,20 Q 105,15 102,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+          <path d="M 140,20 Q 135,25 138,28" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
       <p class="text-xl uppercase tracking-wide text-gray-500" data-aos="fade-up" data-aos-delay="200">Soft Citrus Garden Theme</p>
     </div>
 
@@ -2085,7 +2201,16 @@
 <section id="entourage" class="py-16 md:py-20 bg-citrus-light bg-transparent-for-petals">
   <div class="container mx-auto px-3 sm:px-6 content-wrapper text-center">
     <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800" data-aos="fade-up">Our Entourage</h2>
-    <div class="mx-auto mt-3 sm:mt-4 mb-4 sm:mb-6 w-16 sm:w-20 md:w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+    <div class="citrus-garland mt-3 sm:mt-4 mb-4 sm:mb-6" data-aos="fade-up" data-aos-delay="100">
+      <div class="citrus-dot"></div>
+      <div class="citrus-dot"></div>
+      <div class="citrus-dot"></div>
+      <div class="citrus-dot"></div>
+      <div class="citrus-dot"></div>
+      <div class="citrus-dot"></div>
+      <div class="citrus-dot"></div>
+      <div class="citrus-dot"></div>
+    </div>
     <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-6 sm:mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="200">THE PEOPLE WHO STAND WITH US</p>
 
     <!-- Groom & Bride -->
@@ -2283,7 +2408,18 @@
         <div class="container mx-auto px-6 text-center content-wrapper relative z-10">
             <div class="text-center mb-12">
                 <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up" data-aos-duration="1000">Gallery</h2>
-		        <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(90deg, #F59E0B, #FCD34D, #F59E0B); background-size: 200% auto; animation: shimmer 2s linear infinite;"></div>
+		        <div class="botanical-divider mt-4 mb-6" data-aos="fade-up" data-aos-delay="100">
+                  <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                    <path class="vine-path" d="M 10,20 Q 40,10 60,20 T 100,20 T 140,20 T 190,20"
+                          stroke="#A2C18D" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <circle cx="60" cy="20" r="4" fill="#FFFACD" opacity="0.8"/>
+                    <circle cx="100" cy="20" r="4" fill="#FFDAB9" opacity="0.8"/>
+                    <circle cx="140" cy="20" r="4" fill="#E6DAF5" opacity="0.8"/>
+                    <path d="M 60,20 Q 55,15 58,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                    <path d="M 100,20 Q 105,15 102,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                    <path d="M 140,20 Q 135,25 138,28" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                  </svg>
+                </div>
                 <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 float-gentle" data-aos="fade-up" data-aos-delay="200">CHERISHED MOMENTS</p>
             </div>
 
@@ -2562,7 +2698,16 @@
         <div class="absolute inset-0 bg-transparent"></div>
         <div class="relative container mx-auto px-6 text-center content-wrapper">
             <h2 class="font-serif-display text-3xl sm:text-4xl md:text-5xl font-bold text-citrus-green" data-aos="fade-up">Will You Be There?</h2>
-            <div class="mx-auto mt-3 mb-4 w-20 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+            <div class="citrus-garland mt-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+              <div class="citrus-dot"></div>
+              <div class="citrus-dot"></div>
+              <div class="citrus-dot"></div>
+              <div class="citrus-dot"></div>
+              <div class="citrus-dot"></div>
+              <div class="citrus-dot"></div>
+              <div class="citrus-dot"></div>
+              <div class="citrus-dot"></div>
+            </div>
             <p class="text-base sm:text-lg md:text-xl font-bold uppercase tracking-wide text-dark-gray-200 mb-6" data-aos="fade-up" data-aos-delay="200">PLEASE RSVP BY MARCH 19, 2026</p>
 
             <div class="max-w-2xl mx-auto envelope-container" id="rsvp-envelope" data-aos="fade-up" data-aos-delay="300">
@@ -2651,7 +2796,18 @@
         <div class="container mx-auto px-3 sm:px-6 content-wrapper">
             <div class="text-center mb-6 sm:mb-8 md:mb-12">
                 <h2 class="font-serif-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800" data-aos="fade-up">Travel & Stay</h2>
-                <div class="mx-auto mt-3 sm:mt-4 mb-4 sm:mb-6 w-16 sm:w-20 md:w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+                <div class="botanical-divider mt-3 sm:mt-4 mb-4 sm:mb-6" data-aos="fade-up" data-aos-delay="100">
+                  <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                    <path class="vine-path" d="M 10,20 Q 40,10 60,20 T 100,20 T 140,20 T 190,20"
+                          stroke="#A2C18D" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <circle cx="60" cy="20" r="4" fill="#FFFACD" opacity="0.8"/>
+                    <circle cx="100" cy="20" r="4" fill="#FFDAB9" opacity="0.8"/>
+                    <circle cx="140" cy="20" r="4" fill="#E6DAF5" opacity="0.8"/>
+                    <path d="M 60,20 Q 55,15 58,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                    <path d="M 100,20 Q 105,15 102,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                    <path d="M 140,20 Q 135,25 138,28" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                  </svg>
+                </div>
                 <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-4 sm:mb-6 md:mb-8" data-aos="fade-up" data-aos-delay="200">ACCOMMODATION & TRANSPORTATION</p>
             </div>
 
@@ -2741,7 +2897,16 @@
         <div class="container mx-auto px-6 content-wrapper">
             <div class="text-center mb-12">
                 <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up" data-aos-duration="1000">Guest Messages</h2>
-                <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100" style="background: linear-gradient(90deg, #F59E0B, #FCD34D, #F59E0B); background-size: 200% auto; animation: shimmer 2s linear infinite;"></div>
+                <div class="citrus-garland mt-4 mb-6" data-aos="fade-up" data-aos-delay="100">
+                  <div class="citrus-dot"></div>
+                  <div class="citrus-dot"></div>
+                  <div class="citrus-dot"></div>
+                  <div class="citrus-dot"></div>
+                  <div class="citrus-dot"></div>
+                  <div class="citrus-dot"></div>
+                  <div class="citrus-dot"></div>
+                  <div class="citrus-dot"></div>
+                </div>
                 <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 float-gentle" data-aos="fade-up" data-aos-delay="200">LEAVE US YOUR BEST WISHES</p>
             </div>
 
@@ -2809,7 +2974,18 @@
         <div class="container mx-auto px-6 content-wrapper">
             <div class="text-center mb-12">
                 <h2 class="font-serif-display text-5xl font-bold text-gray-800 shimmer-text" data-aos="fade-up">Guest Photo Wall</h2>
-                <div class="mx-auto mt-4 mb-6 w-24 border-b-4 border-yellow-300 rounded" data-aos="fade-up" data-aos-delay="100"></div>
+                <div class="botanical-divider mt-4 mb-6" data-aos="fade-up" data-aos-delay="100">
+                  <svg viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+                    <path class="vine-path" d="M 10,20 Q 40,10 60,20 T 100,20 T 140,20 T 190,20"
+                          stroke="#A2C18D" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <circle cx="60" cy="20" r="4" fill="#FFFACD" opacity="0.8"/>
+                    <circle cx="100" cy="20" r="4" fill="#FFDAB9" opacity="0.8"/>
+                    <circle cx="140" cy="20" r="4" fill="#E6DAF5" opacity="0.8"/>
+                    <path d="M 60,20 Q 55,15 58,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                    <path d="M 100,20 Q 105,15 102,12" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                    <path d="M 140,20 Q 135,25 138,28" stroke="#81A26B" stroke-width="1.5" fill="none"/>
+                  </svg>
+                </div>
                 <p class="text-xl uppercase tracking-wide text-gray-500 mb-8" data-aos="fade-up" data-aos-delay="200">Share Your Memories With Us</p>
             </div>
 
@@ -3541,6 +3717,9 @@
         });
 
         const numPetals = 18; // Reduced for elegance
+        const numButterflies = 3; // Animated GIF butterflies (HTML elements)
+        const numLeaves = 5; // Add leaves
+        const numCitrus = 4; // Add citrus slices
 
         // Petal colors for fallback (if images don't load)
         const petalColors = ['#FFDAB9', '#FFC0CB', '#FFE4B5', '#FFFACD', '#FFB6C1', '#FFEFD5'];
@@ -3552,6 +3731,7 @@
 
         class Petal {
             constructor() {
+                this.type = 'petal';
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height * 2 - canvas.height;
 
@@ -3640,16 +3820,223 @@
             }
         }
 
+        // Butterfly class - HTML img element for animated GIF support
+        class Butterfly {
+            constructor() {
+                this.type = 'butterfly';
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.w = 50 + Math.random() * 30;
+                this.h = this.w * 0.75; // Maintain aspect ratio
+                this.opacity = 0.7 + Math.random() * 0.3;
+
+                // Create actual HTML img element for animated GIF
+                this.element = document.createElement('img');
+                const butterflyUrls = [
+                    "https://exi0r.github.io/wedding/image/butterfly1.gif",
+                    "https://exi0r.github.io/wedding/image/butterfly2.gif",
+                    "https://exi0r.github.io/wedding/image/butterfly3.gif"
+                ];
+                this.element.src = butterflyUrls[Math.floor(Math.random() * butterflyUrls.length)];
+                this.element.style.position = 'fixed';
+                this.element.style.width = this.w + 'px';
+                this.element.style.height = this.h + 'px';
+                this.element.style.pointerEvents = 'none';
+                this.element.style.zIndex = '10'; // Above canvas but below modals
+                this.element.style.opacity = this.opacity;
+                this.element.style.transition = 'transform 0.1s linear';
+                this.element.style.imageRendering = 'auto'; // Smooth GIF rendering
+                document.body.appendChild(this.element);
+
+                // Flutter pattern
+                this.xSpeed = 1 + Math.random() * 1.5;
+                this.ySpeed = -0.5 + Math.random() * 0.3;
+                this.waveFrequency = 0.03 + Math.random() * 0.02;
+                this.waveOffset = Math.random() * Math.PI * 2;
+                this.time = 0;
+            }
+
+            update() {
+                this.time += 0.1;
+                this.x += this.xSpeed;
+                this.y += this.ySpeed + Math.sin(this.time * this.waveFrequency + this.waveOffset) * 0.5;
+
+                const rotation = Math.sin(this.time * this.waveFrequency + this.waveOffset) * 15; // degrees
+
+                // Reset when off screen
+                if (this.x > window.innerWidth + 100 || this.y < -100) {
+                    this.x = -100;
+                    this.y = Math.random() * window.innerHeight;
+                }
+
+                // Update element position
+                this.element.style.left = this.x + 'px';
+                this.element.style.top = this.y + 'px';
+                this.element.style.transform = `rotate(${rotation}deg)`;
+            }
+
+            remove() {
+                if (this.element && this.element.parentNode) {
+                    this.element.parentNode.removeChild(this.element);
+                }
+            }
+        }
+
+        // Leaf class - gentle sway
+        class Leaf {
+            constructor() {
+                this.type = 'leaf';
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height * 2 - canvas.height;
+                this.w = 15 + Math.random() * 20;
+                this.h = 20 + Math.random() * 25;
+                this.opacity = 0.4 + Math.random() * 0.4;
+
+                this.xSpeed = 0.3 + Math.random() * 0.4;
+                this.ySpeed = 0.4 + Math.random() * 0.4;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.03;
+
+                this.color = ['#A2C18D', '#81A26B', '#9CB380'][Math.floor(Math.random() * 3)];
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+
+                // Draw leaf shape
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.moveTo(0, -this.h/2);
+                ctx.quadraticCurveTo(this.w/2, -this.h/4, this.w/3, 0);
+                ctx.quadraticCurveTo(this.w/2, this.h/4, 0, this.h/2);
+                ctx.quadraticCurveTo(-this.w/2, this.h/4, -this.w/3, 0);
+                ctx.quadraticCurveTo(-this.w/2, -this.h/4, 0, -this.h/2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+
+            update() {
+                this.y += this.ySpeed;
+                this.x += Math.sin(this.y / 40) * this.xSpeed;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > canvas.height + 50) {
+                    this.y = -50;
+                    this.x = Math.random() * canvas.width;
+                }
+                this.draw();
+            }
+        }
+
+        // Citrus slice class - spinning citrus
+        class Citrus {
+            constructor() {
+                this.type = 'citrus';
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height * 2 - canvas.height;
+                this.w = 25 + Math.random() * 20;
+                this.h = this.w;
+                this.opacity = 0.5 + Math.random() * 0.3;
+
+                this.xSpeed = 0.2 + Math.random() * 0.3;
+                this.ySpeed = 0.3 + Math.random() * 0.3;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.04;
+
+                this.citrusType = Math.random() > 0.5 ? 'lemon' : 'orange';
+                this.color = this.citrusType === 'lemon' ? '#FFFACD' : '#FFDAB9';
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+
+                // Draw citrus slice
+                const radius = this.w / 2;
+
+                // Outer circle
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(0, 0, radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Inner segments
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+                ctx.lineWidth = 2;
+                for (let i = 0; i < 8; i++) {
+                    const angle = (Math.PI * 2 / 8) * i;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+                    ctx.stroke();
+                }
+
+                // Center circle
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.beginPath();
+                ctx.arc(0, 0, radius * 0.2, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.restore();
+            }
+
+            update() {
+                this.y += this.ySpeed;
+                this.x += Math.sin(this.y / 60) * this.xSpeed;
+                this.rotation += this.rotationSpeed;
+
+                if (this.y > canvas.height + 50) {
+                    this.y = -50;
+                    this.x = Math.random() * canvas.width;
+                }
+                this.draw();
+            }
+        }
+
         function initPetals() {
+            // Clean up old butterflies (remove HTML elements)
+            petals.forEach(item => {
+                if (item.type === 'butterfly' && item.remove) {
+                    item.remove();
+                }
+            });
+
             petals = [];
+            // Add petals
             for (let i = 0; i < numPetals; i++) {
                 petals.push(new Petal());
+            }
+            // Add butterflies (HTML elements)
+            for (let i = 0; i < numButterflies; i++) {
+                petals.push(new Butterfly());
+            }
+            // Add leaves
+            for (let i = 0; i < numLeaves; i++) {
+                petals.push(new Leaf());
+            }
+            // Add citrus slices
+            for (let i = 0; i < numCitrus; i++) {
+                petals.push(new Citrus());
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            petals.forEach(petal => petal.update());
+            petals.forEach(petal => {
+                if (petal.type === 'butterfly') {
+                    // Butterflies are HTML elements, just update position
+                    petal.update();
+                } else {
+                    // Canvas-based elements (petals, leaves, citrus)
+                    petal.update();
+                }
+            });
             requestAnimationFrame(animate);
         }
 
