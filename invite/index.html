@@ -480,7 +480,7 @@
             </div>
 
             <!-- Click button -->
-            <a href="invite.html" class="click-button">Click Here to Know More</a>
+            <a href="invite.html" class="click-button" id="inviteLink">Click Here to Know More</a>
         </div>
     </div>
 
@@ -488,6 +488,13 @@
         const envelopeTrigger = document.getElementById('envelope-trigger');
         const state1 = document.querySelector('.state-1');
         const state2 = document.querySelector('.state-2');
+        const inviteLink = document.getElementById('inviteLink');
+
+        // Pass URL parameters to invite.html
+        const urlParams = window.location.search;
+        if (urlParams) {
+            inviteLink.href = 'invite.html' + urlParams;
+        }
 
         // Hover effect for state 1 envelope
         envelopeTrigger.addEventListener('mouseenter', function() {

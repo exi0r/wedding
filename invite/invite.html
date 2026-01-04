@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -646,6 +650,24 @@
             transform: translateY(-1px) scale(0.98);
         }
 
+        .decline-button {
+            background: transparent;
+            color: #8B6914;
+            border: 2px solid rgba(139, 105, 20, 0.4);
+            animation: none;
+        }
+
+        .decline-button:hover {
+            background: rgba(139, 105, 20, 0.1);
+            border-color: #8B6914;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 105, 20, 0.2);
+        }
+
+        .decline-button:active {
+            transform: translateY(0) scale(0.98);
+        }
+
         .details-button {
             background: white;
             color: #B8860B;
@@ -992,6 +1014,9 @@
             <a href="#" class="button accept-button" onclick="handleAccept(); return false;">
                 <span>I Would Be Honored</span>
             </a>
+            <a href="#" class="button decline-button" onclick="handleDecline(); return false;">
+                <span>Respectfully Decline</span>
+            </a>
         </div>
 
         <div class="divider"></div>
@@ -1003,10 +1028,157 @@
     </div>
 
     <script>
+        // === FIREBASE CONFIGURATION ===
+        const firebaseConfig = {
+            apiKey: "AIzaSyAnpHFp7WgtiCBwrFQqPn9RGRYIsq6dOgc",
+            authDomain: "raymond-karen-wedding.firebaseapp.com",
+            databaseURL: "https://raymond-karen-wedding-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "raymond-karen-wedding",
+            storageBucket: "raymond-karen-wedding.firebasestorage.app",
+            messagingSenderId: "885930537934",
+            appId: "1:885930537934:web:c334d3c0463abdb07d319f",
+            measurementId: "G-WDLZ53211C"
+        };
+
+        // Initialize Firebase
+        let database;
+        let firebaseEnabled = false;
+        try {
+            firebase.initializeApp(firebaseConfig);
+            database = firebase.database();
+            firebaseEnabled = true;
+            console.log('✅ Firebase initialized - Tracking enabled!');
+        } catch (error) {
+            console.error('❌ Firebase initialization error:', error);
+            console.log('⚠️ Using localStorage fallback');
+            firebaseEnabled = false;
+        }
+
+        // Get guest identifier from URL parameter
+        // Example: invite.html?guest=john-smith
+        function getGuestId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('guest') || 'unknown-' + Date.now();
+        }
+
+        // Track response
+        function trackResponse(response) {
+            const guestId = getGuestId();
+            const timestamp = new Date().toISOString();
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestName = urlParams.get('name') || 'Not provided';
+
+            const responseData = {
+                guestId: guestId,
+                guestName: decodeURIComponent(guestName),
+                response: response,
+                timestamp: timestamp,
+                date: new Date().toLocaleString(),
+                userAgent: navigator.userAgent,
+                pageUrl: window.location.href
+            };
+
+            // Save to Firebase Realtime Database
+            if (firebaseEnabled) {
+                database.ref('principal-sponsor-responses/' + guestId).set(responseData)
+                    .then(() => {
+                        console.log('✅ Response saved to Firebase:', responseData);
+                    })
+                    .catch((error) => {
+                        console.error('❌ Firebase save error:', error);
+                        // Fallback to localStorage
+                        saveToLocalStorage(responseData);
+                    });
+            } else {
+                // Fallback to localStorage if Firebase fails
+                saveToLocalStorage(responseData);
+            }
+        }
+
+        // Fallback: Save to localStorage
+        function saveToLocalStorage(responseData) {
+            const responses = JSON.parse(localStorage.getItem('sponsorResponses') || '[]');
+            responses.push(responseData);
+            localStorage.setItem('sponsorResponses', JSON.stringify(responses));
+            console.log('💾 Response saved to localStorage:', responseData);
+        }
+
         function handleAccept() {
-            // You can customize this to send to a form, email, or RSVP system
+            trackResponse('accept');
             alert('Thank you for accepting! We are truly honored and blessed to have you as our Principal Sponsor.\n\nWe will contact you soon with further details.');
         }
+
+        function handleDecline() {
+            trackResponse('decline');
+            alert('Thank you for your response. We completely understand and appreciate you taking the time to let us know.\n\nYour presence at our wedding as a guest would still mean the world to us!');
+        }
+
+        // Display guest name if provided in URL
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestName = urlParams.get('name');
+
+            if (guestName) {
+                const greeting = document.querySelector('.greeting');
+                greeting.textContent = `Dear ${decodeURIComponent(guestName)},`;
+            }
+        });
     </script>
+
+    <!--
+    ==========================================
+    FIREBASE RESPONSE TRACKING - ACTIVE ✅
+    ==========================================
+
+    HOW TO USE:
+    -----------
+    1. Send personalized invite links to each person:
+
+       Examples:
+       - John Smith:  invite.html?guest=john-smith&name=John%20Smith
+       - Aunt Mary:   invite.html?guest=mary-jones&name=Aunt%20Mary
+       - Boss Mike:   invite.html?guest=mike-boss&name=Mike
+       - Sarah Chen:  invite.html?guest=sarah-chen&name=Sarah%20Chen
+
+    2. When they click Accept/Decline, it automatically saves to Firebase
+
+    3. View responses in Firebase Console:
+       - Go to: https://console.firebase.google.com/
+       - Select: raymond-karen-wedding
+       - Click: Realtime Database
+       - Navigate to: principal-sponsor-responses/
+
+    WHAT'S TRACKED:
+    ---------------
+    - Guest ID (from URL)
+    - Guest Name (from URL)
+    - Response (accept/decline)
+    - Timestamp (ISO format)
+    - Date (readable format)
+    - Page URL
+    - Browser info
+
+    EXAMPLE FIREBASE DATA:
+    ----------------------
+    principal-sponsor-responses/
+      john-smith/
+        guestId: "john-smith"
+        guestName: "John Smith"
+        response: "accept"
+        timestamp: "2026-01-04T10:30:00.000Z"
+        date: "1/4/2026, 10:30:00 AM"
+        pageUrl: "invite.html?guest=john-smith&name=John%20Smith"
+
+    FEATURES:
+    ---------
+    ✅ Real-time tracking (responses appear instantly)
+    ✅ No typing required from guests
+    ✅ Automatic name personalization
+    ✅ LocalStorage fallback if Firebase fails
+    ✅ Console logs for debugging
+
+    ==========================================
+    -->
+
 </body>
 </html>
