@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Invited | Raymond & Karen's Wedding</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFDAB9 50%, #FFE4E1 100%);
+            background-size: 400% 400%;
+            animation: softGlow 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes softGlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Main container */
+        .invitation-container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* State containers */
+        .state {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+        }
+
+        .state.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Header names */
+        .header-names {
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #8B4513;
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+            z-index: 20;
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
+        /* Dried leaves on the left */
+        .fern-left {
+            position: absolute;
+            left: 5%;
+            bottom: 3%;
+            width: 350px;
+            height: auto;
+            opacity: 0.9;
+            filter: drop-shadow(0 10px 30px rgba(0, 100, 0, 0.2));
+            animation: gentleSway 6s ease-in-out infinite;
+            z-index: 15;
+        }
+
+        @keyframes gentleSway {
+            0%, 100% {
+                transform: rotate(-2deg) translateY(0);
+            }
+            50% {
+                transform: rotate(2deg) translateY(-10px);
+            }
+        }
+
+        /* Dried flowers on the right */
+        .flowers-right {
+            position: absolute;
+            right: 7%;
+            top: 30%;
+            width: 400px;
+            height: auto;
+            opacity: 0.95;
+            filter: drop-shadow(0 10px 30px rgba(255, 200, 0, 0.3));
+            animation: floatFlowers 8s ease-in-out infinite;
+            z-index: 15;
+            transform: rotate(30deg);
+        }
+
+        @keyframes floatFlowers {
+            0%, 100% {
+                transform: rotate(30deg) translateY(0);
+            }
+            33% {
+                transform: rotate(32deg) translateY(-15px);
+            }
+            66% {
+                transform: rotate(28deg) translateY(-8px);
+            }
+        }
+
+        /* Envelope container */
+        .envelope-wrapper {
+            position: relative;
+            width: 600px;
+            height: 450px;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 10;
+        }
+
+        .state-1 .envelope-wrapper {
+            cursor: pointer;
+        }
+
+        .state-1 .envelope-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 50px rgba(0, 0, 0, 0.15));
+        }
+
+        /* Invitation text on envelope */
+        .invitation-text {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%) rotate(-1deg);
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #8B4513;
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+            white-space: normal;
+            pointer-events: none;
+            animation: textGlow 3s ease-in-out infinite;
+            line-height: 1.4;
+            text-align: center;
+            z-index: 20;
+        }
+
+        /* Click here text below seal */
+        .click-text {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #8B4513;
+            text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+            pointer-events: none;
+            animation: textGlow 3s ease-in-out infinite;
+            z-index: 20;
+        }
+
+        @keyframes textGlow {
+            0%, 100% {
+                opacity: 0.9;
+                text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.2);
+            }
+            50% {
+                opacity: 1;
+                text-shadow: 2px 2px 8px rgba(139, 69, 19, 0.3);
+            }
+        }
+
+        .seal-img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.6));
+            animation: sealPulse 2.5s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes sealPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.6));
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.08);
+                filter: drop-shadow(0 0 30px rgba(255, 182, 193, 0.8));
+            }
+        }
+
+        /* Photograph on envelope */
+        .photograph-img {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+            pointer-events: none;
+            z-index: 6;
+        }
+
+        /* Click button */
+        .click-button {
+            position: absolute;
+            bottom: 3%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #D4A574 0%, #C19A6B 100%);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 20;
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+
+        .click-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(135deg, #C19A6B 0%, #D4A574 100%);
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            }
+            50% {
+                box-shadow: 0 12px 30px rgba(212, 165, 116, 0.4);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .header-names {
+                font-size: 2rem;
+                top: 15%;
+            }
+
+            .fern-left {
+                width: 250px;
+                left: 5%;
+                bottom: 28%;
+            }
+
+            .flowers-right {
+                width: 220px;
+                right: 15%;
+                top: 35%;
+            }
+
+            .envelope-wrapper {
+                width: 450px;
+                height: 315px;
+            }
+
+            .invitation-text {
+                font-size: 2rem;
+            }
+
+            .click-text {
+                font-size: 1.3rem;
+            }
+
+            .photograph-img {
+                width: 300px;
+            }
+
+            .seal-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .click-button {
+                font-size: 1rem;
+                padding: 12px 30px;
+                bottom: 20%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .invitation-container {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .header-names {
+                font-size: 2.5rem;
+                top: 35%;
+            }
+
+            .fern-left {
+                width: 230px;
+                left: 0%;
+                bottom: 40%;
+            }
+
+            .flowers-right {
+                width: 230px;
+                right: 0%;
+                top: 40%;
+            }
+
+            .envelope-wrapper {
+                width: 450px;
+                height: 315px;
+            }
+
+            .invitation-text {
+                font-size: 2.5rem;
+            }
+
+            .click-text {
+                font-size: 1.5rem;
+            }
+
+            .photograph-img {
+                width: 350px;
+            }
+
+            .seal-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .click-button {
+                font-size: 1.1rem;
+                padding: 12px 35px;
+                bottom: 8%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .invitation-container {
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .header-names {
+                font-size: 1.5rem;
+                top: 35%;
+            }
+
+            .fern-left {
+                width: 140px;
+                left: -5%;
+                bottom: 40%;
+                opacity: 0.9;
+            }
+
+            .flowers-right {
+                width: 140px;
+                right: 0%;
+                top: 43%;
+                opacity: 0.9;
+            }
+
+            .envelope-wrapper {
+                width: 350px;
+                height: 245px;
+            }
+
+            .invitation-text {
+                font-size: 1.5rem;
+            }
+
+            .click-text {
+                font-size: 1.3rem;
+            }
+
+            .photograph-img {
+                width: 280px;
+            }
+
+            .seal-img {
+                width: 85px;
+                height: 85px;
+            }
+
+            .click-button {
+                font-size: 0.8rem;
+                padding: 12px 20px;
+                bottom: 24%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-container">
+        <!-- State 1: Initial invitation -->
+        <div class="state state-1">
+            <!-- Dried leaves on the left -->
+            <img src="https://exi0r.github.io/wedding/image/driedleaves.png" alt="Dried Leaves" class="fern-left">
+
+            <!-- Dried flowers on the right -->
+            <img src="https://exi0r.github.io/wedding/image/driedflower.png" alt="Dried Flowers" class="flowers-right">
+
+            <!-- Envelope in center -->
+            <div class="envelope-wrapper" id="envelope-trigger">
+                <img src="https://exi0r.github.io/wedding/image/envelop.png" alt="Wedding Invitation Envelope" class="envelope-img">
+
+                <h1 class="invitation-text">You are Invited</h1>
+
+                <p class="click-text">Click Here</p>
+
+                <img src="https://exi0r.github.io/wedding/image/seal.png" alt="Wax Seal" class="seal-img">
+            </div>
+        </div>
+
+        <!-- State 2: Opened invitation -->
+        <div class="state state-2 hidden">
+            <!-- Header names -->
+            <h1 class="header-names">Raymond & Karen</h1>
+
+            <!-- Dried leaves on the left -->
+            <img src="https://exi0r.github.io/wedding/image/driedleaves.png" alt="Dried Leaves" class="fern-left">
+
+            <!-- Dried flowers on the right -->
+            <img src="https://exi0r.github.io/wedding/image/driedflower.png" alt="Dried Flowers" class="flowers-right">
+
+            <!-- Envelope in center -->
+            <div class="envelope-wrapper">
+                <img src="https://exi0r.github.io/wedding/image/envelop.png" alt="Wedding Invitation Envelope" class="envelope-img">
+
+                <!-- Photograph on envelope -->
+                <img src="https://exi0r.github.io/wedding/image/photograph.png" alt="Raymond & Karen" class="photograph-img">
+
+                <img src="https://exi0r.github.io/wedding/image/seal.png" alt="Wax Seal" class="seal-img">
+            </div>
+
+            <!-- Click button -->
+            <a href="invite.html" class="click-button">Click Here to Know More</a>
+        </div>
+    </div>
+
+    <script>
+        const envelopeTrigger = document.getElementById('envelope-trigger');
+        const state1 = document.querySelector('.state-1');
+        const state2 = document.querySelector('.state-2');
+
+        // Hover effect for state 1 envelope
+        envelopeTrigger.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+
+        envelopeTrigger.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+
+        // Click to transition states
+        envelopeTrigger.addEventListener('click', function() {
+            state1.classList.add('hidden');
+            state2.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

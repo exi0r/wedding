@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal Sponsor Invitation | Raymond & Karen's Wedding</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #FDB462 0%, #F4A460 20%, #E8956C 40%, #D4A574 60%, #C19A6B 80%, #B8860B 100%);
+            background-size: 400% 400%;
+            animation: goldenHour 20s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes goldenHour {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Sunburst effect */
+        .sunburst {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 223, 186, 0.3) 0%, transparent 70%);
+            animation: sunburstPulse 8s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes sunburstPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.7;
+            }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatParticle 15s ease-in-out infinite;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-100vh) translateX(50px);
+            }
+        }
+
+        .particle:nth-child(2) { animation-delay: -3s; left: 20%; }
+        .particle:nth-child(3) { animation-delay: -6s; left: 40%; }
+        .particle:nth-child(4) { animation-delay: -9s; left: 60%; }
+        .particle:nth-child(5) { animation-delay: -12s; left: 80%; }
+
+        /* Main container */
+        .invitation-card {
+            position: relative;
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 60px 50px;
+            box-shadow: 0 20px 60px rgba(184, 134, 11, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 1;
+            animation: cardEntrance 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes cardEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9) rotateX(10deg);
+            }
+            60% {
+                transform: translateY(-10px) scale(1.01) rotateX(-2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+        }
+
+        /* Soft floating animation for the card */
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .invitation-card {
+            animation: cardEntrance 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+                       cardFloat 6s ease-in-out 2s infinite;
+        }
+
+        /* Decorative corners */
+        .corner-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.6;
+            transition: all 0.4s ease;
+        }
+
+        .corner-top-left {
+            top: 20px;
+            left: 20px;
+            border-top: 3px solid #D4A574;
+            border-left: 3px solid #D4A574;
+            border-radius: 10px 0 0 0;
+            animation: drawCornerTL 1s ease-out 0.5s both;
+        }
+
+        .corner-top-right {
+            top: 20px;
+            right: 20px;
+            border-top: 3px solid #D4A574;
+            border-right: 3px solid #D4A574;
+            border-radius: 0 10px 0 0;
+            animation: drawCornerTR 1s ease-out 0.6s both;
+        }
+
+        .corner-bottom-left {
+            bottom: 20px;
+            left: 20px;
+            border-bottom: 3px solid #D4A574;
+            border-left: 3px solid #D4A574;
+            border-radius: 0 0 0 10px;
+            animation: drawCornerBL 1s ease-out 0.7s both;
+        }
+
+        .corner-bottom-right {
+            bottom: 20px;
+            right: 20px;
+            border-bottom: 3px solid #D4A574;
+            border-right: 3px solid #D4A574;
+            border-radius: 0 0 10px 0;
+            animation: drawCornerBR 1s ease-out 0.8s both;
+        }
+
+        @keyframes drawCornerTL {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                height: 100px;
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes drawCornerTR {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                height: 100px;
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes drawCornerBL {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                height: 100px;
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes drawCornerBR {
+            from {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                height: 100px;
+                opacity: 0.6;
+            }
+        }
+
+        .invitation-card:hover .corner-decoration {
+            opacity: 1;
+            width: 110px;
+            height: 110px;
+        }
+
+        /* Typography */
+        .couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #B8860B 0%, #D4A574 50%, #B8860B 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            animation: shimmer 3s ease-in-out infinite, fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #8B6914;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .divider {
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4A574, transparent);
+            margin: 30px auto;
+            position: relative;
+            animation: fadeIn 1s ease-out 0.9s both;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #D4A574;
+            font-size: 0.8rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .divider::before {
+            left: -20px;
+        }
+
+        .divider::after {
+            right: -20px;
+            animation-delay: 1s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
+        }
+
+        .greeting {
+            font-size: 1.3rem;
+            text-align: center;
+            color: #5D4E37;
+            margin-bottom: 25px;
+            font-weight: 400;
+            font-style: italic;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .message {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #5D4E37;
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 400;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        .honor-text {
+            font-size: 1.5rem;
+            text-align: center;
+            color: #8B6914;
+            margin: 35px 0;
+            font-weight: 700;
+            font-style: italic;
+            animation: fadeIn 1s ease-out 0.5s both, glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(184, 134, 11, 0.5);
+            }
+        }
+
+        .role-description {
+            background: linear-gradient(135deg, rgba(255, 239, 213, 0.6), rgba(245, 222, 179, 0.6));
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 4px solid #D4A574;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out 0.6s both;
+        }
+
+        .role-description::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .role-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .role-description p {
+            font-size: 1.15rem;
+            color: #5D4E37;
+            line-height: 1.9;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Couple Photo Section */
+        .couple-photo-section {
+            text-align: center;
+            margin: 30px 0;
+            animation: fadeIn 1s ease-out 0.3s both;
+            position: relative;
+        }
+
+        .couple-photo {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid #D4A574;
+            box-shadow: 0 15px 50px rgba(184, 134, 11, 0.3);
+            animation: zoomIn 0.8s ease-out;
+            position: relative;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .couple-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(184, 134, 11, 0.5);
+        }
+
+        .couple-photo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            animation: photoGlow 3s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes photoGlow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1.1);
+            }
+        }
+
+        /* Shimmer effect on photo */
+        .couple-photo-section::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: calc(50% - 140px);
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: shimmerPass 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmerPass {
+            0%, 100% {
+                background-position: -200% 0;
+            }
+            50% {
+                background-position: 200% 0;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Buttons */
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            padding: 16px 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Ripple effect on click */
+        .button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        .button:active::after {
+            animation: ripple 0.6s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 300px;
+                height: 300px;
+                opacity: 0;
+            }
+        }
+
+        .button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .accept-button {
+            background: linear-gradient(135deg, #B8860B 0%, #D4A574 100%);
+            background-size: 200% 200%;
+            color: white;
+            animation: buttonGradient 3s ease-in-out infinite;
+        }
+
+        @keyframes buttonGradient {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .accept-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(184, 134, 11, 0.5);
+        }
+
+        .accept-button:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+
+        .details-button {
+            background: white;
+            color: #B8860B;
+            border: 2px solid #B8860B;
+        }
+
+        .details-button:hover {
+            transform: translateY(-3px);
+            background: #B8860B;
+            color: white;
+        }
+
+        /* Footer */
+        .footer-text {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #8B6914;
+            font-style: italic;
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+
+        /* Add a gentle signature underline */
+        .footer-text::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D4A574, transparent);
+            margin: 10px auto 0;
+            animation: drawLine 1s ease-out 2s both;
+        }
+
+        @keyframes drawLine {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                opacity: 1;
+            }
+        }
+
+        /* Wedding details section */
+        .wedding-details {
+            background: linear-gradient(135deg, rgba(255, 239, 213, 0.4), rgba(245, 222, 179, 0.4));
+            padding: 30px 40px;
+            border-radius: 15px;
+            margin: 35px 0;
+            border: 2px solid rgba(212, 165, 116, 0.3);
+            animation: fadeIn 1s ease-out 0.7s both;
+        }
+
+        /* Staggered animation for detail items */
+        .detail-item:nth-child(1) { animation: slideInLeft 0.6s ease-out 0.8s both; }
+        .detail-item:nth-child(2) { animation: slideInLeft 0.6s ease-out 0.9s both; }
+        .detail-item:nth-child(3) { animation: slideInLeft 0.6s ease-out 1.0s both; }
+        .detail-item:nth-child(4) { animation: slideInLeft 0.6s ease-out 1.1s both; }
+        .detail-item:nth-child(5) { animation: slideInLeft 0.6s ease-out 1.2s both; }
+        .detail-item:nth-child(6) { animation: slideInLeft 0.6s ease-out 1.3s both; }
+        .detail-item:nth-child(7) { animation: slideInLeft 0.6s ease-out 1.4s both; }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .wedding-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #8B6914;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .wedding-details h3::after {
+            content: '✦';
+            display: block;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #D4A574;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            padding-left: 10px;
+            background: rgba(255, 239, 213, 0.3);
+            border-radius: 8px;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #8B6914;
+            font-weight: 600;
+            min-width: 110px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-label::before {
+            content: '→';
+            color: #D4A574;
+            font-size: 1.2rem;
+        }
+
+        .detail-value {
+            font-size: 1.05rem;
+            color: #5D4E37;
+            text-align: right;
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .invitation-card {
+                padding: 40px 30px;
+            }
+
+            .couple-names {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+
+            .greeting {
+                font-size: 1.1rem;
+            }
+
+            .message {
+                font-size: 1rem;
+            }
+
+            .honor-text {
+                font-size: 1.1rem;
+            }
+
+            .role-description h3 {
+                font-size: 1.2rem;
+            }
+
+            .role-description p {
+                font-size: 1rem;
+            }
+
+            .button {
+                font-size: 1rem;
+                padding: 14px 30px;
+            }
+
+            .corner-decoration {
+                width: 60px;
+                height: 60px;
+            }
+
+            .couple-photo {
+                width: 220px;
+                height: 220px;
+            }
+
+            .role-icon {
+                font-size: 2.5rem;
+            }
+
+            .wedding-details {
+                padding: 25px 20px;
+            }
+
+            .wedding-details h3 {
+                font-size: 1.3rem;
+            }
+
+            .detail-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                padding: 12px 0;
+            }
+
+            .detail-item:hover {
+                padding-left: 5px;
+            }
+
+            .detail-label {
+                font-size: 1rem;
+            }
+
+            .detail-label::before {
+                font-size: 1rem;
+            }
+
+            .detail-value {
+                font-size: 1rem;
+                text-align: left;
+                padding-left: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .invitation-card {
+                padding: 30px 20px;
+            }
+
+            .couple-names {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+            }
+
+            .couple-photo {
+                width: 180px;
+                height: 180px;
+            }
+
+            .role-icon {
+                font-size: 2rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sunburst"></div>
+
+    <!-- Floating particles -->
+    <div class="particle" style="left: 10%; bottom: 0;"></div>
+    <div class="particle" style="left: 30%; bottom: 0;"></div>
+    <div class="particle" style="left: 50%; bottom: 0;"></div>
+    <div class="particle" style="left: 70%; bottom: 0;"></div>
+    <div class="particle" style="left: 90%; bottom: 0;"></div>
+
+    <div class="invitation-card">
+        <div class="corner-decoration corner-top-left"></div>
+        <div class="corner-decoration corner-top-right"></div>
+        <div class="corner-decoration corner-bottom-left"></div>
+        <div class="corner-decoration corner-bottom-right"></div>
+
+        <h1 class="couple-names">Raymond & Karen</h1>
+        <p class="subtitle">Request the Honor of Your Presence</p>
+
+        <div class="divider"></div>
+
+        <p class="greeting">Dear Beloved Friend,</p>
+
+        <!-- Couple Photo Section -->
+        <div class="couple-photo-section">
+            <img src="https://exi0r.github.io/wedding/image/IMG_6633.jpeg" alt="Raymond & Karen" class="couple-photo">
+        </div>
+
+        <p class="message">
+            You have been a guiding light in our lives, shaping who we are with your wisdom and unwavering support.
+        </p>
+
+        <p class="honor-text">
+            Will you stand with us as our Principal Sponsor?
+        </p>
+
+        <div class="role-description">
+            <div class="role-icon">✨</div>
+            <p>
+                As our principal sponsor, you would witness our vows and guide us through this new chapter. Your blessing and presence mean the world to us.
+            </p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="wedding-details">
+            <h3>Wedding Details</h3>
+            <div class="detail-item">
+                <span class="detail-label">Date:</span>
+                <span class="detail-value">Sunday, April 19, 2026</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Time:</span>
+                <span class="detail-value">4:30 PM</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Venue:</span>
+                <span class="detail-value">The Emerald Events Place</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Address:</span>
+                <span class="detail-value">Cabrera Rd, Antipolo City, 1870 Rizal</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Reception:</span>
+                <span class="detail-value">Same Venue (Following Ceremony)</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Attire:</span>
+                <span class="detail-value">Formal | Soft Citrus Garden Theme</span>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a href="#" class="button accept-button" onclick="handleAccept(); return false;">
+                <span>I Would Be Honored</span>
+            </a>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="footer-text">
+            With love and gratitude,<br>
+            Raymond & Karen
+        </p>
+    </div>
+
+    <script>
+        function handleAccept() {
+            // You can customize this to send to a form, email, or RSVP system
+            alert('Thank you for accepting! We are truly honored and blessed to have you as our Principal Sponsor.\n\nWe will contact you soon with further details.');
+        }
+    </script>
+</body>
+</html>
