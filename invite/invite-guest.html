@@ -22,9 +22,17 @@
 
         body {
             font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, #FDB462 0%, #F4A460 20%, #E8956C 40%, #D4A574 60%, #C19A6B 80%, #B8860B 100%);
+            background: linear-gradient(135deg,
+                #E8A547 0%,    /* Deep Golden Orange */
+                #D89654 15%,   /* Rich Peach */
+                #C17817 30%,   /* Deep Gold */
+                #E8762D 45%,   /* Burnt Orange */
+                #D4793B 60%,   /* Terracotta */
+                #C97442 75%,   /* Rust */
+                #8E4232 90%,   /* Deep Rust */
+                #6B3425 100%); /* Chocolate Brown */
             background-size: 400% 400%;
-            animation: goldenHour 20s ease infinite;
+            animation: goldenHour 25s ease infinite;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -42,8 +50,9 @@
             right: 0;
             bottom: 0;
             background-image:
-                radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 20% 80%, rgba(212, 121, 59, 0.3) 0%, transparent 60%),
+                radial-gradient(circle at 80% 20%, rgba(142, 66, 50, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(193, 120, 23, 0.2) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
@@ -68,8 +77,12 @@
             transform: translate(-50%, -50%);
             width: 150%;
             height: 150%;
-            background: radial-gradient(circle, rgba(255, 223, 186, 0.3) 0%, transparent 70%);
-            animation: sunburstPulse 8s ease-in-out infinite;
+            background: radial-gradient(circle,
+                rgba(232, 165, 71, 0.4) 0%,    /* Deep golden */
+                rgba(212, 121, 59, 0.35) 20%,  /* Terracotta */
+                rgba(193, 120, 23, 0.25) 40%,  /* Rich gold */
+                transparent 70%);
+            animation: sunburstPulse 10s ease-in-out infinite;
             z-index: 0;
             pointer-events: none;
         }
@@ -88,13 +101,14 @@
         /* Floating particles */
         .particle {
             position: fixed;
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 215, 0, 0.4);
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, rgba(255, 179, 71, 0.8), rgba(255, 140, 66, 0.4));
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
             animation: floatParticle 15s ease-in-out infinite;
+            box-shadow: 0 0 15px rgba(255, 179, 71, 0.6);
         }
 
         @keyframes floatParticle {
@@ -120,11 +134,16 @@
             position: relative;
             max-width: 800px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(to bottom,
+                rgba(255, 253, 250, 0.98) 0%,
+                rgba(255, 248, 240, 0.96) 50%,
+                rgba(255, 245, 235, 0.98) 100%);
             border-radius: 20px;
             padding: 60px 50px;
-            box-shadow: 0 20px 60px rgba(184, 134, 11, 0.4);
+            box-shadow: 0 20px 60px rgba(255, 140, 66, 0.3),
+                        0 0 100px rgba(255, 179, 71, 0.2);
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 179, 71, 0.2);
             z-index: 1;
             animation: cardEntrance 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
@@ -170,37 +189,41 @@
         .corner-top-left {
             top: 20px;
             left: 20px;
-            border-top: 3px solid #D4A574;
-            border-left: 3px solid #D4A574;
+            border-top: 3px solid #FF8C42;
+            border-left: 3px solid #FF8C42;
             border-radius: 10px 0 0 0;
             animation: drawCornerTL 1s ease-out 0.5s both;
+            box-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
         }
 
         .corner-top-right {
             top: 20px;
             right: 20px;
-            border-top: 3px solid #D4A574;
-            border-right: 3px solid #D4A574;
+            border-top: 3px solid #FF8C42;
+            border-right: 3px solid #FF8C42;
             border-radius: 0 10px 0 0;
             animation: drawCornerTR 1s ease-out 0.6s both;
+            box-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
         }
 
         .corner-bottom-left {
             bottom: 20px;
             left: 20px;
-            border-bottom: 3px solid #D4A574;
-            border-left: 3px solid #D4A574;
+            border-bottom: 3px solid #FF8C42;
+            border-left: 3px solid #FF8C42;
             border-radius: 0 0 0 10px;
             animation: drawCornerBL 1s ease-out 0.7s both;
+            box-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
         }
 
         .corner-bottom-right {
             bottom: 20px;
             right: 20px;
-            border-bottom: 3px solid #D4A574;
-            border-right: 3px solid #D4A574;
+            border-bottom: 3px solid #FF8C42;
+            border-right: 3px solid #FF8C42;
             border-radius: 0 0 10px 0;
             animation: drawCornerBR 1s ease-out 0.8s both;
+            box-shadow: 0 0 10px rgba(255, 140, 66, 0.3);
         }
 
         @keyframes drawCornerTL {
@@ -266,13 +289,19 @@
             font-family: 'Great Vibes', cursive;
             font-size: 4rem;
             text-align: center;
-            background: linear-gradient(135deg, #B8860B 0%, #D4A574 50%, #B8860B 100%);
+            background: linear-gradient(135deg,
+                #FF6B6B 0%,    /* Coral pink */
+                #FFA500 25%,   /* Orange */
+                #FFD700 50%,   /* Gold */
+                #FF8C42 75%,   /* Sunset orange */
+                #FF6B6B 100%); /* Back to coral */
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 15px;
-            animation: shimmer 3s ease-in-out infinite, fadeInDown 0.8s ease-out;
+            animation: shimmer 4s ease-in-out infinite, fadeInDown 0.8s ease-out;
+            filter: drop-shadow(0 2px 8px rgba(255, 140, 66, 0.3));
         }
 
         @keyframes shimmer {
@@ -299,20 +328,22 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
             text-align: center;
-            color: #8B6914;
+            color: #D2691E;
             letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 40px;
             font-weight: 400;
+            text-shadow: 0 1px 3px rgba(255, 140, 66, 0.2);
         }
 
         .divider {
             width: 150px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #D4A574, transparent);
+            background: linear-gradient(90deg, transparent, #FF8C42, #FFD700, #FF8C42, transparent);
             margin: 30px auto;
             position: relative;
             animation: fadeIn 1s ease-out 0.9s both;
+            box-shadow: 0 0 10px rgba(255, 140, 66, 0.4);
         }
 
         .divider::before,
@@ -321,9 +352,10 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            color: #D4A574;
+            color: #FF8C42;
             font-size: 0.8rem;
             animation: sparkle 2s ease-in-out infinite;
+            text-shadow: 0 0 8px rgba(255, 140, 66, 0.6);
         }
 
         .divider::before {
@@ -358,32 +390,39 @@
 
         /* Seats Reserved Section */
         .seats-reserved {
-            background: linear-gradient(135deg, rgba(255, 239, 213, 0.7), rgba(245, 222, 179, 0.7));
+            background: linear-gradient(135deg,
+                rgba(255, 240, 220, 0.85),
+                rgba(255, 228, 196, 0.85),
+                rgba(255, 218, 185, 0.85));
             padding: 20px 30px;
             border-radius: 15px;
             margin: 25px auto;
             max-width: 400px;
-            border: 2px solid rgba(212, 165, 116, 0.4);
+            border: 2px solid rgba(255, 140, 66, 0.3);
             animation: fadeIn 1s ease-out 0.25s both;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.2),
+                        inset 0 0 30px rgba(255, 215, 0, 0.1);
         }
 
         .seats-icon {
             font-size: 2.5rem;
             margin-bottom: 10px;
             animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(255, 140, 66, 0.3));
         }
 
         .seats-text {
             font-size: 1.1rem;
-            color: #5D4E37;
+            color: #8B4513;
             margin: 0;
             font-weight: 400;
         }
 
         .seats-text strong {
-            color: #8B6914;
+            color: #D2691E;
             font-size: 1.2rem;
+            text-shadow: 0 1px 2px rgba(255, 140, 66, 0.2);
         }
 
         .message {
@@ -399,31 +438,38 @@
         .honor-text {
             font-size: 1.5rem;
             text-align: center;
-            color: #8B6914;
+            background: linear-gradient(135deg, #FF6B6B, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin: 35px 0;
             font-weight: 700;
             font-style: italic;
-            animation: fadeIn 1s ease-out 0.5s both, glow 2s ease-in-out infinite;
+            animation: fadeIn 1s ease-out 0.5s both, glow 3s ease-in-out infinite;
         }
 
         @keyframes glow {
             0%, 100% {
-                text-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+                filter: drop-shadow(0 0 10px rgba(255, 140, 66, 0.4));
             }
             50% {
-                text-shadow: 0 0 20px rgba(184, 134, 11, 0.5);
+                filter: drop-shadow(0 0 20px rgba(255, 140, 66, 0.6));
             }
         }
 
         .role-description {
-            background: linear-gradient(135deg, rgba(255, 239, 213, 0.6), rgba(245, 222, 179, 0.6));
+            background: linear-gradient(135deg,
+                rgba(255, 240, 220, 0.7),
+                rgba(255, 228, 196, 0.7),
+                rgba(255, 218, 185, 0.7));
             padding: 30px;
             border-radius: 20px;
-            border-left: 4px solid #D4A574;
+            border-left: 4px solid #FF8C42;
             margin: 30px 0;
             position: relative;
             overflow: hidden;
             animation: slideUp 0.8s ease-out 0.6s both;
+            box-shadow: 0 4px 20px rgba(255, 140, 66, 0.15);
         }
 
         .role-description::before {
@@ -433,7 +479,10 @@
             right: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle,
+                rgba(255, 179, 71, 0.15) 0%,
+                rgba(255, 140, 66, 0.1) 40%,
+                transparent 70%);
             animation: rotate 20s linear infinite;
         }
 
@@ -466,8 +515,10 @@
             height: 280px;
             object-fit: cover;
             border-radius: 50%;
-            border: 6px solid #D4A574;
-            box-shadow: 0 15px 50px rgba(184, 134, 11, 0.3);
+            border: 6px solid #FF8C42;
+            box-shadow: 0 15px 50px rgba(255, 140, 66, 0.4),
+                        0 0 30px rgba(255, 179, 71, 0.3),
+                        inset 0 0 20px rgba(255, 215, 0, 0.1);
             animation: zoomIn 0.8s ease-out;
             position: relative;
             transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -475,7 +526,9 @@
 
         .couple-photo:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(184, 134, 11, 0.5);
+            box-shadow: 0 20px 60px rgba(255, 140, 66, 0.6),
+                        0 0 40px rgba(255, 179, 71, 0.5),
+                        inset 0 0 20px rgba(255, 215, 0, 0.2);
         }
 
         .couple-photo-section::before {
@@ -487,7 +540,10 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle,
+                rgba(255, 179, 71, 0.3) 0%,
+                rgba(255, 140, 66, 0.2) 40%,
+                transparent 70%);
             animation: photoGlow 3s ease-in-out infinite;
             z-index: -1;
         }
@@ -656,10 +712,17 @@
         }
 
         .accept-button {
-            background: linear-gradient(135deg, #B8860B 0%, #D4A574 100%);
+            background: linear-gradient(135deg,
+                #FF6B6B 0%,
+                #FF8C42 25%,
+                #FFA500 50%,
+                #FF8C42 75%,
+                #FF6B6B 100%);
             background-size: 200% 200%;
             color: white;
-            animation: buttonGradient 3s ease-in-out infinite;
+            animation: buttonGradient 4s ease-in-out infinite;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3),
+                        0 0 20px rgba(255, 140, 66, 0.2);
         }
 
         @keyframes buttonGradient {
@@ -673,7 +736,8 @@
 
         .accept-button:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 35px rgba(184, 134, 11, 0.5);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.5),
+                        0 0 30px rgba(255, 140, 66, 0.4);
         }
 
         .accept-button:active {
@@ -682,16 +746,16 @@
 
         .decline-button {
             background: transparent;
-            color: #8B6914;
-            border: 2px solid rgba(139, 105, 20, 0.4);
+            color: #D2691E;
+            border: 2px solid rgba(255, 140, 66, 0.4);
             animation: none;
         }
 
         .decline-button:hover {
-            background: rgba(139, 105, 20, 0.1);
-            border-color: #8B6914;
+            background: rgba(255, 140, 66, 0.1);
+            border-color: #FF8C42;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(139, 105, 20, 0.2);
+            box-shadow: 0 8px 20px rgba(255, 140, 66, 0.3);
         }
 
         .decline-button:active {
@@ -715,9 +779,10 @@
             text-align: center;
             margin-top: 40px;
             font-size: 1rem;
-            color: #8B6914;
+            color: #D2691E;
             font-style: italic;
             animation: fadeIn 1s ease-out 1.5s both;
+            text-shadow: 0 1px 2px rgba(255, 140, 66, 0.2);
         }
 
         /* Add a gentle signature underline */
@@ -726,9 +791,10 @@
             display: block;
             width: 100px;
             height: 1px;
-            background: linear-gradient(90deg, transparent, #D4A574, transparent);
+            background: linear-gradient(90deg, transparent, #FF8C42, #FFD700, #FF8C42, transparent);
             margin: 10px auto 0;
             animation: drawLine 1s ease-out 2s both;
+            box-shadow: 0 0 8px rgba(255, 140, 66, 0.3);
         }
 
         @keyframes drawLine {
@@ -744,22 +810,30 @@
 
         /* Wedding details section */
         .wedding-details {
-            background: linear-gradient(135deg, rgba(255, 239, 213, 0.4), rgba(245, 222, 179, 0.4));
+            background: linear-gradient(135deg,
+                rgba(255, 245, 235, 0.6),
+                rgba(255, 235, 215, 0.6),
+                rgba(255, 228, 196, 0.6));
             padding: 30px 40px;
             border-radius: 15px;
             margin: 35px 0;
-            border: 2px solid rgba(212, 165, 116, 0.3);
+            border: 2px solid rgba(255, 140, 66, 0.3);
             animation: fadeIn 1s ease-out 0.7s both;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.15),
+                        inset 0 0 30px rgba(255, 215, 0, 0.08);
         }
 
         /* Staggered animation for detail items */
         .detail-item:nth-child(1) { animation: slideInLeft 0.6s ease-out 0.8s both; }
-        .detail-item:nth-child(2) { animation: slideInLeft 0.6s ease-out 0.9s both; }
-        .detail-item:nth-child(3) { animation: slideInLeft 0.6s ease-out 1.0s both; }
-        .detail-item:nth-child(4) { animation: slideInLeft 0.6s ease-out 1.1s both; }
-        .detail-item:nth-child(5) { animation: slideInLeft 0.6s ease-out 1.2s both; }
-        .detail-item:nth-child(6) { animation: slideInLeft 0.6s ease-out 1.3s both; }
-        .detail-item:nth-child(7) { animation: slideInLeft 0.6s ease-out 1.4s both; }
+        .detail-item:nth-child(2) { animation: slideInLeft 0.6s ease-out 0.85s both; }
+        .detail-item:nth-child(3) { animation: slideInLeft 0.6s ease-out 0.9s both; }
+        .detail-item:nth-child(4) { animation: slideInLeft 0.6s ease-out 0.95s both; }
+        .detail-item:nth-child(5) { animation: slideInLeft 0.6s ease-out 1.0s both; }
+        .detail-item:nth-child(6) { animation: slideInLeft 0.6s ease-out 1.05s both; }
+        .detail-item:nth-child(7) { animation: slideInLeft 0.6s ease-out 1.1s both; }
+        .detail-item:nth-child(8) { animation: slideInLeft 0.6s ease-out 1.15s both; }
+        .detail-item:nth-child(9) { animation: slideInLeft 0.6s ease-out 1.2s both; }
+        .detail-item:nth-child(10) { animation: slideInLeft 0.6s ease-out 1.25s both; }
 
         @keyframes slideInLeft {
             from {
@@ -775,7 +849,10 @@
         .wedding-details h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
-            color: #8B6914;
+            background: linear-gradient(135deg, #FF6B6B, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-align: center;
             margin-bottom: 30px;
             font-weight: 600;
@@ -787,8 +864,9 @@
             display: block;
             font-size: 1.2rem;
             margin-top: 10px;
-            color: #D4A574;
+            color: #FF8C42;
             animation: pulse 2s ease-in-out infinite;
+            text-shadow: 0 0 10px rgba(255, 140, 66, 0.5);
         }
 
         @keyframes pulse {
@@ -813,8 +891,9 @@
 
         .detail-item:hover {
             padding-left: 10px;
-            background: rgba(255, 239, 213, 0.3);
+            background: rgba(255, 228, 196, 0.4);
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(255, 140, 66, 0.1);
         }
 
         .detail-item:last-child {
@@ -824,7 +903,7 @@
         .detail-label {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
-            color: #8B6914;
+            color: #D2691E;
             font-weight: 600;
             min-width: 110px;
             display: flex;
@@ -834,8 +913,9 @@
 
         .detail-label::before {
             content: '→';
-            color: #D4A574;
+            color: #FF8C42;
             font-size: 1.2rem;
+            text-shadow: 0 0 5px rgba(255, 140, 66, 0.3);
         }
 
         .detail-value {
@@ -844,6 +924,41 @@
             text-align: right;
             flex: 1;
             line-height: 1.5;
+        }
+
+        /* Color swatches for attire */
+        .color-swatches {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .color-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25),
+                        0 0 12px rgba(193, 120, 23, 0.4),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .detail-value-with-colors {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
         }
 
         /* Responsive design */
@@ -1077,8 +1192,50 @@
                 <span class="detail-value">Same Venue (Following Ceremony)</span>
             </div>
             <div class="detail-item">
-                <span class="detail-label">Attire:</span>
-                <span class="detail-value">Formal | Soft Citrus Garden Theme</span>
+                <span class="detail-label">Dress Code:</span>
+                <span class="detail-value">Formal Attire</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Theme:</span>
+                <span class="detail-value">Golden Hour | Warm Sunset Tones</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">For Her:</span>
+                <div class="detail-value-with-colors">
+                    <span>Elegant dresses in warm sunset tones</span>
+                    <div class="color-swatches">
+                        <div class="color-swatch" style="background: #E8B855;" title="Golden Amber"></div>
+                        <div class="color-swatch" style="background: #C97442;" title="Terracotta"></div>
+                        <div class="color-swatch" style="background: #E5D5C3;" title="Champagne"></div>
+                        <div class="color-swatch" style="background: #8E4232;" title="Rust"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">For Him:</span>
+                <div class="detail-value-with-colors">
+                    <span>Suits or barongs in warm earth tones</span>
+                    <div class="color-swatches">
+                        <div class="color-swatch" style="background: #D2B48C;" title="Tan"></div>
+                        <div class="color-swatch" style="background: #C19A6B;" title="Camel"></div>
+                        <div class="color-swatch" style="background: #8B7355;" title="Light Brown"></div>
+                        <div class="color-swatch" style="background: #F5E6D3;" title="Cream"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Color Palette:</span>
+                <div class="detail-value-with-colors">
+                    <span>Recommended color combinations</span>
+                    <div class="color-swatches">
+                        <div class="color-swatch" style="background: #E8B855;" title="Golden Yellow"></div>
+                        <div class="color-swatch" style="background: #C97442;" title="Burnt Orange"></div>
+                        <div class="color-swatch" style="background: #8E4232;" title="Rust"></div>
+                        <div class="color-swatch" style="background: #E5D5C3;" title="Champagne"></div>
+                        <div class="color-swatch" style="background: #9CA894;" title="Sage Green"></div>
+                        <div class="color-swatch" style="background: #F4E8A8;" title="Soft Yellow"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
