@@ -814,6 +814,29 @@
             }
         }
 
+        .details-note {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px 25px;
+            font-size: 1.05rem;
+            color: #8B4513;
+            font-weight: 500;
+            background: linear-gradient(135deg,
+                rgba(255, 240, 220, 0.7),
+                rgba(255, 228, 196, 0.7));
+            border-left: 3px solid #FF8C42;
+            border-right: 3px solid #FF8C42;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(255, 140, 66, 0.15);
+            animation: fadeIn 1s ease-out 1.8s both, pulse 3s ease-in-out 3s infinite;
+        }
+
+        .details-note::before {
+            content: '📅 ';
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+
         /* Wedding details section */
         .wedding-details {
             background: linear-gradient(135deg,
@@ -1259,6 +1282,10 @@
         <p class="footer-text">
             With love and gratitude,<br>
             Raymond & Karen
+        </p>
+
+        <p class="details-note">
+            More details about the wedding will be revealed in the coming weeks.
         </p>
     </div>
 

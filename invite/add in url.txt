@@ -1,1 +1,14 @@
 file:///D:/W/invite/invite.html?guest=aunt-mary&name=Aunt%20Mary
+invite-guest.html?guest=john-smith&name=John%20Smith&seats=2
+
+
+
+https://exi0r.github.io/wedding/invite/invite-guest.html?guest=john-smith&name=John%20Smith&seats=2
+
+
+
+
+
+
+
+https://exi0r.github.io/wedding/invite/invite-guest.html?guest=john-smith&name=John%20Smith&seats=2
