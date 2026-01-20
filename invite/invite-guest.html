@@ -379,13 +379,29 @@
         }
 
         .greeting {
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             text-align: center;
-            color: #5D4E37;
+            color: #8B4513;
             margin-bottom: 25px;
-            font-weight: 400;
+            font-weight: 600;
             font-style: italic;
             animation: fadeIn 1s ease-out 0.2s both;
+            text-shadow: 0 2px 4px rgba(255, 140, 66, 0.2);
+        }
+
+        .greeting .guest-name {
+            font-size: 2rem;
+            color: #D2691E;
+            font-weight: 700;
+            display: block;
+            margin-top: 8px;
+            font-family: 'Great Vibes', cursive;
+            background: linear-gradient(135deg, #FF6B6B, #FFA500, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(0 2px 6px rgba(255, 140, 66, 0.3));
         }
 
         /* Seats Reserved Section */
@@ -1006,7 +1022,11 @@
             }
 
             .greeting {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
+            }
+
+            .greeting .guest-name {
+                font-size: 1.6rem;
             }
 
             .seats-reserved {
@@ -1106,6 +1126,14 @@
 
             .subtitle {
                 font-size: 0.8rem;
+            }
+
+            .greeting {
+                font-size: 1.1rem;
+            }
+
+            .greeting .guest-name {
+                font-size: 1.4rem;
             }
 
             .seats-reserved {
@@ -1393,7 +1421,7 @@
             // Update greeting with guest name
             if (guestName) {
                 const greeting = document.querySelector('.greeting');
-                greeting.textContent = `Dear ${decodeURIComponent(guestName)},`;
+                greeting.innerHTML = `Dear<span class="guest-name">${decodeURIComponent(guestName)}</span>`;
             }
 
             // Display seats reserved information
