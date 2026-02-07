@@ -33,6 +33,65 @@
             background-size: 110%;
             background-attachment: scroll;
             animation: kenBurnsHero 30s ease-in-out infinite;
+            position: relative;
+        }
+
+        /* Enhanced Golden Hour Sky Gradient Overlay */
+        .hero-background::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                rgba(255, 249, 230, 0.3) 0%,      /* Bright golden yellow top */
+                rgba(255, 237, 78, 0.25) 15%,      /* Peak golden light */
+                rgba(253, 183, 80, 0.2) 30%,       /* Warm amber */
+                rgba(232, 184, 85, 0.15) 45%,      /* Golden middle */
+                rgba(212, 121, 59, 0.2) 60%,       /* Burnt orange */
+                rgba(193, 120, 23, 0.25) 75%,      /* Deep amber */
+                rgba(142, 66, 50, 0.3) 90%,        /* Rust/twilight */
+                rgba(107, 68, 35, 0.35) 100%       /* Deep twilight bottom */
+            );
+            pointer-events: none;
+            z-index: 1;
+            animation: skyGradientShift 20s ease-in-out infinite;
+        }
+
+        @keyframes skyGradientShift {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Warm Atmospheric Haze */
+        .atmospheric-haze {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center,
+                transparent 0%,
+                transparent 20%,
+                rgba(255, 237, 78, 0.03) 40%,
+                rgba(253, 183, 80, 0.05) 60%,
+                rgba(232, 184, 85, 0.08) 80%,
+                rgba(212, 121, 59, 0.1) 100%
+            );
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: screen;
+            animation: hazeFloat 30s ease-in-out infinite;
+        }
+
+        @keyframes hazeFloat {
+            0%, 100% {
+                transform: scale(1) translateY(0);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.05) translateY(-20px);
+                opacity: 0.8;
+            }
         }
 
         @keyframes kenBurnsHero {
@@ -591,79 +650,85 @@
         }
 
         .bokeh-circle:nth-child(1) {
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(232, 184, 85, 0.3) 0%, transparent 70%);
+            width: 165px;
+            height: 165px;
+            background: radial-gradient(circle, rgba(232, 184, 85, 0.48) 0%, rgba(232, 184, 85, 0.22) 40%, transparent 70%);
             top: 20%;
             left: 10%;
             animation-delay: 0s;
             animation-duration: 12s;
+            box-shadow: 0 0 25px rgba(232, 184, 85, 0.3);
         }
 
         .bokeh-circle:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(212, 121, 59, 0.25) 0%, transparent 70%);
+            width: 215px;
+            height: 215px;
+            background: radial-gradient(circle, rgba(212, 121, 59, 0.42) 0%, rgba(212, 121, 59, 0.2) 40%, transparent 70%);
             top: 60%;
             right: 15%;
             animation-delay: -3s;
             animation-duration: 18s;
+            box-shadow: 0 0 30px rgba(212, 121, 59, 0.28);
         }
 
         .bokeh-circle:nth-child(3) {
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(244, 232, 168, 0.35) 0%, transparent 70%);
+            width: 135px;
+            height: 135px;
+            background: radial-gradient(circle, rgba(244, 232, 168, 0.52) 0%, rgba(244, 232, 168, 0.25) 40%, transparent 70%);
             bottom: 25%;
             left: 20%;
             animation-delay: -6s;
             animation-duration: 14s;
+            box-shadow: 0 0 22px rgba(244, 232, 168, 0.35);
         }
 
         .bokeh-circle:nth-child(4) {
-            width: 180px;
-            height: 180px;
-            background: radial-gradient(circle, rgba(193, 120, 23, 0.2) 0%, transparent 70%);
+            width: 195px;
+            height: 195px;
+            background: radial-gradient(circle, rgba(193, 120, 23, 0.38) 0%, rgba(193, 120, 23, 0.18) 40%, transparent 70%);
             top: 40%;
             right: 25%;
             animation-delay: -9s;
             animation-duration: 16s;
+            box-shadow: 0 0 28px rgba(193, 120, 23, 0.3);
         }
 
         .bokeh-circle:nth-child(5) {
-            width: 140px;
-            height: 140px;
-            background: radial-gradient(circle, rgba(229, 213, 195, 0.3) 0%, transparent 70%);
+            width: 155px;
+            height: 155px;
+            background: radial-gradient(circle, rgba(229, 213, 195, 0.48) 0%, rgba(229, 213, 195, 0.22) 40%, transparent 70%);
             bottom: 15%;
             right: 10%;
             animation-delay: -12s;
             animation-duration: 13s;
+            box-shadow: 0 0 25px rgba(229, 213, 195, 0.32);
         }
 
         .bokeh-circle:nth-child(6) {
-            width: 160px;
-            height: 160px;
-            background: radial-gradient(circle, rgba(156, 168, 148, 0.25) 0%, transparent 70%);
+            width: 175px;
+            height: 175px;
+            background: radial-gradient(circle, rgba(156, 168, 148, 0.42) 0%, rgba(156, 168, 148, 0.2) 40%, transparent 70%);
             top: 10%;
             right: 30%;
             animation-delay: -15s;
             animation-duration: 17s;
+            box-shadow: 0 0 25px rgba(156, 168, 148, 0.3);
         }
 
         @keyframes bokehFloat {
             0%, 100% {
-                opacity: 0;
+                opacity: 0.2;
                 transform: translateY(0) scale(1);
             }
             10% {
-                opacity: 0.6;
+                opacity: 0.7;
             }
             50% {
-                opacity: 0.8;
+                opacity: 0.85;
                 transform: translateY(-30px) scale(1.1);
             }
             90% {
-                opacity: 0.6;
+                opacity: 0.7;
             }
         }
 
@@ -678,56 +743,130 @@
 
         .dust-particle {
             position: absolute;
-            background: radial-gradient(circle, rgba(255, 237, 78, 0.9) 0%, rgba(253, 183, 80, 0.6) 30%, rgba(232, 184, 85, 0.3) 60%, transparent 100%);
+            background: radial-gradient(circle, rgba(255, 237, 78, 0.95) 0%, rgba(253, 183, 80, 0.7) 30%, rgba(232, 184, 85, 0.4) 60%, transparent 100%);
             border-radius: 50%;
-            box-shadow: 0 0 8px rgba(255, 237, 78, 0.5);
+            box-shadow: 0 0 10px rgba(255, 237, 78, 0.65), 0 0 18px rgba(253, 183, 80, 0.4);
             will-change: transform, opacity;
         }
 
         @keyframes dustFloat {
             0% {
-                opacity: 0;
+                opacity: 0.2;
                 transform: translateY(0) translateX(0);
             }
             5% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             50% {
-                opacity: 1;
+                opacity: 0.9;
             }
             95% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             100% {
-                opacity: 0;
+                opacity: 0.2;
                 transform: translateY(-120vh) translateX(var(--drift-x));
             }
         }
 
         /* Create particles with varied sizes, positions, and timings */
-        .dust-particle:nth-child(1) { width: 5px; height: 5px; left: 10%; bottom: -5%; animation: dustFloat 10s linear infinite; animation-delay: 0s; --drift-x: 30px; }
-        .dust-particle:nth-child(2) { width: 4px; height: 4px; left: 25%; bottom: -5%; animation: dustFloat 12s linear infinite; animation-delay: 1s; --drift-x: -25px; }
-        .dust-particle:nth-child(3) { width: 6px; height: 6px; left: 40%; bottom: -5%; animation: dustFloat 14s linear infinite; animation-delay: 2s; --drift-x: 40px; }
-        .dust-particle:nth-child(4) { width: 4px; height: 4px; left: 55%; bottom: -5%; animation: dustFloat 11s linear infinite; animation-delay: 3s; --drift-x: -35px; }
-        .dust-particle:nth-child(5) { width: 5px; height: 5px; left: 70%; bottom: -5%; animation: dustFloat 13s linear infinite; animation-delay: 4s; --drift-x: 28px; }
-        .dust-particle:nth-child(6) { width: 4px; height: 4px; left: 85%; bottom: -5%; animation: dustFloat 15s linear infinite; animation-delay: 5s; --drift-x: -30px; }
-        .dust-particle:nth-child(7) { width: 6px; height: 6px; left: 15%; bottom: -5%; animation: dustFloat 12s linear infinite; animation-delay: 6s; --drift-x: 35px; }
-        .dust-particle:nth-child(8) { width: 5px; height: 5px; left: 30%; bottom: -5%; animation: dustFloat 16s linear infinite; animation-delay: 7s; --drift-x: -28px; }
-        .dust-particle:nth-child(9) { width: 4px; height: 4px; left: 45%; bottom: -5%; animation: dustFloat 11s linear infinite; animation-delay: 0.5s; --drift-x: 32px; }
-        .dust-particle:nth-child(10) { width: 5px; height: 5px; left: 60%; bottom: -5%; animation: dustFloat 13s linear infinite; animation-delay: 1.5s; --drift-x: -38px; }
-        .dust-particle:nth-child(11) { width: 6px; height: 6px; left: 75%; bottom: -5%; animation: dustFloat 14s linear infinite; animation-delay: 2.5s; --drift-x: 26px; }
-        .dust-particle:nth-child(12) { width: 4px; height: 4px; left: 90%; bottom: -5%; animation: dustFloat 12s linear infinite; animation-delay: 3.5s; --drift-x: -32px; }
-        .dust-particle:nth-child(13) { width: 5px; height: 5px; left: 5%; bottom: -5%; animation: dustFloat 15s linear infinite; animation-delay: 4.5s; --drift-x: 34px; }
-        .dust-particle:nth-child(14) { width: 4px; height: 4px; left: 20%; bottom: -5%; animation: dustFloat 11s linear infinite; animation-delay: 5.5s; --drift-x: -29px; }
-        .dust-particle:nth-child(15) { width: 6px; height: 6px; left: 35%; bottom: -5%; animation: dustFloat 13s linear infinite; animation-delay: 6.5s; --drift-x: 36px; }
-        .dust-particle:nth-child(16) { width: 5px; height: 5px; left: 50%; bottom: -5%; animation: dustFloat 16s linear infinite; animation-delay: 7.5s; --drift-x: -31px; }
-        .dust-particle:nth-child(17) { width: 4px; height: 4px; left: 65%; bottom: -5%; animation: dustFloat 12s linear infinite; animation-delay: 1.2s; --drift-x: 27px; }
-        .dust-particle:nth-child(18) { width: 5px; height: 5px; left: 80%; bottom: -5%; animation: dustFloat 14s linear infinite; animation-delay: 2.2s; --drift-x: -33px; }
-        .dust-particle:nth-child(19) { width: 6px; height: 6px; left: 95%; bottom: -5%; animation: dustFloat 11s linear infinite; animation-delay: 3.2s; --drift-x: 29px; }
-        .dust-particle:nth-child(20) { width: 4px; height: 4px; left: 12%; bottom: -5%; animation: dustFloat 15s linear infinite; animation-delay: 4.2s; --drift-x: -37px; }
+        .dust-particle:nth-child(1) { width: 8px; height: 8px; left: 10%; bottom: -5%; animation: dustFloat 10s linear infinite; animation-delay: 0s; --drift-x: 30px; }
+        .dust-particle:nth-child(2) { width: 7px; height: 7px; left: 25%; bottom: -5%; animation: dustFloat 12s linear infinite; animation-delay: 1s; --drift-x: -25px; }
+        .dust-particle:nth-child(3) { width: 10px; height: 10px; left: 40%; bottom: -5%; animation: dustFloat 14s linear infinite; animation-delay: 2s; --drift-x: 40px; }
+        .dust-particle:nth-child(4) { width: 7px; height: 7px; left: 55%; bottom: -5%; animation: dustFloat 11s linear infinite; animation-delay: 3s; --drift-x: -35px; }
+        .dust-particle:nth-child(5) { width: 8px; height: 8px; left: 70%; bottom: -5%; animation: dustFloat 13s linear infinite; animation-delay: 4s; --drift-x: 28px; }
+        .dust-particle:nth-child(6) { width: 7px; height: 7px; left: 85%; bottom: -5%; animation: dustFloat 15s linear infinite; animation-delay: 5s; --drift-x: -30px; }
+        .dust-particle:nth-child(7) { width: 10px; height: 10px; left: 15%; bottom: -5%; animation: dustFloat 12s linear infinite; animation-delay: 6s; --drift-x: 35px; }
+        .dust-particle:nth-child(8) { width: 8px; height: 8px; left: 30%; bottom: -5%; animation: dustFloat 16s linear infinite; animation-delay: 7s; --drift-x: -28px; }
+        .dust-particle:nth-child(9) { width: 7px; height: 7px; left: 45%; bottom: -5%; animation: dustFloat 11s linear infinite; animation-delay: 0.5s; --drift-x: 32px; }
+        .dust-particle:nth-child(10) { width: 8px; height: 8px; left: 60%; bottom: -5%; animation: dustFloat 13s linear infinite; animation-delay: 1.5s; --drift-x: -38px; }
+        .dust-particle:nth-child(11) { width: 10px; height: 10px; left: 75%; bottom: -5%; animation: dustFloat 14s linear infinite; animation-delay: 2.5s; --drift-x: 26px; }
+        .dust-particle:nth-child(12) { width: 7px; height: 7px; left: 90%; bottom: -5%; animation: dustFloat 12s linear infinite; animation-delay: 3.5s; --drift-x: -32px; }
+        .dust-particle:nth-child(13) { width: 8px; height: 8px; left: 5%; bottom: -5%; animation: dustFloat 15s linear infinite; animation-delay: 4.5s; --drift-x: 34px; }
+        .dust-particle:nth-child(14) { width: 7px; height: 7px; left: 20%; bottom: -5%; animation: dustFloat 11s linear infinite; animation-delay: 5.5s; --drift-x: -29px; }
+        .dust-particle:nth-child(15) { width: 10px; height: 10px; left: 35%; bottom: -5%; animation: dustFloat 13s linear infinite; animation-delay: 6.5s; --drift-x: 36px; }
+        .dust-particle:nth-child(16) { width: 8px; height: 8px; left: 50%; bottom: -5%; animation: dustFloat 16s linear infinite; animation-delay: 7.5s; --drift-x: -31px; }
+        .dust-particle:nth-child(17) { width: 7px; height: 7px; left: 65%; bottom: -5%; animation: dustFloat 12s linear infinite; animation-delay: 1.2s; --drift-x: 27px; }
+        .dust-particle:nth-child(18) { width: 8px; height: 8px; left: 80%; bottom: -5%; animation: dustFloat 14s linear infinite; animation-delay: 2.2s; --drift-x: -33px; }
+        .dust-particle:nth-child(19) { width: 10px; height: 10px; left: 95%; bottom: -5%; animation: dustFloat 11s linear infinite; animation-delay: 3.2s; --drift-x: 29px; }
+        .dust-particle:nth-child(20) { width: 7px; height: 7px; left: 12%; bottom: -5%; animation: dustFloat 15s linear infinite; animation-delay: 4.2s; --drift-x: -37px; }
+
+        /* Golden Confetti/Sparkles */
+        .sparkle-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        .golden-sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 237, 78, 0.95) 30%, rgba(253, 183, 80, 0.5) 50%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(255, 237, 78, 0.85), 0 0 12px rgba(253, 183, 80, 0.6);
+            will-change: transform, opacity;
+            animation: sparkleFloat linear infinite;
+        }
+
+        @keyframes sparkleFloat {
+            0% {
+                opacity: 0.2;
+                transform: translateY(0) translateX(0) scale(0.5);
+            }
+            10% {
+                opacity: 0.9;
+                transform: translateY(-10vh) translateX(var(--sparkle-x)) scale(1);
+            }
+            50% {
+                opacity: 0.95;
+                transform: translateY(-60vh) translateX(calc(var(--sparkle-x) * 2)) scale(1.3);
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0.2;
+                transform: translateY(-120vh) translateX(calc(var(--sparkle-x) * 3)) scale(0.5);
+            }
+        }
+
+        /* Create sparkles with varied positions and timings */
+        .golden-sparkle:nth-child(1) { left: 5%; bottom: -5%; animation-duration: 8s; animation-delay: 0s; --sparkle-x: 15px; }
+        .golden-sparkle:nth-child(2) { left: 15%; bottom: -5%; animation-duration: 10s; animation-delay: 1s; --sparkle-x: -20px; }
+        .golden-sparkle:nth-child(3) { left: 25%; bottom: -5%; animation-duration: 9s; animation-delay: 2s; --sparkle-x: 25px; }
+        .golden-sparkle:nth-child(4) { left: 35%; bottom: -5%; animation-duration: 11s; animation-delay: 3s; --sparkle-x: -15px; }
+        .golden-sparkle:nth-child(5) { left: 45%; bottom: -5%; animation-duration: 8.5s; animation-delay: 4s; --sparkle-x: 18px; }
+        .golden-sparkle:nth-child(6) { left: 55%; bottom: -5%; animation-duration: 10.5s; animation-delay: 5s; --sparkle-x: -22px; }
+        .golden-sparkle:nth-child(7) { left: 65%; bottom: -5%; animation-duration: 9.5s; animation-delay: 6s; --sparkle-x: 20px; }
+        .golden-sparkle:nth-child(8) { left: 75%; bottom: -5%; animation-duration: 11.5s; animation-delay: 7s; --sparkle-x: -18px; }
+        .golden-sparkle:nth-child(9) { left: 85%; bottom: -5%; animation-duration: 8s; animation-delay: 0.5s; --sparkle-x: 16px; }
+        .golden-sparkle:nth-child(10) { left: 95%; bottom: -5%; animation-duration: 10s; animation-delay: 1.5s; --sparkle-x: -24px; }
+        .golden-sparkle:nth-child(11) { left: 10%; bottom: -5%; animation-duration: 9s; animation-delay: 2.5s; --sparkle-x: 22px; }
+        .golden-sparkle:nth-child(12) { left: 20%; bottom: -5%; animation-duration: 11s; animation-delay: 3.5s; --sparkle-x: -19px; }
+        .golden-sparkle:nth-child(13) { left: 30%; bottom: -5%; animation-duration: 8.5s; animation-delay: 4.5s; --sparkle-x: 17px; }
+        .golden-sparkle:nth-child(14) { left: 40%; bottom: -5%; animation-duration: 10.5s; animation-delay: 5.5s; --sparkle-x: -21px; }
+        .golden-sparkle:nth-child(15) { left: 50%; bottom: -5%; animation-duration: 9.5s; animation-delay: 6.5s; --sparkle-x: 23px; }
+
+        /* Scroll-Triggered Color Temperature Overlay */
+        .color-temperature-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(to bottom,
+                rgba(255, 249, 230, 0) 0%,
+                rgba(255, 237, 78, 0.05) 50%,
+                rgba(212, 121, 59, 0.1) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
 
         @media (max-width: 768px) {
-            .bokeh-circle, .dust-particle {
+            .bokeh-circle, .dust-particle, .golden-sparkle {
                 display: none; /* Hide on mobile for performance */
             }
         }
@@ -2320,6 +2459,31 @@
 </head>
 <body class="antialiased">
 
+    <!-- Warm Atmospheric Haze -->
+    <div class="atmospheric-haze"></div>
+
+    <!-- Scroll-Triggered Color Temperature Overlay -->
+    <div id="color-temperature-overlay" class="color-temperature-overlay"></div>
+
+    <!-- Golden Confetti/Sparkles -->
+    <div class="sparkle-container">
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+        <div class="golden-sparkle"></div>
+    </div>
+
     <!-- Animated Golden Sun -->
     <div id="golden-sun" class="golden-sun">
         <div class="sun-rays">
@@ -3614,7 +3778,7 @@
                             <!-- Hashtag Display -->
                             <div class="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg text-center flex items-center justify-center">
                                 <p class="text-base sm:text-xl md:text-2xl lg:text-3xl font-bold text-amber-700 leading-tight" style="font-family: 'Playfair Display', serif;">
-                                    #KarenNaSiMondi
+                                    #mayforeverKarenkayMondi
                                 </p>
                             </div>
                         </div>
@@ -5372,6 +5536,27 @@ END:VCALENDAR`;
 
   window.addEventListener('scroll', updateSunPosition);
   window.addEventListener('load', updateSunPosition);
+
+  // Scroll-Triggered Color Temperature
+  const colorTempOverlay = document.getElementById('color-temperature-overlay');
+
+  function updateColorTemperature() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercentage = scrollTop / documentHeight;
+
+    // Gradually increase warmth (opacity) as you scroll down
+    // Starts subtle at 0%, reaches max at 80% scroll
+    const maxOpacity = 0.8;
+    const opacity = Math.min(scrollPercentage * 1.25, maxOpacity);
+
+    if (colorTempOverlay) {
+      colorTempOverlay.style.opacity = opacity;
+    }
+  }
+
+  window.addEventListener('scroll', updateColorTemperature);
+  window.addEventListener('load', updateColorTemperature);
 
   function toggleTips() {
     const tips = document.getElementById('styleTips');
