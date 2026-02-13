@@ -1734,31 +1734,10 @@
             animation: heartbeat 0.6s ease;
         }
 
-        /* Mobile: Always show reaction buttons and make them smaller */
+        /* Mobile: Always show reaction buttons */
         @media (max-width: 768px) {
             .reaction-buttons {
                 opacity: 1;
-                gap: 4px;
-                top: 4px;
-                right: 4px;
-            }
-
-            .reaction-emoji-btn {
-                width: 28px;
-                height: 28px;
-                font-size: 0.9rem;
-            }
-
-            .reaction-counter {
-                bottom: 4px;
-                right: 4px;
-                padding: 2px 6px;
-                font-size: 0.65rem;
-                gap: 4px;
-            }
-
-            .reaction-counter span {
-                gap: 2px;
             }
         }
 
@@ -3929,7 +3908,7 @@
                 <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 float-gentle" data-aos="fade-up" data-aos-delay="200">CHERISHED MOMENTS</p>
             </div>
 
-             <div class="grid grid-cols-3 gap-3 md:gap-6">
+             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               <a href="https://exi0r.github.io/wedding/image/1gallery1.PNG" class="glightbox gallery-item group ken-burns-container"
                  data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
                  data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="100"
@@ -4178,6 +4157,35 @@
                   <div class="reaction-counter" id="counter-img9">
                     <span>❤️ <span id="hearts-img9">0</span></span>
                     <span>🎉 <span id="cheers-img9">0</span></span>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 10th Image - Mobile Only -->
+              <a href="https://exi0r.github.io/wedding/image/1gallery10.jpg" class="glightbox gallery-item group ken-burns-container md:hidden"
+                 data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
+                 data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="1000"
+                 data-image-id="img10">
+                <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
+                  <img src="https://exi0r.github.io/wedding/image/1gallery10.jpg"
+                       alt="Gallery Image 10"
+                       class="w-full h-full object-cover ken-burns-effect" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div class="absolute bottom-4 left-4 text-white">
+                      <div class="text-2xl mb-1">💝</div>
+                      <div class="text-sm font-medium">Our Love</div>
+                    </div>
+                    <div class="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
+                      <div class="text-2xl">🔍</div>
+                    </div>
+                  </div>
+                  <div class="reaction-buttons" id="buttons-img10">
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img10', 'hearts', event)" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img10', 'cheers', event)" title="Celebrate">🎉</button>
+                  </div>
+                  <div class="reaction-counter" id="counter-img10">
+                    <span>❤️ <span id="hearts-img10">0</span></span>
+                    <span>🎉 <span id="cheers-img10">0</span></span>
                   </div>
                 </div>
               </a>
