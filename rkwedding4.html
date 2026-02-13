@@ -1734,10 +1734,31 @@
             animation: heartbeat 0.6s ease;
         }
 
-        /* Mobile: Always show reaction buttons */
+        /* Mobile: Always show reaction buttons and make them smaller */
         @media (max-width: 768px) {
             .reaction-buttons {
                 opacity: 1;
+                gap: 4px;
+                top: 4px;
+                right: 4px;
+            }
+
+            .reaction-emoji-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 0.9rem;
+            }
+
+            .reaction-counter {
+                bottom: 4px;
+                right: 4px;
+                padding: 2px 6px;
+                font-size: 0.65rem;
+                gap: 4px;
+            }
+
+            .reaction-counter span {
+                gap: 2px;
             }
         }
 
@@ -3908,7 +3929,7 @@
                 <p class="text-xl uppercase tracking-wide text-gray-500 mb-12 float-gentle" data-aos="fade-up" data-aos-delay="200">CHERISHED MOMENTS</p>
             </div>
 
-             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+             <div class="grid grid-cols-3 gap-3 md:gap-6">
               <a href="https://exi0r.github.io/wedding/image/1gallery1.PNG" class="glightbox gallery-item group ken-burns-container"
                  data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
                  data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="100"
