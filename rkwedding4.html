@@ -1518,6 +1518,201 @@
             z-index: 5;
         }
 
+        /* Inline Polaroid Expansion */
+        .polaroid-photo.expanded {
+            transform: scale(1) rotate(0deg) !important;
+            transform-origin: center center;
+            z-index: 1000;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin: 100px;
+            padding: 30px !important;
+            padding-bottom: 110px !important;
+        }
+
+        .polaroid-photo.expanded::after {
+            font-size: 1.5rem;
+            white-space: nowrap;
+            bottom: 20px;
+        }
+
+        .polaroid-photo.expanded img {
+            /* Set equal dimensions for proportional enlargement */
+            width: 500px !important;
+            height: 500px !important;
+            max-width: none !important;
+            max-height: none !important;
+            object-fit: cover !important;
+            object-position: center !important;
+        }
+
+        .polaroid-inline-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 36px;
+            height: 36px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #C17817;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #C17817;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .polaroid-photo.expanded .polaroid-inline-close {
+            display: flex;
+        }
+
+        .polaroid-inline-close:hover {
+            transform: rotate(90deg) scale(1.15);
+            background: #C17817;
+            color: white;
+        }
+
+        /* Backdrop overlay for expanded polaroid */
+        .polaroid-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .polaroid-backdrop.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Timeline adjustments for expansion */
+        .timeline-container {
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @media (max-width: 768px) {
+            .polaroid-photo.expanded {
+                margin: 60px 20px;
+                padding: 20px !important;
+                padding-bottom: 75px !important;
+            }
+
+            .polaroid-photo.expanded img {
+                width: 350px !important;
+                height: 350px !important;
+            }
+
+            .polaroid-photo.expanded::after {
+                font-size: 1.2rem;
+                bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .polaroid-photo.expanded {
+                margin: 40px 10px;
+                padding: 15px !important;
+                padding-bottom: 60px !important;
+            }
+
+            .polaroid-photo.expanded img {
+                width: 280px !important;
+                height: 280px !important;
+            }
+
+            .polaroid-photo.expanded::after {
+                font-size: 1rem;
+                bottom: 12px;
+            }
+        }
+
+        /* Entourage Photo Expansion */
+        .entourage-photo-wrapper {
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .entourage-photo-wrapper.expanded {
+            z-index: 1000;
+            margin: 100px;
+        }
+
+        .entourage-photo-wrapper.expanded img {
+            width: 600px !important;
+            height: 600px !important;
+            max-width: none !important;
+            object-fit: cover !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .entourage-inline-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid #C17817;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 10;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #C17817;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .entourage-photo-wrapper.expanded .entourage-inline-close {
+            display: flex;
+        }
+
+        .entourage-inline-close:hover {
+            transform: rotate(90deg) scale(1.15);
+            background: #C17817;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .entourage-photo-wrapper.expanded {
+                margin: 60px 20px;
+            }
+
+            .entourage-photo-wrapper.expanded img {
+                width: 400px !important;
+                height: 400px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .entourage-photo-wrapper.expanded {
+                margin: 40px 10px;
+            }
+
+            .entourage-photo-wrapper.expanded img {
+                width: 320px !important;
+                height: 320px !important;
+            }
+        }
+
+
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.7; transform: scale(0.95); }
@@ -2513,8 +2708,8 @@
     position: absolute;
     width: 6px;
     background-color: #D4793B; /* Peach Puff */
-    top: 0;
-    bottom: 0;
+    top: 10%;
+    bottom: 15%;
     left: 50%;
     transform: translateX(-50%); /* Perfectly center the line */
     z-index: -1; /* Behind content and dots */
@@ -2674,6 +2869,10 @@
     padding: 2rem 3rem;
     max-width: 600px;
     line-height: 1.6;
+    z-index: 10;
+    background: linear-gradient(to right, transparent 0%, #FFF9F0 20%, #FFF9F0 80%, transparent 100%);
+    display: block;
+    width: fit-content;
 }
 
 .pull-quote::before,
@@ -3297,8 +3496,9 @@
       <div class="timeline-container left mb-6 sm:mb-8 md:mb-12" data-aos="fade-right" data-aos-duration="1000">
         <div class="flex flex-col items-center md:flex-row gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="First Hello 💼" onclick="toggleMessage(this)">
+            <button class="polaroid-inline-close" onclick="event.stopPropagation(); closePolaroidModal();">&times;</button>
             <img src="https://exi0r.github.io/wedding/image/1howwemet.jpg" alt="How we met" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
-            <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
+            <span class="click-indicator text-[10px] sm:text-xs">🔍 View</span>
             <div class="hidden-message">
               <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-amber-700 mb-1 sm:mb-2">💌 Hidden Memory</p>
               <p class="text-[10px] sm:text-xs md:text-sm text-gray-700">"From colleagues to something more... it all started with a simple hello."</p>
@@ -3318,8 +3518,9 @@
       <div class="timeline-container right mb-6 sm:mb-8 md:mb-12" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <div class="flex flex-col items-center md:flex-row-reverse gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="The Spark ✨" onclick="toggleMessage(this)">
-            <img src="https://exi0r.github.io/wedding/image/1aspark.jpg" alt="A Spark" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
-            <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
+            <button class="polaroid-inline-close" onclick="event.stopPropagation(); closePolaroidModal();">&times;</button>
+            <img src="https://exi0r.github.io/wedding/image/1spark2.jpg" alt="A Spark" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
+            <span class="click-indicator text-[10px] sm:text-xs">🔍 View</span>
             <div class="hidden-message">
               <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-amber-700 mb-1 sm:mb-2">💫 Secret Moment</p>
               <p class="text-[10px] sm:text-xs md:text-sm text-gray-700">"The moment when friendship turned into something magical..."</p>
@@ -3339,8 +3540,9 @@
       <div class="timeline-container left mb-6 sm:mb-8 md:mb-12" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="400">
         <div class="flex flex-col items-center md:flex-row gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="Made Official 💕" onclick="toggleMessage(this)">
+            <button class="polaroid-inline-close" onclick="event.stopPropagation(); closePolaroidModal();">&times;</button>
             <img src="https://exi0r.github.io/wedding/image/1makingitofficial.jpg" alt="Making It Official" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
-            <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
+            <span class="click-indicator text-[10px] sm:text-xs">🔍 View</span>
             <div class="hidden-message">
               <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-amber-700 mb-1 sm:mb-2">💝 Our Promise</p>
               <p class="text-[10px] sm:text-xs md:text-sm text-gray-700">"June 2024 - the day we said 'yes' to forever!"</p>
@@ -3360,8 +3562,9 @@
       <div class="timeline-container right mb-6 sm:mb-8 md:mb-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="600">
         <div class="flex flex-col items-center md:flex-row-reverse gap-3 sm:gap-4 md:gap-6">
           <div class="polaroid-photo hidden-message-container" data-caption="To Forever 💍" onclick="toggleMessage(this)">
+            <button class="polaroid-inline-close" onclick="event.stopPropagation(); closePolaroidModal();">&times;</button>
             <img src="https://exi0r.github.io/wedding/image/1toforever.jpg" alt="To Forever" class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover object-center">
-            <span class="click-indicator text-[10px] sm:text-xs">Click me!</span>
+            <span class="click-indicator text-[10px] sm:text-xs">🔍 View</span>
             <div class="hidden-message">
               <p class="font-heading text-sm sm:text-base md:text-lg lg:text-xl text-amber-700 mb-1 sm:mb-2">💒 Our Future</p>
               <p class="text-[10px] sm:text-xs md:text-sm text-gray-700">"This is just the beginning of our forever together!"</p>
@@ -3731,26 +3934,18 @@
     <p class="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-wide text-gray-500 mb-6 sm:mb-8 md:mb-12" data-aos="fade-up" data-aos-delay="200">THE PEOPLE WHO STAND WITH US</p>
 
     <!-- Groom & Bride -->
-    <div class="grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 max-w-4xl mx-auto mb-8 sm:mb-12 md:mb-16">
-      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-6 md:p-8 group" data-aos="zoom-in" data-aos-duration="800">
-        <div class="relative mb-3 sm:mb-6">
-          <img src="https://exi0r.github.io/wedding/image/1groom.jpg" alt="Groom" class="rounded-lg sm:rounded-xl w-24 h-24 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 mx-auto object-cover morphing-border shadow-lg image-hover-effect">
+    <div class="max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16">
+      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-8 md:p-10 group" data-aos="zoom-in" data-aos-duration="800">
+        <div class="relative mb-4 sm:mb-6 md:mb-8 entourage-photo-wrapper" id="entouragePhoto" onclick="toggleEntouragePhoto(this)">
+          <button class="entourage-inline-close" onclick="event.stopPropagation(); closeEntouragePhoto();">&times;</button>
+          <img src="https://exi0r.github.io/wedding/image/1groombride.jpg" alt="Groom and Bride" class="rounded-lg sm:rounded-xl w-full max-w-md mx-auto object-cover morphing-border shadow-lg image-hover-effect">
         </div>
-        <h3 class="text-sm sm:text-xl md:text-2xl lg:text-3xl font-heading text-amber-700 shimmer-text group-hover:scale-105 transition-transform duration-300 leading-tight">Raymond Almanon</h3>
-        <p class="text-gray-500 mt-1 sm:mt-2 text-xs sm:text-base md:text-lg group-hover:text-amber-700 transition-colors duration-300">Groom</p>
-        <div class="mt-2 sm:mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="text-xl sm:text-2xl md:text-3xl animate-bounce">🤵</span>
-        </div>
-      </div>
-
-      <div class="interactive-card bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-6 md:p-8 group" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
-        <div class="relative mb-3 sm:mb-6">
-          <img src="https://exi0r.github.io/wedding/image/1bride.jpg" alt="Bride" class="rounded-lg sm:rounded-xl w-24 h-24 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 mx-auto object-cover morphing-border shadow-lg image-hover-effect" style="animation-delay: -2s;">
-        </div>
-        <h3 class="text-sm sm:text-xl md:text-2xl lg:text-3xl font-heading text-amber-700 shimmer-text group-hover:scale-105 transition-transform duration-300 leading-tight">Karen Rose Sioson</h3>
-        <p class="text-gray-500 mt-1 sm:mt-2 text-xs sm:text-base md:text-lg group-hover:text-amber-700 transition-colors duration-300">Bride</p>
-        <div class="mt-2 sm:mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <span class="text-xl sm:text-2xl md:text-3xl animate-bounce">👰</span>
+        <div class="text-center">
+          <h3 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-heading text-amber-700 shimmer-text group-hover:scale-105 transition-transform duration-300 leading-tight">Raymond Almanon & Karen Rose Sioson</h3>
+          <p class="text-gray-500 mt-2 sm:mt-3 text-sm sm:text-lg md:text-xl group-hover:text-amber-700 transition-colors duration-300">Groom & Bride</p>
+          <div class="mt-3 sm:mt-4 md:mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span class="text-2xl sm:text-3xl md:text-4xl animate-bounce">🤵👰</span>
+          </div>
         </div>
       </div>
     </div>
@@ -3942,7 +4137,8 @@
 
              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               <a href="https://exi0r.github.io/wedding/image/1gallery1.PNG" class="glightbox gallery-item group ken-burns-container"
-                 data-gallery="wedding" data-aos="zoom-in" data-aos-offset="300"
+                 data-gallery="wedding"
+                 data-aos="zoom-in" data-aos-offset="300"
                  data-aos-easing="ease-in-out" data-aos-duration="800" data-aos-delay="100"
                  data-image-id="img1">
                 <div class="relative overflow-hidden rounded-2xl shadow-lg interactive-card aspect-square">
@@ -3959,8 +4155,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img1">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img1', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img1', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img1', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img1', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img1">
                     <span>❤️ <span id="hearts-img1">0</span></span>
@@ -3987,8 +4183,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img2">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img2', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img2', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img2', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img2', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img2">
                     <span>❤️ <span id="hearts-img2">0</span></span>
@@ -4015,8 +4211,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img3">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img3', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img3', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img3', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img3', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img3">
                     <span>❤️ <span id="hearts-img3">0</span></span>
@@ -4043,8 +4239,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img4">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img4', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img4', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img4', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img4', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img4">
                     <span>❤️ <span id="hearts-img4">0</span></span>
@@ -4071,8 +4267,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img5">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img5', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img5', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img5', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img5', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img5">
                     <span>❤️ <span id="hearts-img5">0</span></span>
@@ -4099,8 +4295,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img6">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img6', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img6', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img6', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img6', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img6">
                     <span>❤️ <span id="hearts-img6">0</span></span>
@@ -4127,8 +4323,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img7">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img7', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img7', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img7', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img7', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img7">
                     <span>❤️ <span id="hearts-img7">0</span></span>
@@ -4155,8 +4351,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img8">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img8', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img8', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img8', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img8', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img8">
                     <span>❤️ <span id="hearts-img8">0</span></span>
@@ -4183,8 +4379,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img9">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img9', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img9', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img9', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img9', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img9">
                     <span>❤️ <span id="hearts-img9">0</span></span>
@@ -4212,8 +4408,8 @@
                     </div>
                   </div>
                   <div class="reaction-buttons" id="buttons-img10">
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img10', 'hearts', event)" title="Send love">❤️</button>
-                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img10', 'cheers', event)" title="Celebrate">🎉</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img10', 'hearts', event); return false;" title="Send love">❤️</button>
+                    <button class="reaction-emoji-btn" onclick="addGalleryReaction('img10', 'cheers', event); return false;" title="Celebrate">🎉</button>
                   </div>
                   <div class="reaction-counter" id="counter-img10">
                     <span>❤️ <span id="hearts-img10">0</span></span>
@@ -5013,29 +5209,83 @@
         // Initialize parallax on page load
         document.addEventListener('DOMContentLoaded', initParallax);
 
-        // Toggle Hidden Message on Photo Click
-        function toggleMessage(element) {
-            const isRevealed = element.classList.contains('revealed');
+        // Expand Polaroid Inline
+        function openPolaroidModal(element) {
+            // Close any currently expanded polaroid
+            const currentlyExpanded = document.querySelector('.polaroid-photo.expanded');
+            if (currentlyExpanded && currentlyExpanded !== element) {
+                currentlyExpanded.classList.remove('expanded');
+            }
 
-            // Close all other revealed messages first
-            document.querySelectorAll('.hidden-message-container.revealed').forEach(el => {
-                if (el !== element) {
-                    el.classList.remove('revealed');
-                }
-            });
+            // Toggle expansion
+            element.classList.toggle('expanded');
 
-            // Toggle current message
-            if (isRevealed) {
-                element.classList.remove('revealed');
-            } else {
-                element.classList.add('revealed');
-                // Hide click indicator
+            // No backdrop - removed darkening effect
+            if (element.classList.contains('expanded')) {
+                // Hide click indicator when expanded
                 const indicator = element.querySelector('.click-indicator');
-                if (indicator) {
-                    indicator.style.display = 'none';
-                }
+                if (indicator) indicator.style.display = 'none';
+                // Scroll to center the polaroid
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
             }
         }
+
+        // Close Expanded Polaroid
+        function closePolaroidModal() {
+            const expandedPolaroid = document.querySelector('.polaroid-photo.expanded');
+            if (expandedPolaroid) {
+                expandedPolaroid.classList.remove('expanded');
+                // Restore click indicator
+                const indicator = expandedPolaroid.querySelector('.click-indicator');
+                if (indicator) indicator.style.display = '';
+            }
+        }
+
+        // Close on ESC key
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closePolaroidModal();
+                }
+            });
+        });
+
+        // Legacy function for compatibility
+        function toggleMessage(element) {
+            openPolaroidModal(element);
+        }
+
+        // Entourage Photo Expansion Functions
+        function toggleEntouragePhoto(element) {
+            element.classList.toggle('expanded');
+
+            if (element.classList.contains('expanded')) {
+                // Scroll to center the photo
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        }
+
+        function closeEntouragePhoto() {
+            const expandedPhoto = document.querySelector('.entourage-photo-wrapper.expanded');
+            if (expandedPhoto) {
+                expandedPhoto.classList.remove('expanded');
+            }
+        }
+
+        // Close entourage photo on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeEntouragePhoto();
+                closeGalleryPhoto();
+            }
+        });
+
+        // Gallery Photo Expansion Functions
 
         // Close message when clicking outside
         document.addEventListener('click', function(event) {
@@ -5376,14 +5626,23 @@
 
         // Update reaction counter display
         function updateGalleryCounter(imageId, counts) {
+            console.log('🔄 updateGalleryCounter called:', imageId, counts);
             const heartsEl = document.getElementById(`hearts-${imageId}`);
             const cheersEl = document.getElementById(`cheers-${imageId}`);
-            if (heartsEl) heartsEl.textContent = counts.hearts || 0;
-            if (cheersEl) cheersEl.textContent = counts.cheers || 0;
+            console.log('🎯 Elements found:', heartsEl, cheersEl);
+            if (heartsEl) {
+                heartsEl.textContent = counts.hearts || 0;
+                console.log('❤️ Hearts updated to:', counts.hearts || 0);
+            }
+            if (cheersEl) {
+                cheersEl.textContent = counts.cheers || 0;
+                console.log('🎉 Cheers updated to:', counts.cheers || 0);
+            }
         }
 
         // Add reaction when button is clicked
         function addGalleryReaction(imageId, reactionType, event) {
+            console.log('🔥 addGalleryReaction called!', imageId, reactionType);
             event.preventDefault();
             event.stopPropagation();
 
@@ -5408,16 +5667,22 @@
             }, 2000);
 
             // Update counter in database
+            console.log('📊 Firebase enabled:', firebaseEnabled);
             if (firebaseEnabled) {
+                console.log('💾 Saving to Firebase...');
                 const reactionRef = database.ref(`gallery/reactions/${imageId}/${reactionType}`);
                 reactionRef.transaction((current) => {
-                    return (current || 0) + 1;
+                    const newValue = (current || 0) + 1;
+                    console.log('📈 Transaction:', current, '->', newValue);
+                    return newValue;
                 });
             } else {
+                console.log('💾 Saving to localStorage...');
                 const savedReactions = localStorage.getItem('galleryReactions');
                 const reactions = savedReactions ? JSON.parse(savedReactions) : {};
                 if (!reactions[imageId]) reactions[imageId] = {hearts: 0, cheers: 0};
                 reactions[imageId][reactionType]++;
+                console.log('📊 Updated reactions:', reactions);
                 localStorage.setItem('galleryReactions', JSON.stringify(reactions));
                 updateGalleryCounter(imageId, reactions[imageId]);
             }
@@ -6108,6 +6373,8 @@ END:VCALENDAR`;
 </script>
 <!-- Carousel script moved to main script section -->
 
+<!-- Polaroid Backdrop -->
+<div id="polaroidBackdrop" class="polaroid-backdrop"></div>
 
 </body>
 </html>
