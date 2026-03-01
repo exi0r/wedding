@@ -5954,7 +5954,9 @@ END:VCALENDAR`;
         });
 
         // Submit RSVP to Firebase
+        let isSubmitting = false;
         async function submitRSVP() {
+            if (isSubmitting) return; // Prevent concurrent submissions
             if (!firebaseEnabled) {
                 alert('Firebase is not initialized. Please check your connection.');
                 return;
@@ -5969,6 +5971,14 @@ END:VCALENDAR`;
             if (!name || !phone || !attendance) {
                 alert('Please fill in all required fields.');
                 return;
+            }
+
+            // Lock submission
+            isSubmitting = true;
+            const submitBtn = document.querySelector('#rsvpForm button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting…';
             }
 
             // Check for duplicate submission
@@ -5999,6 +6009,12 @@ END:VCALENDAR`;
                                 errorDiv.classList.add('hidden');
                             }, 8000);
 
+                            // Unlock so they can correct and resubmit
+                            isSubmitting = false;
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = 'Submit RSVP 💌';
+                            }
                             return; // Stop submission
                         }
                     }
@@ -6050,6 +6066,13 @@ END:VCALENDAR`;
                 setTimeout(() => {
                     errorDiv.classList.add('hidden');
                 }, 8000);
+
+                // Unlock so the user can retry
+                isSubmitting = false;
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit RSVP 💌';
+                }
             }
         }
 
