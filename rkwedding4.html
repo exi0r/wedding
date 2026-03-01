@@ -3925,6 +3925,7 @@
             <li>Iris Sioson</li>
             <li>Marieliza Sioson</li>
             <li>Grace Joy Almanon</li>
+            <li>Cloie Anne Sioson</li>
             <li>Fernielle Chan</li>
           </ul>
         </div>
@@ -5931,98 +5932,11 @@ END:VCALENDAR`;
         }
 
         // --- RSVP FORM HANDLING ---
-        /*
-         * ATTENDEE LIST SETUP IN FIREBASE:
-         * Create a node called "attendees" in your Firebase Realtime Database with this structure:
-         *
-         * attendees/
-         *   "John Smith": 2
-         *   "Jane Doe": 4
-         *   "Robert Johnson": 1
-         *   "Maria Garcia": 3
-         *
-         * OR with more details:
-         * attendees/
-         *   "John Smith": { seats: 2 }
-         *   "Jane Doe": { seats: 4 }
-         *
-         * The system will auto-populate the guest count when the user types their name.
-         * If name is not found, it defaults to 1 seat.
-         */
 
-        // Store for attendee list cache
-        let attendeeList = {};
-        let attendeeListLoaded = false;
         let urlGuestCount = null; // Guest count from URL parameter (?guests=N)
-
-        // Load attendee list from Firebase on page load
-        function loadAttendeeList() {
-            if (!firebaseEnabled) return;
-
-            database.ref('attendees').once('value', (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    attendeeList = data;
-                    attendeeListLoaded = true;
-                    console.log('✅ Attendee list loaded:', Object.keys(attendeeList).length, 'guests');
-                } else {
-                    console.log('ℹ️ No attendee list found. All guests will default to 1 seat.');
-                }
-            }).catch((error) => {
-                console.error('Error loading attendee list:', error);
-            });
-        }
-
-        // Lookup name in attendee list
-        function lookupAttendee(nameInput) {
-            const name = nameInput.trim().toLowerCase();
-            const guestInput = document.getElementById('rsvpGuests');
-
-            if (!name || name.length < 2) {
-                // Reset to 1 if name is too short
-                if (guestInput) {
-                    guestInput.value = 1;
-                }
-                return;
-            }
-
-            // Search for name in attendee list (case-insensitive)
-            let reservedSeats = 1; // Default to 1
-
-            for (const [key, value] of Object.entries(attendeeList)) {
-                if (key.toLowerCase() === name || key.toLowerCase().includes(name) || name.includes(key.toLowerCase())) {
-                    reservedSeats = value.seats || value || 1; // Support both {seats: N} and direct number
-                    console.log(`Found match: ${key} with ${reservedSeats} seats`);
-                    break;
-                }
-            }
-
-            // Cap to URL guest count if specified
-            if (urlGuestCount !== null && reservedSeats > urlGuestCount) {
-                reservedSeats = urlGuestCount;
-            }
-
-            // Set guest count to reserved seats or 1
-            if (guestInput) {
-                guestInput.value = reservedSeats;
-            }
-        }
-
-        // Debounce function to avoid too many lookups
-        let lookupTimeout;
-        function debouncedLookup(value) {
-            clearTimeout(lookupTimeout);
-            lookupTimeout = setTimeout(() => {
-                console.log('Looking up name:', value);
-                lookupAttendee(value);
-            }, 100); // Wait 100ms after user stops typing (very fast response)
-        }
 
         // Initialize RSVP form
         document.addEventListener('DOMContentLoaded', function() {
-            // Load attendee list from Firebase
-            loadAttendeeList();
-
             // Read ?guests=N from URL and pre-set guest count
             const urlParams = new URLSearchParams(window.location.search);
             const urlGuests = parseInt(urlParams.get('guests'));
@@ -6032,17 +5946,6 @@ END:VCALENDAR`;
                 guestInput.value = urlGuestCount;
                 guestInput.max = urlGuestCount;
             }
-
-            // Add name lookup on input
-            const nameInput = document.getElementById('rsvpName');
-            nameInput.addEventListener('input', function() {
-                console.log('Input event fired, attendeeListLoaded:', attendeeListLoaded);
-                if (attendeeListLoaded) {
-                    debouncedLookup(this.value);
-                } else {
-                    console.log('Attendee list not loaded yet, skipping lookup');
-                }
-            });
 
             // Handle form submission
             const rsvpForm = document.getElementById('rsvpForm');
@@ -6138,14 +6041,17 @@ END:VCALENDAR`;
             } catch (error) {
                 console.error('Error saving RSVP:', error);
                 const errorDiv = document.getElementById('rsvpError');
-                errorDiv.innerHTML = '❌ Oops! Something went wrong. Please try again.';
+                const isPermission = error.code === 'PERMISSION_DENIED' || (error.message && error.message.includes('permission'));
+                errorDiv.innerHTML = isPermission
+                    ? '❌ Permission denied. Firebase rules may need to be updated.'
+                    : `❌ Error: ${error.message || 'Something went wrong. Please try again.'}`;
                 errorDiv.classList.remove('hidden');
                 document.getElementById('rsvpSuccess').classList.add('hidden');
 
-                // Hide error message after 5 seconds
+                // Hide error message after 8 seconds
                 setTimeout(() => {
                     errorDiv.classList.add('hidden');
-                }, 5000);
+                }, 8000);
             }
         }
 
