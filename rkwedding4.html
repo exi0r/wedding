@@ -6047,6 +6047,13 @@ END:VCALENDAR`;
                 // Restore URL guest count or default to 1
                 document.getElementById('rsvpGuests').value = urlGuestCount || 1;
 
+                // Re-enable button after success
+                isSubmitting = false;
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit RSVP 💌';
+                }
+
                 // Hide success message after 5 seconds
                 setTimeout(() => {
                     successDiv.classList.add('hidden');
