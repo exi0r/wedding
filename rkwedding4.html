@@ -3825,7 +3825,7 @@
 
         <div class="bg-white/70 backdrop-blur-sm p-3 sm:p-6 md:p-8 rounded-xl shadow-md" data-aos="fade-left">
           <h4 class="text-xs sm:text-base md:text-xl font-serif-display text-amber-700 mb-2 sm:mb-4 leading-tight">Parents of the Bride</h4>
-          <p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Jose Sioson †</p>
+          <p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Jose Sioson (deceased)</p>
           <p class="font-heading text-amber-700 text-sm sm:text-lg md:text-xl lg:text-2xl">Teresa Sioson</p>
         </div>
       </div>
@@ -4573,8 +4573,24 @@
             <div class="mt-6 sm:mt-8 md:mt-12 max-w-6xl mx-auto" data-aos="fade-up">
                 <div class="bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-xl border border-amber-100/50">
                     <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-serif-display text-amber-700 mb-2 sm:mb-3 md:mb-4 text-center">Area Map</h3>
-                    <div class="h-48 sm:h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-lg">
+                    <div class="h-48 sm:h-64 md:h-80 lg:h-96 rounded-lg overflow-hidden shadow-lg relative" id="mapContainer">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61783.25814589349!2d121.166947!3d14.573208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c7fb8fce5735%3A0xc84901512d88bd1e!2sThe%20Emerald%20Events%20Place!5e0!3m2!1sen!2sjp!4v1752373039070!5m2!1sen!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        <!-- Mobile tap overlay -->
+                        <div id="mapTapOverlay" class="absolute inset-0 bg-transparent" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maps Confirmation Modal -->
+            <div id="mapsModal" class="fixed inset-0 z-50 flex items-center justify-center px-6" style="display:none !important;">
+                <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeMapsModal()"></div>
+                <div class="relative bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full text-center z-10">
+                    <div class="text-4xl mb-3">📍</div>
+                    <h3 class="font-serif-display text-lg font-bold text-gray-800 mb-2">Open Google Maps?</h3>
+                    <p class="text-sm text-gray-500 mb-5">This will open Google Maps to show directions to <strong class="text-amber-700">The Emerald Events Place</strong>.</p>
+                    <div class="flex gap-3">
+                        <button onclick="closeMapsModal()" class="flex-1 py-2.5 rounded-full border-2 border-amber-600 text-amber-700 font-semibold text-sm transition-all duration-200 hover:bg-amber-50">Cancel</button>
+                        <a id="mapsModalLink" href="https://maps.app.goo.gl/v1xjURzm47ShGyDP6" target="_blank" onclick="closeMapsModal()" class="flex-1 py-2.5 rounded-full bg-amber-600 text-white font-semibold text-sm transition-all duration-200 hover:bg-amber-700 flex items-center justify-center">Open Maps</a>
                     </div>
                 </div>
             </div>
@@ -5030,6 +5046,41 @@
         const lightbox = GLightbox({
             selector: '.glightbox'
         });
+
+        // --- AREA MAP: Mobile confirmation modal ---
+        (function() {
+            const overlay = document.getElementById('mapTapOverlay');
+            const modal   = document.getElementById('mapsModal');
+            if (!overlay || !modal) return;
+
+            function isMobile() {
+                return window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
+            }
+
+            function showOverlay() {
+                if (isMobile()) overlay.style.display = 'block';
+            }
+
+            function hideOverlay() {
+                overlay.style.display = 'none';
+            }
+
+            window.openMapsModal  = function() { modal.style.setProperty('display', 'flex', 'important'); };
+            window.closeMapsModal = function() { modal.style.setProperty('display', 'none', 'important'); };
+
+            overlay.addEventListener('click', openMapsModal);
+
+            // Show overlay on mobile, hide on desktop
+            showOverlay();
+            window.addEventListener('resize', function() {
+                isMobile() ? showOverlay() : hideOverlay();
+            });
+
+            // Close modal on Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMapsModal();
+            });
+        })();
 
         // Enhanced Parallax Scrolling Effect for Story Section
         function initParallax() {
